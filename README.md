@@ -1,4 +1,4 @@
-# ARTOON 2.0
+# ARTOON 1.0
 
 > **AI-Native Structured Article Format**
 > 
