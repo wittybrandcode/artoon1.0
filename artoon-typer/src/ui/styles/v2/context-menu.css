@@ -1,0 +1,5 @@
+/* 
+ * Legacy styles removed.
+ * Context Menu styling is now handled entirely within src/ui/components/ContextMenu.css
+ * to prevent CSS conflicts and enforce a consistent glassmorphism aesthetic.
+ */

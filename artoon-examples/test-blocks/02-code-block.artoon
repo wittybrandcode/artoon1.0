@@ -1,0 +1,99 @@
+>.t1:: 🧪 اختبار CODE Block
+
+>.p:: هذا الملف يختبر بلوك CODE المحجوز.
+
+>.t2:: ما يجب أن يحدث
+
+>.ul::
+li:: المحتوى داخل CODE لا يُحلل كـ ARTOON syntax
+li:: يدعم تحديد اللغة (code:javascript, code:python, إلخ)
+li:: يحافظ على المسافات والتنسيق
+
+>.hr
+
+>.t2:: اختبار JavaScript
+
+<code:javascript>.
+// دالة بسيطة
+function greet(name) {
+  return `مرحباً ${name}!`;
+}
+
+const message = greet('ARTOON');
+console.log(message);
+.<code>
+
+>.t2:: اختبار Python
+
+<code:python>.
+def calculate_sum(numbers):
+    """حساب مجموع الأرقام"""
+    return sum(numbers)
+
+numbers = [1, 2, 3, 4, 5]
+result = calculate_sum(numbers)
+print(f"المجموع: {result}")
+.<code>
+
+>.t2:: اختبار TypeScript
+
+<code:typescript>.
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+function findById<T extends { id: number }>(
+  items: T[],
+  id: number
+): T | undefined {
+  return items.find(item => item.id === id);
+}
+.<code>
+
+>.t2:: اختبار HTML
+
+<code:html>.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مثال ARTOON</title>
+</head>
+<body>
+  <h1>مرحباً بك</h1>
+</body>
+</html>
+.<code>
+
+>.t2:: اختبار JSON
+
+<code:json>.
+{
+  "name": "artoon-project",
+  "version": "2.0.0",
+  "description": "نظام كتابة ثنائي الاتجاه",
+  "features": [
+    "دعم كامل للعربية",
+    "بلوكات محجوزة",
+    "بلوكات مخصصة"
+  ]
+}
+.<code>
+
+>.t2:: اختبار ARTOON نفسه
+
+<code:artoon>.
+>.t1:: مثال على ARTOON syntax
+
+>.p:: نص مع [s:: تنسيق غامق] و[e:: تنسيق مائل].
+
+>.ul::
+li:: عنصر في قائمة
+li:: عنصر آخر
+.<code>
+
+>.hr
+
+>.p:: [s:: النتيجة المتوقعة:] جميع أكواد البرمجة تظهر بشكل صحيح مع syntax highlighting.

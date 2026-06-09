@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARTOON Document</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 2rem; }
+    [dir="rtl"] { text-align: right; }
+    [dir="ltr"] { text-align: left; }
+    pre { background: #f5f5f5; padding: 1rem; overflow-x: auto; }
+    code { font-family: monospace; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; }
+    th { background: #f0f0f0; }
+    blockquote { border-inline-start: 4px solid #ddd; margin: 1rem 0; padding-inline-start: 1rem; }
+    figure { margin: 1rem 0; }
+    figcaption { font-style: italic; color: #666; }
+  </style>
+</head>
+<body dir="rtl">
+<h1>الدليل الشامل لصيغة ARTOON 2.0</h1>
+
+<p>مرحباً بك في <strong>الدليل الشامل</strong> لصيغة ARTOON 2.0. هذا المقال يعرض جميع <em>28 نوع بلوك</em> المدعومة في النظام، مع أمثلة عملية لكل منها.</p>
+
+<hr />
+
+<h2>١. العناوين (Headings)</h2>
+
+<p>تدعم ARTOON ستة مستويات من العناوين:</p>
+
+<h1>عنوان المستوى الأول (t1)</h1>
+
+<h2>عنوان المستوى الثاني (t2)</h2>
+
+<h3>عنوان المستوى الثالث (t3)</h3>
+
+<h4>عنوان المستوى الرابع (t4)</h4>
+
+<h5>عنوان المستوى الخامس (t5)</h5>
+
+<h6>عنوان المستوى السادس (t6)</h6>
+
+<hr />
+
+<h2>٢. الفقرات (Paragraphs)</h2>
+
+<p>هذه فقرة عربية بسيطة تُكتب من اليمين إلى اليسار. يمكن أن تحتوي على <strong>نص مهم</strong> و<em>نص مؤكد</em> و<u>نص مسطر</u>.</p>
+
+<p dir="ltr">This is an English paragraph written from left to right. It can contain <strong>bold text</strong> and <em>emphasized text</em> and <u>underlined text</u>.</p>
+
+<p>فقرة مختلطة: نص عربي مع <code>English code</code> ورابط <a href="https://example.com">مثال</a> داخلها.</p>
+
+<hr />
+
+<h2>٣. الاقتباسات (Quotes)</h2>
+
+<blockquote>العلم نور والجهل ظلام — حكمة عربية قديمة</blockquote>
+
+<blockquote dir="ltr">The only way to do great work is to love what you do. — Steve Jobs</blockquote>
+
+<blockquote><strong>الإبداع</strong> هو الذكاء وهو يستمتع — <em>ألبرت أينشتاين</em></blockquote>
+
+<hr />
+
+<h2>٤. النص المحفوظ التنسيق (Preformatted)</h2>
+
+<p>مكون <code>pre</code> يحفظ المسافات والتنسيق كما هو:</p>
+
+<pre>نص عربي    محفوظ    التنسيق    مع مسافات متعددة</pre>
+
+<pre dir="ltr">English    preformatted    text    with    spaces</pre>
+
+<pre>مسافات في البداية</pre>
+
+<p dir="ltr">وسطر ثاني</p>
+
+<p dir="ltr">وسطر ثالث بمسافة أكبر</p>
+
+<pre>┌─────────────────────────────┐</pre>
+
+<p dir="ltr">│   جدول ASCII بالعربية      │</p>
+
+<p dir="ltr">├─────────────────────────────┤</p>
+
+<p dir="ltr">│   الاسم    │   العمر       │</p>
+
+<p dir="ltr">│   أحمد     │   25          │</p>
+
+<p dir="ltr">└─────────────────────────────┘</p>
+
+<hr />
+
+<h2>٥. فاصل السطر (Line Break)</h2>
+
+<p>النص قبل فاصل السطر</p>
+
+<br />
+
+<p>النص بعد فاصل السطر</p>
+
+<hr />
+
+<h2>٦. فاصل الكلمة (Word Break)</h2>
+
+<p>كلمة طويلة جداً</p>
+
+<wbr />
+
+<p>يمكن أن تنقسم هنا عند الحاجة</p>
+
+<hr />
+
+<h2>٧. القائمة النقطية (Bullet List)</h2>
+
+<hr />
+
+<ul dir="ltr">
+  <li>First item in English</li>
+  <li>Second item with <em>emphasis</em></li>
+  <li>Third item</li>
+</ul>
+
+<h2>٨. القائمة المرقمة (Numbered List)</h2>
+
+<hr />
+
+<ol dir="ltr">
+  <li>Step 1: Install the library</li>
+  <li>Step 2: Import modules</li>
+  <li>Step 3: Write code</li>
+  <li>Step 4: Run tests</li>
+</ol>
+
+<h2>٩. قائمة التعريفات (Definition List)</h2>
+
+<hr />
+
+<dl dir="ltr">
+  <dt>HTML</dt>
+  <dd>HyperText Markup Language</dd>
+  <dt>CSS</dt>
+  <dd>Cascading Style Sheets</dd>
+  <dt>JavaScript</dt>
+  <dd>Programming language for the web</dd>
+</dl>
+
+<h2>١٠. الصور (Images)</h2>
+
+<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="جبال الألب الخلابة" title="صورة طبيعية للجبال" />
+
+<img src="https://picsum.photos/600/400" alt="صورة عشوائية" />
+
+<hr />
+
+<h2>١١. الفيديو (Video)</h2>
+
+<video src="https://www.w3schools.com/html/mov_bbb.mp4" controls="controls" title="فيديو تجريبي - Big Buck Bunny"></video>
+
+<hr />
+
+<h2>١٢. الصوت (Audio)</h2>
+
+<audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls="controls" title="موسيقى تجريبية - SoundHelix"></audio>
+
+<hr />
+
+<h2>١٣. الشكل مع تعليق (Figure)</h2>
+
+<figure><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600" alt="مخطط إحصائي" /><figcaption>الشكل ١: مخطط نمو المستخدمين خلال عام ٢٠٢٥</figcaption></figure>
+
+<figure><video src="https://www.w3schools.com/html/mov_bbb.mp4" controls="controls"></video><figcaption>الشكل ٢: فيديو توضيحي للمنتج</figcaption></figure>
+
+<hr />
+
+<h2>١٤. الملفات (Files)</h2>
+
+<a href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" download="download">تحميل ملف PDF تجريبي</a>
+
+<a href="https://example.com/document.docx" download="download">تحميل مستند Word</a>
+
+<a href="https://example.com/data.xlsx" download="download">تحميل جدول Excel</a>
+
+<hr />
+
+<h2>١٥. الكود (Code)</h2>
+
+<pre><code>// مثال JavaScript
+const greeting = &#39;مرحباً بالعالم&#39;;
+console.log(greeting);
+function calculateSum(a, b) {
+  return a + b;
+}</code></pre>
+
+<pre><code># مثال Python
+def greet(name):
+    return f&quot;مرحباً {name}&quot;
+class Calculator:
+    def add(self, a, b):
+        return a + b</code></pre>
+
+<pre><code>// مثال TypeScript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+const createUser = (data: Partial&lt;User&gt;): User =&gt; ({
+  id: generateId(),
+  name: data.name ?? &#39;مستخدم&#39;,
+  email: data.email ?? &#39;&#39;,
+});</code></pre>
+
+<pre><code>كود بدون تحديد لغة
+يمكن أن يحتوي على أي نص</code></pre>
+
+<hr />
+
+<h2>١٦. الجداول (Tables)</h2>
+
+<table>
+  <thead>
+    <tr><th>الاسم</th><th>العمر</th><th>المدينة</th><th>الوظيفة</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>أحمد محمد</td><td>25</td><td>الرياض</td><td>مطور برمجيات</td></tr>
+    <tr><td>سارة علي</td><td>30</td><td>جدة</td><td>مصممة واجهات</td></tr>
+    <tr><td>خالد عبدالله</td><td>28</td><td>الدمام</td><td>مدير مشاريع</td></tr>
+    <tr><td>Name</td><td>Age</td><td>City</td><td>Role</td></tr>
+    <tr><td>John Smith</td><td>32</td><td>New York</td><td>Developer</td></tr>
+    <tr><td>Jane Doe</td><td>28</td><td>London</td><td>Designer</td></tr>
+    <tr><td>Bob Wilson</td><td>35</td><td>Sydney</td><td>Manager</td></tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>١٧. الفاصل (Divider)</h2>
+
+<p>نص قبل الفاصل</p>
+
+<hr />
+
+<p>نص بعد الفاصل</p>
+
+<hr />
+
+<h2>١٨. المحتوى القابل للطي (Details)</h2>
+
+<details><summary>انقر لعرض المزيد من المعلومات</summary><p>هذا محتوى مخفي يظهر عند النقر على العنوان.</p><p>يمكن أن يحتوي على فقرات متعددة.</p></details>
+
+<details><summary>معلومات تقنية متقدمة</summary><p>هذا القسم يحتوي على تفاصيل تقنية للمطورين.</p><p>يشمل معلومات عن البنية الداخلية والـ API.</p></details>
+
+<details><summary>الأسئلة الشائعة</summary><p>س: ما هي ARTOON؟</p><p>ج: صيغة محتوى دلالي متقدمة.</p></details>
+
+<hr />
+
+<h2>١٩. التاريخ والوقت (Time Block)</h2>
+
+<time datetime="2026-01-16">2026-01-16</time>
+
+<time datetime="2026-01-16">السادس عشر من يناير ٢٠٢٦</time>
+
+<time datetime="2026-01-16T14:30:00">الساعة ٢:٣٠ مساءً</time>
+
+<hr />
+
+<h2>٢٠. الاختصارات (Abbreviation Block)</h2>
+
+<abbr title="HyperText Markup Language">HTML</abbr>
+
+<abbr title="Cascading Style Sheets">CSS</abbr>
+
+<abbr title="Advanced Rich Text Object Oriented Notation">ARTOON</abbr>
+
+<abbr title="Application Programming Interface">API</abbr>
+
+<abbr title="Right-to-Left">RTL</abbr>
+
+<abbr title="Left-to-Right">LTR</abbr>
+
+<hr />
+
+<h2>٢١. البيانات الوصفية (Meta Block)</h2>
+
+<hr />
+
+<h2>٢٢. الروابط كبلوكات (Link Block)</h2>
+
+<a href="https://github.com">موقع GitHub - منصة استضافة الكود</a>
+
+<a href="https://developer.mozilla.org/ar/">توثيق MDN بالعربية</a>
+
+<a href="https://www.typescriptlang.org/">موقع TypeScript الرسمي</a>
+
+<hr />
+
+<h2>٢٣. البلوكات المخصصة (Custom Block)</h2>
+
+<div dir="ltr" class="card">&gt;.t3:: بطاقة معلومات
+&gt;.p:: هذه بطاقة مخصصة يمكن استخدامها لعرض معلومات مميزة.
+&gt;.p:: تدعم جميع المكونات الداخلية.</div>
+
+<div dir="ltr" class="note">&gt;.p:: [s:: ملاحظة مهمة:] هذا بلوك مخصص من نوع note.</div>
+
+<div dir="ltr" class="warning">&gt;.p:: [s:: تحذير:] هذا بلوك تحذيري مخصص.</div>
+
+<div dir="ltr" class="callout">&gt;.t4:: نصيحة
+&gt;.p:: يمكنك إنشاء بلوكات مخصصة بأي اسم تريده.</div>
+
+<hr />
+
+<h2>٢٤. المُعدِّلات السبعة (Marks)</h2>
+
+<p><strong>نص مهم (Strong)</strong> — للتأكيد القوي</p>
+
+<p><em>نص مؤكد (Emphasis)</em> — للتأكيد الخفيف</p>
+
+<p><u>نص مسطر (Underline)</u> — للتسطير</p>
+
+<p><del>نص محذوف (Deleted)</del> — للنص المحذوف</p>
+
+<p><mark>نص مميز (Highlight)</mark> — للتمييز</p>
+
+<p>H<sub>2</sub>O — نص سفلي (Subscript)</p>
+
+<p>x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup> — نص علوي (Superscript)</p>
+
+<h3>المُعدِّلات المركبة</h3>
+
+<p><strong><em>مهم ومؤكد معاً</em></strong></p>
+
+<p><strong><u>مهم ومسطر معاً</u></strong></p>
+
+<p><em><u>مؤكد ومسطر معاً</u></em></p>
+
+<p><strong><em><u>مهم ومؤكد ومسطر</u></em></strong></p>
+
+<p><strong><mark>مهم ومميز</mark></strong></p>
+
+<hr />
+
+<h2>٢٥. المكونات الداخلية (Inline Components)</h2>
+
+<h3>الروابط</h3>
+
+<p>رابط بسيط: <a href="https://google.com">محرك البحث جوجل</a></p>
+
+<p>رابط مع تنسيق: <strong><a href="https://wikipedia.org">ويكيبيديا</a></strong></p>
+
+<p>رابط مؤكد: <em><a href="https://github.com">GitHub</a></em></p>
+
+<h3>الكود المضمن</h3>
+
+<p>كود بسيط: <code>npm install @artoon/core</code></p>
+
+<p>كود مع لغة: <code class="language-javascript">const x = 1</code></p>
+
+<p>كود Python: <code class="language-python">print(&quot;مرحباً&quot;)</code></p>
+
+<h3>الصور المضمنة</h3>
+
+<p>صورة صغيرة: <img src="https://picsum.photos/50/50" alt="أيقونة" /></p>
+
+<p>نص مع صورة <img src="https://picsum.photos/30/30" alt="رمز" /> في المنتصف</p>
+
+<h3>الوقت المضمن</h3>
+
+<p>تاريخ النشر: <time datetime="2026-01-16">١٦ يناير ٢٠٢٦</time></p>
+
+<p>آخر تحديث: <time datetime="2026-01-16T14:30:00">الساعة ٢:٣٠ م</time></p>
+
+<h3>الاختصارات المضمنة</h3>
+
+<p>لغة <abbr title="HyperText Markup Language">HTML</abbr> هي أساس الويب</p>
+
+<p>نستخدم <abbr title="Cascading Style Sheets">CSS</abbr> للتنسيق</p>
+
+<p>و <abbr title="JavaScript">JS</abbr> للتفاعلية</p>
+
+<hr />
+
+<h2>٢٦. دعم RTL و LTR</h2>
+
+<h3>نصوص عربية (RTL)</h3>
+
+<p>هذا نص عربي يُكتب من اليمين إلى اليسار.</p>
+
+<p>يدعم ARTOON اللغة العربية بشكل كامل مع جميع المكونات.</p>
+
+<h3>English Texts (LTR)</h3>
+
+<p dir="ltr">This is English text written from left to right.</p>
+
+<p dir="ltr">ARTOON fully supports English and other LTR languages.</p>
+
+<h3>النصوص المختلطة</h3>
+
+<p>نص عربي مع <code>English code</code> ورقم 123 ورابط <a href="https://example.com">Example</a>.</p>
+
+<p dir="ltr">English text with عربي and number ١٢٣ and link <a href="https://example.com">مثال</a>.</p>
+
+<p>معادلة: E = mc<sup>2</sup> حيث c = <code>299,792,458 m/s</code></p>
+
+<hr />
+
+<h2>٢٧. التعليقات</h2>
+
+<hr />
+
+<h2>٢٨. الخلاصة</h2>
+
+<p>هذا المقال عرض جميع <strong>28 نوع بلوك</strong> المدعومة في ARTOON 2.0:</p>
+
+<ol>
+  <li><strong>Text Blocks (10):</strong> paragraph, heading1-6, quote, preformatted, line-break, word-break</li>
+  <li><strong>List Blocks (3):</strong> bullet-list, numbered-list, definition-list</li>
+  <li><strong>Media Blocks (5):</strong> image, video, audio, figure, file</li>
+  <li><strong>Advanced Blocks (10):</strong> code, table, divider, details, time-block, abbr-block, meta, link-block, custom</li>
+</ol>
+
+<p>بالإضافة إلى <em>7 معدلات</em> (strong, emphasis, underline, deleted, highlight, subscript, superscript) و<em>5 مكونات داخلية</em> (link, code, image, time, abbr).</p>
+
+<hr />
+
+<p><strong>آخر تحديث:</strong> <time datetime="2026-01-16">١٦ يناير ٢٠٢٦</time></p>
+
+<p><em>تم إنشاء هذا الملف لاختبار محرر ARTOON 2.0</em></p>
+</body>
+</html>

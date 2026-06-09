@@ -1,0 +1,232 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "ARTOON",
+  "scopeName": "source.artoon",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#block-start" },
+    { "include": "#block-end" },
+    { "include": "#meta-field" },
+    { "include": "#child-element" },
+    { "include": "#separator-line" },
+    { "include": "#list-container" },
+    { "include": "#table-container" },
+    { "include": "#list-item-nested" },
+    { "include": "#list-item-simple" },
+    { "include": "#table-header" },
+    { "include": "#table-row" },
+    { "include": "#component-line" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.artoon",
+      "match": "^[><]\\.:::.*$"
+    },
+
+    "block-start": {
+      "name": "meta.block.start.artoon",
+      "match": "^(<)([a-zA-Z][a-zA-Z0-9_-]*)(:[a-zA-Z0-9_+-]+)?(>\\.)",
+      "captures": {
+        "1": { "name": "punctuation.definition.block.artoon" },
+        "2": { "name": "keyword.control.block.artoon" },
+        "3": { "name": "entity.name.type.language.artoon" },
+        "4": { "name": "punctuation.definition.block.artoon" }
+      }
+    },
+
+    "block-end": {
+      "name": "meta.block.end.artoon",
+      "match": "^(\\.<)([a-zA-Z][a-zA-Z0-9_-]*)(>)",
+      "captures": {
+        "1": { "name": "punctuation.definition.block.artoon" },
+        "2": { "name": "keyword.control.block.artoon" },
+        "3": { "name": "punctuation.definition.block.artoon" }
+      }
+    },
+
+    "meta-field": {
+      "name": "meta.field.artoon",
+      "match": "^([><])(\\.-)(:)([a-zA-Z]+)(:)(.*)$",
+      "captures": {
+        "1": { "name": "keyword.operator.direction.artoon" },
+        "2": { "name": "punctuation.definition.child.artoon" },
+        "3": { "name": "punctuation.separator.field.artoon" },
+        "4": { "name": "variable.other.field.artoon" },
+        "5": { "name": "punctuation.separator.field.artoon" },
+        "6": { "name": "string.unquoted.value.artoon" }
+      }
+    },
+
+    "child-element": {
+      "name": "meta.child.artoon",
+      "match": "^([><])(\\.-)([a-zA-Z][a-zA-Z0-9]*)(::)?(.*)$",
+      "captures": {
+        "1": { "name": "keyword.operator.direction.artoon" },
+        "2": { "name": "punctuation.definition.child.artoon" },
+        "3": { "name": "entity.name.tag.child.artoon" },
+        "4": { "name": "punctuation.separator.artoon" },
+        "5": { "patterns": [{ "include": "#content" }] }
+      }
+    },
+
+    "separator-line": {
+      "name": "meta.separator.artoon",
+      "match": "^([><])(\\.)(br|hr|wbr)(;(br|hr|wbr))*\\s*$",
+      "captures": {
+        "1": { "name": "keyword.operator.direction.artoon" },
+        "2": { "name": "punctuation.accessor.artoon" },
+        "3": { "name": "constant.language.separator.artoon" },
+        "5": { "name": "constant.language.separator.artoon" }
+      }
+    },
+
+    "list-container": {
+      "name": "meta.list.artoon",
+      "match": "^([><])(\\.)(ul|ol|dl)(::)\\s*$",
+      "captures": {
+        "1": { "name": "keyword.operator.direction.artoon" },
+        "2": { "name": "punctuation.accessor.artoon" },
+        "3": { "name": "entity.name.tag.list.artoon" },
+        "4": { "name": "punctuation.separator.artoon" }
+      }
+    },
+
+    "table-container": {
+      "name": "meta.table.artoon",
+      "match": "^([><])(\\.)(table)(::)\\s*$",
+      "captures": {
+        "1": { "name": "keyword.operator.direction.artoon" },
+        "2": { "name": "punctuation.accessor.artoon" },
+        "3": { "name": "entity.name.tag.table.artoon" },
+        "4": { "name": "punctuation.separator.artoon" }
+      }
+    },
+
+    "list-item-nested": {
+      "name": "meta.list-item.nested.artoon",
+      "match": "^(-+)(li|dt|dd)(::)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "keyword.operator.depth.artoon" },
+        "2": { "name": "entity.name.tag.list-item.artoon" },
+        "3": { "name": "punctuation.separator.artoon" },
+        "4": { "patterns": [{ "include": "#content" }] }
+      }
+    },
+
+    "list-item-simple": {
+      "name": "meta.list-item.artoon",
+      "match": "^(li|dt|dd)(::)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "entity.name.tag.list-item.artoon" },
+        "2": { "name": "punctuation.separator.artoon" },
+        "3": { "patterns": [{ "include": "#content" }] }
+      }
+    },
+
+    "table-header": {
+      "name": "meta.table-header.artoon",
+      "match": "^(th)(::)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "entity.name.tag.table-header.artoon" },
+        "2": { "name": "punctuation.separator.artoon" },
+        "3": { "patterns": [{ "include": "#table-content" }] }
+      }
+    },
+
+    "table-row": {
+      "name": "meta.table-row.artoon",
+      "match": "^(tr)(::)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "entity.name.tag.table-row.artoon" },
+        "2": { "name": "punctuation.separator.artoon" },
+        "3": { "patterns": [{ "include": "#table-content" }] }
+      }
+    },
+
+    "component-line": {
+      "name": "meta.component.artoon",
+      "match": "^([><])(\\.?)(-*)(p|t[1-6]|q|pre|ul|ol|dl|li|dt|dd|table|th|tr|figure|details|a|img|video|audio|file|time|abbr|caption|summary|figcaption)(::)?(.*)$",
+      "captures": {
+        "1": { "name": "keyword.operator.direction.artoon" },
+        "2": { "name": "punctuation.accessor.artoon" },
+        "3": { "name": "keyword.operator.depth.artoon" },
+        "4": { "name": "entity.name.tag.component.artoon" },
+        "5": { "name": "punctuation.separator.artoon" },
+        "6": { "patterns": [{ "include": "#content" }] }
+      }
+    },
+
+    "content": {
+      "patterns": [
+        { "include": "#inline-token" },
+        { "include": "#plain-text" }
+      ]
+    },
+
+    "table-content": {
+      "patterns": [
+        { "include": "#inline-token" },
+        {
+          "name": "punctuation.separator.cell.artoon",
+          "match": ";"
+        },
+        { "include": "#plain-text" }
+      ]
+    },
+
+    "inline-token": {
+      "name": "meta.inline.artoon",
+      "begin": "\\[",
+      "end": "\\]",
+      "beginCaptures": { "0": { "name": "punctuation.section.bracket.begin.artoon" } },
+      "endCaptures": { "0": { "name": "punctuation.section.bracket.end.artoon" } },
+      "patterns": [
+        {
+          "name": "meta.modifier-only.artoon",
+          "match": "^(s|e|u|d|mark|sub|sup)((\\+)(s|e|u|d|mark|sub|sup))*(::\\s*)([^\\]]+)",
+          "captures": {
+            "1": { "name": "keyword.operator.modifier.artoon" },
+            "3": { "name": "keyword.operator.plus.artoon" },
+            "4": { "name": "keyword.operator.modifier.artoon" },
+            "5": { "name": "punctuation.separator.artoon" },
+            "6": { "name": "string.unquoted.modified-text.artoon" }
+          }
+        },
+        {
+          "name": "meta.modifier-component.artoon",
+          "match": "((s|e|u|d|mark|sub|sup)(\\+))*(a|img|c|abbr|time|video|audio|file)(::\\s*)([^\\]]+)",
+          "captures": {
+            "2": { "name": "keyword.operator.modifier.artoon" },
+            "3": { "name": "keyword.operator.plus.artoon" },
+            "4": { "name": "support.function.inline.artoon" },
+            "5": { "name": "punctuation.separator.artoon" },
+            "6": { "patterns": [{ "include": "#inline-attributes" }] }
+          }
+        },
+        {
+          "name": "string.unquoted.inline-content.artoon",
+          "match": "[^\\[\\]]+"
+        }
+      ]
+    },
+
+    "inline-attributes": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.attribute.artoon",
+          "match": ";"
+        },
+        {
+          "name": "string.unquoted.attribute.artoon",
+          "match": "[^;\\]]+"
+        }
+      ]
+    },
+
+    "plain-text": {
+      "name": "string.unquoted.text.artoon",
+      "match": "[^\\[]+"
+    }
+  }
+}
+

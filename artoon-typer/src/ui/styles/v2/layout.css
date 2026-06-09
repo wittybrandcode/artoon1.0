@@ -1,0 +1,150 @@
+/**
+ * Layout - ARTOON TYPER Prototype
+ * Overall layout structure
+ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-bg-primary);
+  /* Add padding at top to clear header + fixed toolbar */
+  padding-top: calc(var(--app-header-height, 60px) + var(--fixed-toolbar-height, 44px));
+}
+
+/* Header Layout */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--app-header-height, 60px);
+  z-index: var(--z-fixed);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-light);
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255, 0.9);
+}
+
+[data-theme="dark"] .app-header {
+  background: rgba(25, 25, 25, 0.9);
+}
+
+/* Header Layout */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-light);
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .app-header {
+  background: rgba(25, 25, 25, 0.9);
+}
+
+/* Main Content Layout */
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+
+/* Editor Container */
+.editor-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Editor */
+.editor {
+  flex: 1;
+  min-height: 400px;
+  background: var(--color-bg-primary);
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+
+/* Status Bar Layout */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-6);
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border-light);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.status-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.status-bar__item i {
+  font-size: var(--font-size-sm);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-header {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .app-main {
+    padding: var(--space-3);
+  }
+
+  .editor-container {
+    max-width: 100%;
+  }
+
+  .status-bar {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .status-bar__item {
+    font-size: var(--font-size-xs);
+  }
+
+  .status-bar__item span {
+    display: none;
+  }
+
+  .status-bar__item i {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header__actions {
+    gap: var(--space-1);
+  }
+
+  .btn span {
+    display: none;
+  }
+}

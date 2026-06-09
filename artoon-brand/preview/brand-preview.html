@@ -1,0 +1,552 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ARTOON — AI-native structured article format. Structured for machines, readable for humans." />
+  <title>ARTOON — Structured for Machines</title>
+  <link rel="icon" href="../logos/favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../tokens/tokens.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--artoon-font-body);
+      background: var(--artoon-black);
+      color: var(--artoon-text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Logo <> — < LTR gold, > RTL blue */
+    .logo-brackets {
+      font-family: var(--artoon-font-mono);
+      font-weight: 600;
+      letter-spacing: -0.08em;
+      line-height: 0.9;
+    }
+    .logo-brackets .lt { color: var(--artoon-stripe-ltr); }
+    .logo-brackets .gt { color: var(--artoon-stripe-rtl); }
+
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem clamp(1.5rem, 4vw, 3rem);
+      mix-blend-mode: difference;
+    }
+    .nav .logo-brackets { font-size: 1.75rem; color: #fff; }
+    .nav .logo-brackets .lt, .nav .logo-brackets .gt { color: #fff; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: clamp(6rem, 12vh, 8rem) clamp(1.5rem, 4vw, 3rem) clamp(3rem, 8vh, 5rem);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 125%;
+      object-fit: cover;
+      object-position: center 25%;
+    }
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(100deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.85) 100%),
+        linear-gradient(0deg, #000 0%, transparent 40%),
+        radial-gradient(ellipse 45% 35% at 90% 10%, rgba(29,78,216,0.3), transparent);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.035;
+      background-image:
+        linear-gradient(var(--artoon-steel) 1px, transparent 1px),
+        linear-gradient(90deg, var(--artoon-steel) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 3; max-width: var(--artoon-max-content); width: 100%; }
+    .hero-content .logo-brackets { font-size: clamp(5rem, 18vw, 11rem); margin-bottom: 0.5rem; }
+    .hero-wordmark {
+      font-family: var(--artoon-font-display);
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero-wordmark .char { display: inline-block; }
+    .hero-headline {
+      font-family: var(--artoon-font-display);
+      font-size: clamp(2.25rem, 6vw, 4.25rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.08;
+      max-width: 15ch;
+      margin-bottom: 1.5rem;
+    }
+    .hero-headline .line { display: block; overflow: hidden; }
+    .hero-headline .word { display: inline-block; }
+    .hero-desc { font-size: 1.05rem; color: var(--artoon-silver); max-width: 40ch; line-height: 1.65; margin-bottom: 2rem; }
+    .hero-stripe { margin-bottom: 2rem; opacity: 0; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn-primary, .btn-ghost {
+      font-family: var(--artoon-font-display);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 1.1rem 2.2rem;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+    .btn-primary { background: #fff; color: #000; }
+    .btn-ghost { background: transparent; color: #fff; border: 1px solid var(--artoon-steel); }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: clamp(1.5rem, 4vw, 3rem);
+      z-index: 3;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--artoon-silver);
+      writing-mode: vertical-rl;
+    }
+
+    .marquee-wrap {
+      border-block: 1px solid var(--artoon-steel);
+      background: var(--artoon-carbon);
+      padding: 1.25rem 0;
+      overflow: hidden;
+    }
+    .marquee-track { display: flex; width: max-content; }
+    .marquee-group { display: flex; gap: 4rem; padding-right: 4rem; flex-shrink: 0; }
+    .marquee-item {
+      font-family: var(--artoon-font-mono);
+      font-size: 0.85rem;
+      color: var(--artoon-silver);
+      white-space: nowrap;
+    }
+    .marquee-item .r { color: var(--artoon-stripe-rtl); }
+    .marquee-item .l { color: var(--artoon-stripe-ltr); }
+    .marquee-item .lt { color: var(--artoon-stripe-ltr); }
+    .marquee-item .gt { color: var(--artoon-stripe-rtl); }
+
+    .section { padding: clamp(5rem, 12vh, 8rem) clamp(1.5rem, 4vw, 3rem); }
+    .section-inner { max-width: var(--artoon-max-content); margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--artoon-silver);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--artoon-font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3rem;
+    }
+    .section-title .reveal { display: inline-block; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--artoon-steel);
+    }
+    .feature-card {
+      background: var(--artoon-black);
+      padding: 2.5rem 2rem;
+      min-height: 220px;
+    }
+    .feature-num { font-family: var(--artoon-font-mono); font-size: 0.75rem; color: var(--artoon-stripe-rtl); }
+    .feature-card h3 {
+      font-family: var(--artoon-font-display);
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 1rem 0 0.75rem;
+    }
+    .feature-card p { font-size: 0.9rem; color: var(--artoon-silver); line-height: 1.6; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1px;
+      background: var(--artoon-steel);
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--artoon-graphite);
+      min-height: 260px;
+    }
+    .gallery-item:nth-child(1) { grid-column: span 7; min-height: 460px; }
+    .gallery-item:nth-child(2), .gallery-item:nth-child(3) { grid-column: span 5; }
+    .gallery-item:nth-child(4) { grid-column: span 4; }
+    .gallery-item:nth-child(5) { grid-column: span 8; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; min-height: 260px; }
+    .gallery-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1.25rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.92));
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .syntax-panel {
+      background: var(--artoon-graphite);
+      border: 1px solid var(--artoon-steel);
+      padding: 2rem;
+      font-family: var(--artoon-font-mono);
+      font-size: 0.9rem;
+      line-height: 1.85;
+    }
+    .syntax-panel .line { opacity: 0; }
+    .syntax-panel .r { color: var(--artoon-stripe-rtl); }
+    .syntax-panel .l { color: var(--artoon-stripe-ltr); }
+    .syntax-panel .d { color: var(--artoon-silver); }
+
+    .pipeline { border: 1px solid var(--artoon-steel); }
+    .pipeline-step {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid var(--artoon-steel);
+      background: var(--artoon-carbon);
+    }
+    .pipeline-step:last-child { border-bottom: none; }
+    .pipeline-step code { font-family: var(--artoon-font-mono); color: var(--artoon-stripe-rtl); font-size: 0.85rem; }
+    .pipeline-step h4 {
+      font-family: var(--artoon-font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .pipeline-step span { font-size: 0.8rem; color: var(--artoon-silver); }
+
+    .cta-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 65vh; }
+    .cta-visual { position: relative; overflow: hidden; min-height: 320px; }
+    .cta-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .cta-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #000 0%, transparent 55%);
+    }
+    .cta-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 8vw, 5rem);
+    }
+    .cta-copy .logo-brackets { font-size: clamp(3.5rem, 10vw, 6rem); margin-bottom: 1rem; }
+
+    footer {
+      padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
+      border-top: 1px solid var(--artoon-steel);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--artoon-silver);
+    }
+    footer a { color: var(--artoon-link); }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .cta-split { grid-template-columns: 1fr; }
+      .gallery-item { grid-column: span 12 !important; min-height: 240px !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="#" class="logo-brackets" aria-label="ARTOON"><span class="lt">&lt;</span><span class="gt">&gt;</span></a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#syntax">Syntax</a></li>
+      <li><a href="#pipeline">Pipeline</a></li>
+      <li><a href="#start">Start</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2400&q=80" alt="Developer at laptop" width="2400" height="1600" fetchpriority="high" />
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="logo-brackets" id="hero-logo" aria-hidden="true"><span class="lt">&lt;</span><span class="gt">&gt;</span></div>
+      <p class="hero-wordmark" id="wordmark" aria-label="ARTOON">
+        <span class="char">A</span><span class="char">R</span><span class="char">T</span><span class="char">O</span><span class="char">O</span><span class="char">N</span>
+      </p>
+      <h1 class="hero-headline" id="hero-headline">
+        <span class="line"><span class="word">Structured</span></span>
+        <span class="line"><span class="word">for machines</span></span>
+      </h1>
+      <div class="artoon-syntax-stripe hero-stripe" id="hero-stripe"><span></span><span></span><span></span></div>
+      <p class="hero-desc" id="hero-desc">AI-native article format. Explicit direction. One separator. A complete parse → render → edit pipeline.</p>
+      <div class="hero-actions" id="hero-actions">
+        <a href="#start" class="btn-primary">Explore the format</a>
+        <a href="../DESIGN.md" class="btn-ghost">DESIGN.md</a>
+      </div>
+    </div>
+    <p class="scroll-hint" id="scroll-hint">Scroll</p>
+  </header>
+
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track" id="marquee">
+      <div class="marquee-group">
+        <span class="marquee-item"><span class="r">&gt;.t1::</span> Headline</span>
+        <span class="marquee-item"><span class="l">&lt;.p::</span> Paragraph</span>
+        <span class="marquee-item"><span class="r">&gt;.ul::</span> List</span>
+        <span class="marquee-item"><span class="lt">&lt;</span><span class="gt">&gt;</span> ARTOON</span>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span class="marquee-item"><span class="r">&gt;.t1::</span> Headline</span>
+        <span class="marquee-item"><span class="l">&lt;.p::</span> Paragraph</span>
+        <span class="marquee-item"><span class="r">&gt;.ul::</span> List</span>
+        <span class="marquee-item"><span class="lt">&lt;</span><span class="gt">&gt;</span> ARTOON</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="features">
+    <div class="section-inner">
+      <p class="section-label">Why ARTOON</p>
+      <h2 class="section-title" data-reveal>Built for clarity</h2>
+      <div class="features">
+        <article class="feature-card" data-card>
+          <span class="feature-num">01</span>
+          <h3>Direction native</h3>
+          <p>Every line declares RTL or LTR — zero ambiguity for parsers and models.</p>
+        </article>
+        <article class="feature-card" data-card>
+          <span class="feature-num">02</span>
+          <h3>One separator</h3>
+          <p><code>::</code> is the only content boundary. Predictable grammar machines can learn.</p>
+        </article>
+        <article class="feature-card" data-card>
+          <span class="feature-num">03</span>
+          <h3>Full pipeline</h3>
+          <p>Parse, validate, serialize, render HTML, and edit in a visual block editor.</p>
+        </article>
+        <article class="feature-card" data-card>
+          <span class="feature-num">04</span>
+          <h3>Archive ready</h3>
+          <p>One file = full article + metadata. Single-table CMS storage.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-label">In production</p>
+      <h2 class="section-title" data-reveal>Teams shipping structure</h2>
+      <div class="gallery" id="gallery">
+        <figure class="gallery-item" data-gallery>
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80" alt="Developers collaborating" loading="lazy" />
+          <figcaption class="gallery-caption">Collaboration · Unsplash</figcaption>
+        </figure>
+        <figure class="gallery-item" data-gallery>
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Code on screen" loading="lazy" />
+          <figcaption class="gallery-caption">Deep work · Unsplash</figcaption>
+        </figure>
+        <figure class="gallery-item" data-gallery>
+          <img src="https://images.unsplash.com/photo-1517694712202-8dd079825f90?auto=format&fit=crop&w=1200&q=80" alt="Developer at desk" loading="lazy" />
+          <figcaption class="gallery-caption">Focus · Unsplash</figcaption>
+        </figure>
+        <figure class="gallery-item" data-gallery>
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80" alt="Team with laptops" loading="lazy" />
+          <figcaption class="gallery-caption">Strategy · Unsplash</figcaption>
+        </figure>
+        <figure class="gallery-item" data-gallery>
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80" alt="Programming" loading="lazy" />
+          <figcaption class="gallery-caption">Ship · Unsplash</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="syntax">
+    <div class="section-inner">
+      <p class="section-label">The format</p>
+      <h2 class="section-title" data-reveal>Readable source</h2>
+      <pre class="syntax-panel" id="syntax-panel"><code>
+<span class="line"><span class="d">&lt;meta&gt;.</span></span>
+<span class="line"><span class="l">&lt;.-:title:</span> AI-Native Articles</span>
+<span class="line"><span class="l">&lt;.-:author:</span> ARTOON</span>
+<span class="line"><span class="d">.&lt;meta&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span class="r">&gt;.t1::</span> Structured for machines</span>
+<span class="line"><span class="l">&lt;.p::</span> Readable for humans.</span>
+      </code></pre>
+    </div>
+  </section>
+
+  <section class="section" id="pipeline">
+    <div class="section-inner">
+      <p class="section-label">Ecosystem</p>
+      <h2 class="section-title" data-reveal>End-to-end pipeline</h2>
+      <div class="pipeline">
+        <div class="pipeline-step" data-step><code>parse</code><h4>Lexer + AST</h4><span>@artoon/parser</span></div>
+        <div class="pipeline-step" data-step><code>transform</code><h4>Canonical doc</h4><span>@artoon/ast</span></div>
+        <div class="pipeline-step" data-step><code>validate</code><h4>Rule engine</h4><span>@artoon/validator</span></div>
+        <div class="pipeline-step" data-step><code>render</code><h4>Semantic HTML</h4><span>@artoon/renderer-html</span></div>
+        <div class="pipeline-step" data-step><code>edit</code><h4>Block editor</h4><span>@artoon/typer</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-split" id="start">
+    <div class="cta-visual">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80" alt="Developer coding" loading="lazy" />
+    </div>
+    <div class="cta-copy">
+      <div class="logo-brackets"><span class="lt">&lt;</span><span class="gt">&gt;</span></div>
+      <p class="section-label">Start building</p>
+      <h2 class="section-title" style="margin-bottom:1rem">Join the format</h2>
+      <p style="color:var(--artoon-silver);margin-bottom:2rem;max-width:36ch">Install the monorepo, run 1800+ tests, and ship content both humans and models can trust.</p>
+      <div class="hero-actions">
+        <a href="../DESIGN.md" class="btn-primary">Read DESIGN.md</a>
+        <a href="#top" class="btn-ghost">Back to top</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><span class="logo-brackets" style="font-size:1.25rem"><span class="lt">&lt;</span><span class="gt">&gt;</span></span> ARTOON</div>
+    <p>Photos <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a> · Motion <a href="https://gsap.com/" target="_blank" rel="noopener">GSAP</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduced) {
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      tl.from('#hero-logo', { scale: 0.5, opacity: 0, rotation: -6, duration: 1.2 })
+        .from('#wordmark .char', { yPercent: 120, opacity: 0, duration: 0.65, stagger: 0.055 }, '-=0.7')
+        .from('#hero-headline .word', { yPercent: 110, opacity: 0, duration: 0.8, stagger: 0.11 }, '-=0.4')
+        .to('#hero-stripe', { opacity: 1, duration: 0.4 }, '-=0.3')
+        .from('#hero-stripe span', { scaleX: 0, duration: 0.45, stagger: 0.07, transformOrigin: 'left' }, '-=0.35')
+        .from('#hero-desc', { y: 28, opacity: 0, duration: 0.65 }, '-=0.2')
+        .from('#hero-actions a', { y: 24, opacity: 0, duration: 0.55, stagger: 0.09 }, '-=0.35')
+        .from('#scroll-hint', { opacity: 0, duration: 0.4 }, '-=0.15');
+
+      gsap.to('.hero-bg img', {
+        yPercent: 22,
+        ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.4 },
+      });
+
+      const track = document.getElementById('marquee');
+      const w = track.scrollWidth / 2;
+      gsap.to(track, { x: -w, duration: 30, ease: 'none', repeat: -1 });
+
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        const t = el.textContent.trim();
+        el.innerHTML = [...t].map((c) => c === ' ' ? ' ' : `<span class="reveal">${c}</span>`).join('');
+        gsap.from(el.querySelectorAll('.reveal'), {
+          yPercent: 100,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.022,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 82%' },
+        });
+      });
+
+      gsap.from('[data-card]', {
+        y: 56,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '.features', start: 'top 78%' },
+      });
+
+      gsap.from('[data-gallery]', {
+        clipPath: 'inset(100% 0 0 0)',
+        duration: 1,
+        stagger: 0.12,
+        ease: 'power4.inOut',
+        scrollTrigger: { trigger: '#gallery', start: 'top 72%' },
+      });
+
+      gsap.to('.syntax-panel .line', {
+        opacity: 1,
+        x: 0,
+        duration: 0.45,
+        stagger: 0.07,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '#syntax-panel', start: 'top 75%' },
+      });
+
+      gsap.from('[data-step]', {
+        x: -36,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.09,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '.pipeline', start: 'top 78%' },
+      });
+
+      gsap.to('.cta-visual img', {
+        scale: 1.15,
+        ease: 'none',
+        scrollTrigger: { trigger: '.cta-split', start: 'top bottom', end: 'bottom top', scrub: 1.6 },
+      });
+
+      document.querySelectorAll('.logo-brackets').forEach((el) => {
+        el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.06, duration: 0.3, ease: 'power2.out' }));
+        el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, duration: 0.35, ease: 'power2.inOut' }));
+      });
+    } else {
+      gsap.set('.hero-stripe, .syntax-panel .line', { opacity: 1, clearProps: 'all' });
+    }
+  </script>
+</body>
+</html>
+

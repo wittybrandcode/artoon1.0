@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 80" role="img" aria-label="ARTOON">
+  <text x="0" y="52" font-family="Inter Tight, Helvetica Neue, Arial, sans-serif" font-size="44" font-weight="700" fill="#FFFFFF" letter-spacing="8">ARTOON</text>
+  <g transform="translate(0, 62) skewX(-12)">
+    <rect width="56" height="3" fill="#6CB4EE"/>
+    <rect y="5" width="64" height="3" fill="#1D4ED8"/>
+    <rect y="10" width="44" height="3" fill="#EAB308"/>
+  </g>
+  <text x="0" y="76" font-family="Inter, Helvetica Neue, sans-serif" font-size="9" font-weight="500" fill="#737373" letter-spacing="2">STRUCTURED FOR MACHINES � READABLE FOR HUMANS</text>
+</svg>

@@ -1,0 +1,159 @@
+/**
+ * CSS Variables - ARTOON TYPER Prototype
+ * Design tokens based on Notion-like aesthetic
+ */
+
+/* Light Theme */
+:root,
+[data-theme="light"] {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f7f6f3;
+  --color-bg-tertiary: #ffffff;
+  --color-bg-hover: #efefef;
+  --color-bg-active: #e8e6e1;
+  --color-bg-selected: #e8e6e1;
+
+  --color-text-primary: #37352f;
+  --color-text-secondary: #787774;
+  --color-text-muted: #9b9a97;
+  --color-text-placeholder: #c0c0c0;
+
+  --color-border-light: #e9e9e7;
+  --color-border-medium: #d3d1cb;
+  --color-border-dark: #b9b8b5;
+
+  --color-accent: #2383e2;
+  --color-accent-hover: #1c72d3;
+  --color-accent-active: #1a6cc9;
+  --color-accent-bg: #e7f3fd;
+  --color-accent-bg-hover: #dbe9f6;
+
+  --color-success: #0f7b6c;
+  --color-success-bg: #e6f8f5;
+
+  --color-warning: #d9730d;
+  --color-warning-bg: #fef3e8;
+
+  --color-danger: #e03e3f;
+  --color-danger-bg: #feece8;
+
+  --color-shadow-light: rgba(15, 15, 15, 0.04);
+  --color-shadow-medium: rgba(15, 15, 15, 0.08);
+  --color-shadow-dark: rgba(15, 15, 15, 0.12);
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  --shadow-xs: 0 1px 2px var(--color-shadow-light);
+  --shadow-sm: 0 2px 4px var(--color-shadow-light);
+  --shadow-md: 0 4px 8px var(--color-shadow-medium);
+  --shadow-lg: 0 8px 16px var(--color-shadow-dark);
+  --shadow-xl: 0 16px 32px var(--color-shadow-dark);
+
+  --transition-fast: 0.1s ease;
+  --transition-normal: 0.15s ease;
+  --transition-slow: 0.2s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --z-dropdown: 100;
+  --z-modal: 200;
+  --z-tooltip: 300;
+  --z-overlay: 400;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --color-bg-primary: #191919;
+  --color-bg-secondary: #202020;
+  --color-bg-tertiary: #2f2f2f;
+  --color-bg-hover: #3a3a3a;
+  --color-bg-active: #4a4a4a;
+  --color-bg-selected: #3a3a3a;
+
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: #9b9a97;
+  --color-text-muted: #666666;
+  --color-text-placeholder: #4a4a4a;
+
+  --color-border-light: #3f3f3f;
+  --color-border-medium: #4a4a4a;
+  --color-border-dark: #5a5a5a;
+
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  --color-accent-active: #1d4ed8;
+  --color-accent-bg: #1e3a5f;
+  --color-accent-bg-hover: #2d4a6f;
+
+  --color-success: #10b981;
+  --color-success-bg: #134e4a;
+
+  --color-warning: #f59e0b;
+  --color-warning-bg: #5c3d1e;
+
+  --color-danger: #ef4444;
+  --color-danger-bg: #5c1f1f;
+
+  --color-shadow-light: rgba(0, 0, 0, 0.2);
+  --color-shadow-medium: rgba(0, 0, 0, 0.3);
+  --color-shadow-dark: rgba(0, 0, 0, 0.4);
+}
+
+/* Typography */
+:root {
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 40px;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+}
+
+/* Spacing */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+}
+
+/* Z-Index Scale */
+:root {
+  --z-base: 1;
+  --z-sticky: 10;
+  --z-fixed: 100;
+  --z-modal-backdrop: 1000;
+  --z-modal: 1100;
+  --z-popover: 1200;
+  --z-tooltip: 1300;
+
+  /* App Header Height */
+  --app-header-height: 60px;
+  --fixed-toolbar-height: 44px;
+}

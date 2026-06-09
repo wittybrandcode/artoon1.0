@@ -1,0 +1,35 @@
+/**
+ * ARTOON-TYPER Light Theme
+ */
+
+.artoon-typer--light {
+  --typer-bg-primary: #ffffff;
+  --typer-bg-secondary: #f8f9fa;
+  --typer-bg-hover: #f1f3f5;
+  --typer-bg-active: #e9ecef;
+  --typer-text-primary: #212529;
+  --typer-text-secondary: #6c757d;
+  --typer-text-placeholder: #adb5bd;
+  --typer-border-color: #dee2e6;
+  --typer-accent-color: #228be6;
+  --typer-accent-hover: #1c7ed6;
+  --typer-accent-light: #e7f5ff;
+  --typer-danger-color: #fa5252;
+  --typer-success-color: #40c057;
+  --typer-warning-color: #fab005;
+  
+  /* Shadows */
+  --typer-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --typer-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --typer-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
+  
+  /* Code */
+  --typer-code-bg: #f8f9fa;
+  --typer-code-text: #e83e8c;
+  
+  /* Highlight */
+  --typer-highlight-bg: #fff3b0;
+  
+  /* Selection */
+  --typer-selection-bg: rgba(34, 139, 230, 0.2);
+}

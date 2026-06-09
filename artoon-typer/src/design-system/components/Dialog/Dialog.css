@@ -1,0 +1,149 @@
+/**
+ * Dialog Styles
+ */
+
+.ds-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.5);
+  animation: ds-dialog-overlay-fade-in 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ds-dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-primary, #ffffff);
+  border-radius: var(--radius-xl, 0.75rem);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.1);
+  animation: ds-dialog-content-fade-in 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.ds-dialog-content:focus {
+  outline: none;
+}
+
+/* Sizes */
+.ds-dialog-content--sm {
+  max-width: 400px;
+}
+
+.ds-dialog-content--md {
+  max-width: 500px;
+}
+
+.ds-dialog-content--lg {
+  max-width: 700px;
+}
+
+.ds-dialog-content--xl {
+  max-width: 900px;
+}
+
+.ds-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6, 1.5rem);
+  border-bottom: 1px solid var(--color-border-default, #e5e5e5);
+}
+
+.ds-dialog-title {
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: var(--font-semibold, 600);
+  color: var(--color-text-primary, #1a1a1a);
+  margin: 0;
+}
+
+.ds-dialog-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary, #525252);
+  border-radius: var(--radius-md, 0.25rem);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.ds-dialog-close:hover {
+  background: var(--color-bg-hover, #f5f5f5);
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.ds-dialog-close:focus-visible {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+.ds-dialog-description {
+  padding: var(--space-4, 1rem) var(--space-6, 1.5rem);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-secondary, #525252);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-dialog-body {
+  flex: 1;
+  padding: var(--space-6, 1.5rem);
+  overflow-y: auto;
+}
+
+/* Animations */
+@keyframes ds-dialog-overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ds-dialog-content-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .ds-dialog-content {
+  background: var(--color-bg-secondary, #262626);
+}
+
+[data-theme="dark"] .ds-dialog-header {
+  border-bottom-color: var(--color-border-default, #404040);
+}
+
+[data-theme="dark"] .ds-dialog-title {
+  color: var(--color-text-primary, #fafafa);
+}
+
+[data-theme="dark"] .ds-dialog-close {
+  color: var(--color-text-secondary, #a3a3a3);
+}
+
+[data-theme="dark"] .ds-dialog-close:hover {
+  background: var(--color-bg-hover, #404040);
+  color: var(--color-text-primary, #fafafa);
+}
+
+[data-theme="dark"] .ds-dialog-description {
+  color: var(--color-text-secondary, #a3a3a3);
+}

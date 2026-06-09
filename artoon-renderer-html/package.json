@@ -1,0 +1,36 @@
+{
+  "name": "@artoon/renderer-html",
+  "version": "1.0.0",
+  "description": "ARTOON HTML Renderer - supports unified types",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": ["artoon", "renderer", "html"],
+  "license": "MIT",
+  "dependencies": {
+    "@artoon/ast": "file:../artoon-ast"
+  },
+  "devDependencies": {
+    "@artoon/parser": "file:../artoon-parser",
+    "@artoon/state": "file:../artoon-state",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  }
+}

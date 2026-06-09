@@ -1,0 +1,15 @@
+src/**
+*.ts
+tsconfig.json
+package-lock.json
+scripts/**
+.vscode/**
+.vscode-test/**
+out/**
+test/**
+tests/**
+coverage/**
+*.log
+*.vsix
+node_modules/**
+dist/providers/**

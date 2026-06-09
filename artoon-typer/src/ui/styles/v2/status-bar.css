@@ -1,0 +1,116 @@
+/**
+ * Status Bar Styles - ARTOON TYPER Prototype
+ */
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-6);
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border-light);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  position: sticky;
+  bottom: 0;
+  z-index: var(--z-sticky);
+}
+
+.status-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.status-bar__item:hover {
+  background: var(--color-bg-hover);
+}
+
+.status-bar__item i {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.status-bar__item:hover i {
+  color: var(--color-text-primary);
+}
+
+.status-bar__item span {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.status-bar__item:hover span {
+  color: var(--color-text-secondary);
+}
+
+/* Indicators */
+.status-bar__item--active {
+  background: var(--color-accent-bg);
+}
+
+.status-bar__item--active i {
+  color: var(--color-accent);
+}
+
+.status-bar__item--active span {
+  color: var(--color-accent);
+}
+
+/* Separator */
+.status-bar__separator {
+  width: 1px;
+  height: 16px;
+  background: var(--color-border-light);
+  margin: 0 var(--space-2);
+}
+
+/* RTL/LTR Indicator */
+[data-direction="rtl"] #language {
+  color: var(--color-success);
+}
+
+[data-direction="ltr"] #language {
+  color: var(--color-accent);
+}
+
+/* Theme Indicator */
+[data-theme="light"] #theme {
+  color: var(--color-text-muted);
+}
+
+[data-theme="dark"] #theme {
+  color: var(--color-warning);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .status-bar {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .status-bar__item {
+    padding: var(--space-1);
+  }
+
+  .status-bar__separator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-bar__item span {
+    display: none;
+  }
+
+  .status-bar__item i {
+    font-size: var(--font-size-md);
+  }
+}

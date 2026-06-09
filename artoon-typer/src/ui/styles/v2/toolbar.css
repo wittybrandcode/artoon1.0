@@ -1,0 +1,141 @@
+/**
+ * Inline Toolbar Styles - ARTOON TYPER Prototype
+ */
+
+/* FontAwesome Icons Font Family */
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2') format('woff2'),
+    url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.ttf') format('truetype');
+  font-weight: 900;
+  font-display: block;
+}
+
+/* Apply FontAwesome font to all icon elements */
+.toolbar-btn i,
+.context-menu__item i,
+.block__handle i,
+.slash-menu__item-icon i,
+.add-block-btn i,
+.btn i,
+.code__copy i {
+  font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands' !important;
+  font-weight: 900;
+}
+
+.inline-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-popover);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all var(--transition-smooth);
+}
+
+.inline-toolbar--open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Toolbar Buttons */
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.toolbar-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--color-accent-bg);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-normal), height var(--transition-normal);
+}
+
+.toolbar-btn:active::before {
+  width: 60px;
+  height: 60px;
+}
+
+.toolbar-btn:hover {
+  background: var(--color-bg-selected);
+  color: var(--color-text-primary);
+}
+
+.toolbar-btn:active {
+  transform: scale(0.95);
+}
+
+.toolbar-btn i {
+  font-size: var(--font-size-base);
+}
+
+/* Toolbar Divider */
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-border-light);
+  margin: 0 var(--space-1);
+}
+
+/* Active States */
+.toolbar-btn--active {
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
+}
+
+/* Tooltips are now handled natively or by the React TooltipProvider */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Format Preview */
+.toolbar-btn--format-bold::before {
+  content: 'B';
+  font-weight: bold;
+}
+
+.toolbar-btn--format-italic::before {
+  content: 'I';
+  font-style: italic;
+}
+
+.toolbar-btn--format-underline::before {
+  content: 'U';
+  text-decoration: underline;
+}

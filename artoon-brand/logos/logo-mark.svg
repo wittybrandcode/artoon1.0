@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="ARTOON">
+  <rect width="128" height="128" fill="#000000"/>
+  <text x="64" y="78" text-anchor="middle" font-family="IBM Plex Mono, Consolas, monospace" font-size="56" font-weight="600" fill="#FFFFFF" letter-spacing="-4">&lt;&gt;</text>
+  <g transform="translate(36, 96) skewX(-12)">
+    <rect width="40" height="3" fill="#6CB4EE"/>
+    <rect y="6" width="48" height="3" fill="#1D4ED8"/>
+    <rect y="12" width="32" height="3" fill="#EAB308"/>
+  </g>
+</svg>

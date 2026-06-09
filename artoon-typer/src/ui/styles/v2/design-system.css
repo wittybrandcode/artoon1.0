@@ -1,0 +1,501 @@
+/**
+ * ARTOON TYPER - Enterprise Design System v2.0
+ * Based on Google Material Design 3 & Microsoft Fluent Design 2
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   0. FONT FAMILIES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Font Families - All Google Fonts */
+  --font-cairo: 'Cairo', 'Noto Sans Arabic', sans-serif;
+  --font-tajawal: 'Tajawal', 'Cairo', sans-serif;
+  --font-almarai: 'Almarai', 'Cairo', sans-serif;
+  --font-noto: 'Noto Sans Arabic', 'Cairo', sans-serif;
+  --font-amiri: 'Amiri', 'Noto Sans Arabic', serif;
+  --font-scheherazade: 'Scheherazade New', 'Amiri', serif;
+  --font-lateef: 'Lateef', 'Scheherazade New', cursive;
+  --font-reem: 'Reem Kufi', 'Cairo', sans-serif;
+  --font-kufam: 'Kufam', 'Reem Kufi', sans-serif;
+  --font-aref: 'Aref Ruqaa', 'Amiri', serif;
+  --font-rakkas: 'Rakkas', 'Aref Ruqaa', cursive;
+  --font-lalezar: 'Lalezar', 'Rakkas', cursive;
+  --font-jomhuria: 'Jomhuria', 'Lalezar', cursive;
+  --font-segoe: 'Segoe UI', 'Noto Sans', sans-serif;
+  --font-dubai: 'Dubai', 'Cairo', sans-serif;
+  
+  /* Default UI Font */
+  --font-ui: var(--font-cairo);
+  
+  /* Content/Editor Font */
+  --font-content: var(--font-cairo);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. CSS RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-ui);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--surface-secondary);
+  transition: font-family 200ms ease;
+}
+
+/* Font-specific body styles - All fonts */
+body[data-font="cairo"] {
+  --font-ui: var(--font-cairo);
+}
+
+body[data-font="tajawal"] {
+  --font-ui: var(--font-tajawal);
+}
+
+body[data-font="almarai"] {
+  --font-ui: var(--font-almarai);
+}
+
+body[data-font="noto"] {
+  --font-ui: var(--font-noto);
+}
+
+body[data-font="amiri"] {
+  --font-ui: var(--font-amiri);
+}
+
+body[data-font="scheherazade"] {
+  --font-ui: var(--font-scheherazade);
+}
+
+body[data-font="lateef"] {
+  --font-ui: var(--font-lateef);
+}
+
+body[data-font="reem"] {
+  --font-ui: var(--font-reem);
+}
+
+body[data-font="kufam"] {
+  --font-ui: var(--font-kufam);
+}
+
+body[data-font="aref"] {
+  --font-ui: var(--font-aref);
+}
+
+body[data-font="rakkas"] {
+  --font-ui: var(--font-rakkas);
+}
+
+body[data-font="lalezar"] {
+  --font-ui: var(--font-lalezar);
+}
+
+body[data-font="jomhuria"] {
+  --font-ui: var(--font-jomhuria);
+}
+
+body[data-font="segoe"] {
+  --font-ui: var(--font-segoe);
+}
+
+body[data-font="dubai"] {
+  --font-ui: var(--font-dubai);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. COLOR SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Primary - Google Blue */
+  --color-primary-50: #E3F2FD;
+  --color-primary-100: #BBDEFB;
+  --color-primary-200: #90CAF9;
+  --color-primary-300: #64B5F6;
+  --color-primary-400: #42A5F5;
+  --color-primary-500: #2196F3;
+  --color-primary-600: #1E88E5;
+  --color-primary-700: #1976D2;
+  --color-primary-800: #1565C0;
+  --color-primary-900: #0D47A1;
+
+  /* Secondary - Teal */
+  --color-secondary-50: #E0F2F1;
+  --color-secondary-100: #B2DFDB;
+  --color-secondary-200: #80CBC4;
+  --color-secondary-300: #4DB6AC;
+  --color-secondary-400: #26A69A;
+  --color-secondary-500: #009688;
+  --color-secondary-600: #00897B;
+  --color-secondary-700: #00796B;
+  --color-secondary-800: #00695C;
+  --color-secondary-900: #004D40;
+
+  /* Semantic Colors */
+  --color-success-light: #E8F5E9;
+  --color-success-main: #4CAF50;
+  --color-success-dark: #2E7D32;
+
+  --color-warning-light: #FFF8E1;
+  --color-warning-main: #FFC107;
+  --color-warning-dark: #FF8F00;
+
+  --color-error-light: #FFEBEE;
+  --color-error-main: #F44336;
+  --color-error-dark: #C62828;
+
+  --color-info-light: #E3F2FD;
+  --color-info-main: #2196F3;
+  --color-info-dark: #1565C0;
+
+  /* Neutral Grayscale */
+  --color-gray-50: #FAFAFA;
+  --color-gray-100: #F5F5F5;
+  --color-gray-200: #EEEEEE;
+  --color-gray-300: #E0E0E0;
+  --color-gray-400: #BDBDBD;
+  --color-gray-500: #9E9E9E;
+  --color-gray-600: #757575;
+  --color-gray-700: #616161;
+  --color-gray-800: #424242;
+  --color-gray-900: #212121;
+}
+
+/* Light Theme (Default) */
+:root,
+[data-theme="light"] {
+  /* Surfaces */
+  --surface-primary: #FFFFFF;
+  --surface-secondary: #F8F9FA;
+  --surface-tertiary: #F1F3F4;
+  --surface-elevated: #FFFFFF;
+  --surface-overlay: rgba(255, 255, 255, 0.95);
+
+  /* Text */
+  --text-primary: #202124;
+  --text-secondary: #5F6368;
+  --text-tertiary: #80868B;
+  --text-disabled: #BDC1C6;
+  --text-inverse: #FFFFFF;
+
+  /* Borders */
+  --border-light: #DADCE0;
+  --border-medium: #BDC1C6;
+  --border-dark: #9AA0A6;
+
+  /* Interactive States */
+  --hover-overlay: rgba(32, 33, 36, 0.04);
+  --active-overlay: rgba(32, 33, 36, 0.08);
+  --selected-overlay: rgba(33, 150, 243, 0.08);
+  --focus-ring: rgba(33, 150, 243, 0.25);
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  /* Surfaces */
+  --surface-primary: #202124;
+  --surface-secondary: #303134;
+  --surface-tertiary: #3C4043;
+  --surface-elevated: #303134;
+  --surface-overlay: rgba(32, 33, 36, 0.95);
+
+  /* Text */
+  --text-primary: #E8EAED;
+  --text-secondary: #9AA0A6;
+  --text-tertiary: #80868B;
+  --text-disabled: #5F6368;
+  --text-inverse: #202124;
+
+  /* Borders */
+  --border-light: #3C4043;
+  --border-medium: #5F6368;
+  --border-dark: #80868B;
+
+  /* Interactive States */
+  --hover-overlay: rgba(255, 255, 255, 0.04);
+  --active-overlay: rgba(255, 255, 255, 0.08);
+  --selected-overlay: rgba(33, 150, 243, 0.16);
+  --focus-ring: rgba(33, 150, 243, 0.4);
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. TYPOGRAPHY SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Font Families */
+  --font-sans: 'Segoe UI', 'Roboto', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+}
+
+/* Typography Classes */
+.text-display {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-light);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-headline {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-tight);
+}
+
+.text-title-large {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-snug);
+}
+
+.text-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-snug);
+}
+
+.text-subtitle {
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+}
+
+.text-body-large {
+  font-size: var(--text-lg);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body {
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body-small {
+  font-size: var(--text-sm);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-normal);
+}
+
+.text-caption {
+  font-size: var(--text-xs);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+}
+
+.text-overline {
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. SPACING SYSTEM (8px Grid)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. SHAPE SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. MOTION SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-enter: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0.0, 1, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. COMPONENT TOKENS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --btn-height-sm: 32px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-padding-sm: 0 12px;
+  --btn-padding-md: 0 16px;
+  --btn-padding-lg: 0 24px;
+  --btn-radius: var(--radius-md);
+
+  --input-height: 40px;
+  --input-padding: 0 12px;
+  --input-radius: var(--radius-md);
+  --input-border: 1px solid var(--border-medium);
+
+  --card-padding: 24px;
+  --card-radius: var(--radius-lg);
+  --card-shadow: var(--shadow-sm);
+
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  :root {
+    --border-light: #000000;
+    --border-medium: #000000;
+    --focus-ring-width: 4px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in { animation: fade-in 200ms cubic-bezier(0.4, 0.0, 0.2, 1); }
+.animate-scale-in { animation: scale-in 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.animate-slide-up { animation: slide-up 200ms cubic-bezier(0.0, 0.0, 0.2, 1); }
+.animate-slide-down { animation: slide-down 200ms cubic-bezier(0.0, 0.0, 0.2, 1); }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite; }

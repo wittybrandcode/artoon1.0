@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "ARTOON Brand Colors",
+  "version": "2.0.0",
+  "aesthetic": "Editorial dark — BMW M–inspired canvas with Syntax Stripe accent",
+  "reference": "https://getdesign.md/bmw-m/design-md",
+  "palette": {
+    "black": { "hex": "#000000", "usage": "Primary canvas" },
+    "carbon": { "hex": "#0A0A0A", "usage": "Elevated surfaces" },
+    "graphite": { "hex": "#141414", "usage": "Cards, panels" },
+    "steel": { "hex": "#262626", "usage": "Borders" },
+    "silver": { "hex": "#737373", "usage": "Muted text" },
+    "white": { "hex": "#FFFFFF", "usage": "Primary text on dark" },
+    "paper": { "hex": "#FAFAFA", "usage": "Secondary light mode docs" },
+    "ink": { "hex": "#0A0A0A", "usage": "Text on light" }
+  },
+  "syntaxStripe": {
+    "rtl": { "hex": "#6CB4EE", "usage": "Stripe band 1 — RTL >" },
+    "semantic": { "hex": "#1D4ED8", "usage": "Stripe band 2 — structure ::" },
+    "ltr": { "hex": "#EAB308", "usage": "Stripe band 3 — LTR <" },
+    "skew": "-12deg",
+    "gap": "3px",
+    "height": "4px"
+  },
+  "functional": {
+    "success": "#22C55E",
+    "warning": "#F59E0B",
+    "danger": "#EF4444",
+    "link": "#6CB4EE"
+  },
+  "themes": {
+    "dark": {
+      "background": "#000000",
+      "surface": "#141414",
+      "text": "#FFFFFF",
+      "textMuted": "#737373",
+      "border": "#262626"
+    },
+    "light": {
+      "background": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "text": "#0A0A0A",
+      "textMuted": "#737373",
+      "border": "#E5E5E5"
+    }
+  }
+}

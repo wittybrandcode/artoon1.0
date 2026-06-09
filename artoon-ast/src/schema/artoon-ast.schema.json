@@ -1,0 +1,387 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://artoon.dev/schemas/ast/v1.0.json",
+  "title": "ARTOON AST Schema",
+  "description": "Canonical AST schema for ARTOON documents v1.0",
+  "type": "object",
+  "required": ["version", "content"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "AST schema version"
+    },
+    "meta": {
+      "$ref": "#/definitions/DocumentMeta"
+    },
+    "content": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentNode"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ParseError"
+      }
+    }
+  },
+  "definitions": {
+    "Direction": {
+      "type": "string",
+      "enum": ["rtl", "ltr"]
+    },
+    "Modifier": {
+      "type": "string",
+      "enum": ["s", "e", "u", "d", "mark", "sub", "sup"]
+    },
+    "TextType": {
+      "type": "string",
+      "enum": ["p", "t1", "t2", "t3", "t4", "t5", "t6", "q", "pre"]
+    },
+    "ListType": {
+      "type": "string",
+      "enum": ["ul", "ol", "dl"]
+    },
+    "ListItemType": {
+      "type": "string",
+      "enum": ["li", "dt", "dd"]
+    },
+    "SeparatorType": {
+      "type": "string",
+      "enum": ["br", "hr", "wbr"]
+    },
+    "CompoundType": {
+      "type": "string",
+      "enum": ["figure", "details"]
+    },
+    "InlineComponentType": {
+      "type": "string",
+      "enum": ["a", "img", "audio", "video", "file", "abbr", "time", "c"]
+    },
+    "DocumentMeta": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "author": { "type": "string" },
+        "date": { "type": "string" },
+        "lang": { "type": "string" },
+        "dir": { "$ref": "#/definitions/Direction" },
+        "version": { "type": "string" },
+        "status": { "type": "string" },
+        "license": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "custom": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "ParseError": {
+      "type": "object",
+      "required": ["type", "line", "message"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["syntax", "structure", "semantic", "constraint"]
+        },
+        "line": { "type": "integer" },
+        "column": { "type": "integer" },
+        "message": { "type": "string" },
+        "suggestion": { "type": "string" }
+      }
+    },
+    "PlainText": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "const": "plain" },
+        "value": { "type": "string" }
+      }
+    },
+    "InlineComponent": {
+      "type": "object",
+      "required": ["type", "attributes"],
+      "properties": {
+        "type": { "const": "inline" },
+        "component": { "$ref": "#/definitions/InlineComponentType" },
+        "modifiers": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Modifier" }
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "value": { "type": "string" }
+      }
+    },
+    "InlineContent": {
+      "oneOf": [
+        { "$ref": "#/definitions/PlainText" },
+        { "$ref": "#/definitions/InlineComponent" }
+      ]
+    },
+    "BaseNode": {
+      "type": "object",
+      "required": ["nodeType", "line", "direction"],
+      "properties": {
+        "nodeType": { "type": "string" },
+        "line": { "type": "integer" },
+        "direction": { "$ref": "#/definitions/Direction" }
+      }
+    },
+    "TextNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["textType", "content"],
+          "properties": {
+            "nodeType": { "const": "text" },
+            "textType": { "$ref": "#/definitions/TextType" },
+            "content": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/InlineContent" }
+            }
+          }
+        }
+      ]
+    },
+    "SeparatorNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["separators"],
+          "properties": {
+            "nodeType": { "const": "separator" },
+            "separators": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/SeparatorType" }
+            }
+          }
+        }
+      ]
+    },
+    "ListItem": {
+      "type": "object",
+      "required": ["itemType", "content"],
+      "properties": {
+        "itemType": { "$ref": "#/definitions/ListItemType" },
+        "content": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/InlineContent" }
+        },
+        "children": { "$ref": "#/definitions/ListNode" }
+      }
+    },
+    "ListNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["listType", "items"],
+          "properties": {
+            "nodeType": { "const": "list" },
+            "listType": { "$ref": "#/definitions/ListType" },
+            "items": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/ListItem" }
+            }
+          }
+        }
+      ]
+    },
+    "TableCell": {
+      "type": "object",
+      "required": ["content"],
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/InlineContent" }
+        }
+      }
+    },
+    "TableRow": {
+      "type": "object",
+      "required": ["rowType", "cells"],
+      "properties": {
+        "rowType": {
+          "type": "string",
+          "enum": ["th", "tr"]
+        },
+        "cells": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/TableCell" }
+        }
+      }
+    },
+    "TableNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["rows"],
+          "properties": {
+            "nodeType": { "const": "table" },
+            "headers": { "$ref": "#/definitions/TableRow" },
+            "rows": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/TableRow" }
+            }
+          }
+        }
+      ]
+    },
+    "CompoundChild": {
+      "type": "object",
+      "required": ["role", "node"],
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": ["content", "caption", "summary"]
+        },
+        "node": { "$ref": "#/definitions/ContentNode" }
+      }
+    },
+    "CompoundNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["compoundType", "children"],
+          "properties": {
+            "nodeType": { "const": "compound" },
+            "compoundType": { "$ref": "#/definitions/CompoundType" },
+            "children": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/CompoundChild" }
+            }
+          }
+        }
+      ]
+    },
+    "MetaField": {
+      "type": "object",
+      "required": ["name", "direction", "value"],
+      "properties": {
+        "name": { "type": "string" },
+        "direction": { "$ref": "#/definitions/Direction" },
+        "value": { "type": "string" }
+      }
+    },
+    "BlockNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["blockName", "isCode", "content"],
+          "properties": {
+            "nodeType": { "const": "block" },
+            "blockName": { "type": "string" },
+            "isCode": { "type": "boolean" },
+            "language": { "type": "string" },
+            "content": {
+              "oneOf": [
+                { "type": "string" },
+                {
+                  "type": "array",
+                  "items": { "$ref": "#/definitions/ContentNode" }
+                }
+              ]
+            },
+            "fields": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/MetaField" }
+            }
+          }
+        }
+      ]
+    },
+    "MediaNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["mediaType", "src"],
+          "properties": {
+            "nodeType": { "const": "media" },
+            "mediaType": {
+              "type": "string",
+              "enum": ["img", "video", "audio", "file"]
+            },
+            "src": { "type": "string" },
+            "alt": { "type": "string" },
+            "title": { "type": "string" },
+            "label": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "LinkNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["url", "modifiers"],
+          "properties": {
+            "nodeType": { "const": "link" },
+            "url": { "type": "string" },
+            "text": { "type": "string" },
+            "modifiers": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Modifier" }
+            }
+          }
+        }
+      ]
+    },
+    "CodeNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["code"],
+          "properties": {
+            "nodeType": { "const": "code" },
+            "code": { "type": "string" },
+            "language": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "CommentNode": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseNode" },
+        {
+          "type": "object",
+          "required": ["content"],
+          "properties": {
+            "nodeType": { "const": "comment" },
+            "content": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "ContentNode": {
+      "oneOf": [
+        { "$ref": "#/definitions/TextNode" },
+        { "$ref": "#/definitions/SeparatorNode" },
+        { "$ref": "#/definitions/ListNode" },
+        { "$ref": "#/definitions/TableNode" },
+        { "$ref": "#/definitions/CompoundNode" },
+        { "$ref": "#/definitions/BlockNode" },
+        { "$ref": "#/definitions/MediaNode" },
+        { "$ref": "#/definitions/LinkNode" },
+        { "$ref": "#/definitions/CodeNode" },
+        { "$ref": "#/definitions/CommentNode" }
+      ]
+    }
+  }
+}

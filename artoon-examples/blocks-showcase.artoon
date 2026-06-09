@@ -1,0 +1,695 @@
+<meta>.
+>.-:title: عرض شامل للبلوكات في ARTOON 2.0
+>.-:author: فريق تطوير ARTOON
+>.-:date: 2026-01-19
+>.-:version: 2.0.0
+>.-:lang: ar
+>.-:description: مستند متخصص يعرض جميع أنواع البلوكات في ARTOON 2.0 - المحجوزة والمخصصة
+>.-:keywords: blocks, code, meta, custom blocks, artoon
+>.-:category: examples
+>.-:type: showcase
+.<meta>
+
+>.t1:: 🎯 عرض شامل للبلوكات في ARTOON 2.0
+
+>.p:: هذا المستند مخصص لعرض [s:: جميع أنواع البلوكات] في ARTOON 2.0، من البلوكات المحجوزة إلى البلوكات المخصصة.
+
+>.hr
+
+>.t2:: 📦 البلوكات المحجوزة (Reserved Blocks)
+
+>.p:: ARTOON 2.0 يحتوي على بلوكين محجوزين فقط: [c:: code] و [c:: meta]
+
+>.hr
+
+>.t3:: 1️⃣ META Block - البيانات الوصفية
+
+>.p:: بلوك META يُستخدم لتخزين البيانات الوصفية للمستند. يحتوي فقط على حقول مخفية ولا يظهر في HTML output افتراضياً.
+
+>.t4:: مثال بسيط
+
+<code:artoon>.
+<meta>.
+>.-:title: عنوان المستند
+>.-:author: اسم المؤلف
+>.-:date: 2026-01-19
+.<meta>
+.<code>
+
+>.t4:: مثال متقدم مع جميع الحقول الشائعة
+
+<code:artoon>.
+<meta>.
+>.-:title: دليل ARTOON الشامل
+>.-:author: أحمد محمد
+>.-:email: ahmad@example.com
+>.-:organization: ARTOON Project
+>.-:date: 2026-01-19
+>.-:modified: 2026-01-19
+>.-:version: 2.0.0
+>.-:lang: ar
+>.-:dir: rtl
+>.-:description: وصف شامل للمستند
+>.-:keywords: artoon, tutorial, documentation
+>.-:category: documentation
+>.-:type: tutorial
+>.-:status: published
+>.-:license: MIT
+>.-:copyright: © 2026 ARTOON Project
+>.-:tags: tutorial, examples, showcase
+.<meta>
+.<code>
+
+>.hr
+
+>.t3:: 2️⃣ CODE Block - أكواد البرمجة
+
+>.p:: بلوك CODE يُستخدم لعرض أكواد البرمجة. المحتوى داخله لا يُحلل كـ ARTOON syntax.
+
+>.t4:: كود JavaScript
+
+<code:javascript>.
+// دالة بسيطة
+function greet(name) {
+  return `مرحباً ${name}!`;
+}
+
+// استخدام الدالة
+const message = greet('ARTOON');
+console.log(message);
+
+// دالة async
+const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    return await response.json();
+  } catch (error) {
+    console.error('خطأ:', error);
+  }
+};
+.<code>
+
+>.t4:: كود Python
+
+<code:python>.
+# مثال على Python
+def calculate_sum(numbers):
+    """حساب مجموع الأرقام"""
+    return sum(numbers)
+
+# استخدام الدالة
+numbers = [1, 2, 3, 4, 5]
+result = calculate_sum(numbers)
+print(f"المجموع: {result}")
+
+# Class مثال
+class Calculator:
+    def __init__(self):
+        self.result = 0
+    
+    def add(self, x, y):
+        self.result = x + y
+        return self.result
+.<code>
+
+>.t4:: كود TypeScript
+
+<code:typescript>.
+// TypeScript interfaces
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+}
+
+// Generic function
+function findById<T extends { id: number }>(
+  items: T[],
+  id: number
+): T | undefined {
+  return items.find(item => item.id === id);
+}
+
+// Usage
+const users: User[] = [
+  { id: 1, name: 'أحمد', email: 'ahmad@example.com', role: 'admin' }
+];
+
+const user = findById(users, 1);
+.<code>
+
+>.t4:: كود HTML/CSS
+
+<code:html>.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مثال ARTOON</title>
+  <style>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      direction: rtl;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>مرحباً بك في ARTOON</h1>
+    </div>
+  </div>
+</body>
+</html>
+.<code>
+
+>.t4:: كود SQL
+
+<code:sql>.
+-- إنشاء جدول
+CREATE TABLE articles (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(200) NOT NULL,
+  content TEXT,
+  author_id INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (author_id) REFERENCES users(id)
+);
+
+-- استعلام متقدم
+SELECT 
+  a.title,
+  u.name as author_name,
+  COUNT(c.id) as comment_count
+FROM articles a
+LEFT JOIN users u ON a.author_id = u.id
+LEFT JOIN comments c ON a.id = c.article_id
+GROUP BY a.id
+HAVING comment_count > 10
+ORDER BY created_at DESC
+LIMIT 20;
+.<code>
+
+>.t4:: كود JSON
+
+<code:json>.
+{
+  "name": "artoon-project",
+  "version": "2.0.0",
+  "description": "نظام كتابة ثنائي الاتجاه",
+  "author": {
+    "name": "فريق ARTOON",
+    "email": "team@artoon.dev"
+  },
+  "features": [
+    "دعم كامل للعربية",
+    "بلوكات محجوزة",
+    "بلوكات مخصصة",
+    "تنسيقات نصية متقدمة"
+  ],
+  "config": {
+    "rtl": true,
+    "lang": "ar",
+    "theme": "default"
+  }
+}
+.<code>
+
+>.t4:: كود YAML
+
+<code:yaml>.
+# ملف تكوين ARTOON
+project:
+  name: ARTOON 2.0
+  version: 2.0.0
+  language: ar
+  direction: rtl
+
+features:
+  - name: META blocks
+    status: implemented
+    tests: 28
+  - name: Custom blocks
+    status: implemented
+    tests: unlimited
+  - name: Code blocks
+    status: implemented
+    languages:
+      - javascript
+      - python
+      - typescript
+      - html
+      - css
+      - sql
+
+settings:
+  parser:
+    strict: true
+    validate: true
+  renderer:
+    format: html
+    minify: false
+.<code>
+
+>.t4:: كود Bash/Shell
+
+<code:bash>.
+#!/bin/bash
+
+# سكريبت بناء ARTOON
+echo "🚀 بدء بناء ARTOON 2.0..."
+
+# بناء Parser
+cd artoon-parser
+npm run build
+echo "✅ Parser تم بناؤه"
+
+# بناء Renderer
+cd ../artoon-renderer-html
+npm run build
+echo "✅ Renderer تم بناؤه"
+
+# بناء Serializer
+cd ../artoon-serializer
+npm run build
+echo "✅ Serializer تم بناؤه"
+
+# بناء Editor
+cd ../artoon-typer
+npm run build
+echo "✅ Editor تم بناؤه"
+
+echo "🎉 اكتمل البناء بنجاح!"
+.<code>
+
+>.t4:: كود ARTOON نفسه (كمثال)
+
+<code:artoon>.
+>.t1:: مثال على ARTOON syntax
+
+>.p:: هذا نص عادي مع [s:: تنسيق غامق] و[e:: تنسيق مائل].
+
+>.ul::
+li:: عنصر في قائمة
+li:: عنصر آخر مع [c:: كود مضمن]
+
+<custom>.
+>.t2:: محتوى داخل بلوك مخصص
+>.p:: يمكنك إضافة أي محتوى هنا
+.<custom>
+.<code>
+
+>.hr
+
+>.t2:: 🎨 البلوكات المخصصة (Custom Blocks)
+
+>.p:: يمكنك إنشاء بلوكات مخصصة بأي اسم تريده (ما عدا [c:: code] و [c:: meta]). البلوكات المخصصة مرنة جداً ويمكن أن تحتوي على أي محتوى.
+
+>.hr
+
+>.t3:: 3️⃣ بلوك تنبيه (Alert Block)
+
+<alert>.
+>.t4:: ⚠️ تنبيه مهم
+>.p:: هذا بلوك مخصص لعرض التنبيهات والإشعارات المهمة للمستخدم.
+>.ul::
+li:: يمكن تخصيص التصميم بالكامل
+li:: يدعم جميع أنواع المحتوى
+li:: مرن وقابل لإعادة الاستخدام
+.<alert>
+
+>.t4:: الكود
+
+<code:artoon>.
+<alert>.
+>.t4:: ⚠️ تنبيه مهم
+>.p:: محتوى التنبيه هنا
+.<alert>
+.<code>
+
+>.hr
+
+>.t3:: 4️⃣ بلوك ملاحظة (Note Block)
+
+<note>.
+>.t4:: 📝 ملاحظة
+>.p:: بلوك الملاحظات مفيد لإضافة معلومات إضافية أو توضيحات جانبية.
+>.q:: يمكن استخدام أي مكون ARTOON داخل البلوك المخصص
+.<note>
+
+>.t4:: الكود
+
+<code:artoon>.
+<note>.
+>.t4:: 📝 ملاحظة
+>.p:: محتوى الملاحظة
+.<note>
+.<code>
+
+>.hr
+
+>.t3:: 5️⃣ بلوك معلومات (Info Block)
+
+<info>.
+>.t4:: ℹ️ معلومة مفيدة
+>.p:: بلوك المعلومات يُستخدم لعرض معلومات عامة أو نصائح للقارئ.
+>.table::
+th:: الميزة | الحالة
+tr:: Parser | ✅ مكتمل
+tr:: Renderer | ✅ مكتمل
+tr:: Editor | ✅ مكتمل
+.<info>
+
+>.t4:: الكود
+
+<code:artoon>.
+<info>.
+>.t4:: ℹ️ معلومة
+>.p:: محتوى المعلومة
+.<info>
+.<code>
+
+>.hr
+
+>.t3:: 6️⃣ بلوك نجاح (Success Block)
+
+<success>.
+>.t4:: ✅ عملية ناجحة!
+>.p:: بلوك النجاح يُستخدم لإظهار رسائل النجاح والإنجازات.
+>.ul::
+li:: جميع الاختبارات نجحت
+li:: البناء اكتمل بنجاح
+li:: النظام يعمل بشكل صحيح
+.<success>
+
+>.t4:: الكود
+
+<code:artoon>.
+<success>.
+>.t4:: ✅ نجح!
+>.p:: رسالة النجاح
+.<success>
+.<code>
+
+>.hr
+
+>.t3:: 7️⃣ بلوك خطأ (Error Block)
+
+<error>.
+>.t4:: ❌ حدث خطأ
+>.p:: بلوك الخطأ يُستخدم لعرض رسائل الأخطاء والمشاكل.
+<code:text>.
+Error: Cannot find module 'artoon-parser'
+  at require (internal/modules/cjs/loader.js:883:19)
+  at Object.<anonymous> (index.js:1:15)
+.<code>
+.<error>
+
+>.t4:: الكود
+
+<code:artoon>.
+<error>.
+>.t4:: ❌ خطأ
+>.p:: وصف الخطأ
+.<error>
+.<code>
+
+>.hr
+
+>.t3:: 8️⃣ بلوك تحذير (Warning Block)
+
+<warning>.
+>.t4:: ⚡ تحذير
+>.p:: بلوك التحذير يُستخدم للتنبيه على أمور مهمة يجب الانتباه لها.
+>.q:: [s:: تحذير:] هذه العملية لا يمكن التراجع عنها!
+.<warning>
+
+>.t4:: الكود
+
+<code:artoon>.
+<warning>.
+>.t4:: ⚡ تحذير
+>.p:: محتوى التحذير
+.<warning>
+.<code>
+
+>.hr
+
+>.t3:: 9️⃣ بلوك اقتباس خاص (Quote Block)
+
+<quote>.
+>.t4:: 💬 اقتباس ملهم
+>.q:: [s:: "التعليم هو أقوى سلاح يمكنك استخدامه لتغيير العالم"]
+>.p:: - نيلسون مانديلا
+.<quote>
+
+>.t4:: الكود
+
+<code:artoon>.
+<quote>.
+>.t4:: 💬 اقتباس
+>.q:: نص الاقتباس
+>.p:: - المصدر
+.<quote>
+.<code>
+
+>.hr
+
+>.t3:: 🔟 بلوك بطاقة (Card Block)
+
+<card>.
+>.t3:: 🎴 بطاقة معلومات
+>.p:: البطاقات مفيدة لتنظيم المحتوى في وحدات منفصلة.
+>.ul::
+li:: سهلة التصميم
+li:: مرنة في الاستخدام
+li:: تدعم جميع أنواع المحتوى
+>.hr
+>.p:: [a:: https://artoon.dev; اعرف المزيد]
+.<card>
+
+>.t4:: الكود
+
+<code:artoon>.
+<card>.
+>.t3:: عنوان البطاقة
+>.p:: محتوى البطاقة
+.<card>
+.<code>
+
+>.hr
+
+>.t3:: 1️⃣1️⃣ بلوك مقالة (Article Block)
+
+<article>.
+>.t3:: 📄 مقالة: مقدمة في ARTOON
+
+>.p:: ARTOON 2.0 هو نظام كتابة متقدم يدعم اللغة العربية بشكل كامل.
+
+>.t4:: الميزات الرئيسية
+
+>.ul::
+li:: دعم ثنائي الاتجاه (RTL/LTR)
+li:: بلوكات محجوزة ومخصصة
+li:: تنسيقات نصية متقدمة
+li:: جداول وقوائم متداخلة
+
+>.t4:: الخلاصة
+
+>.p:: ARTOON يوفر حلاً شاملاً للكتابة التقنية باللغة العربية.
+.<article>
+
+>.t4:: الكود
+
+<code:artoon>.
+<article>.
+>.t3:: عنوان المقالة
+>.p:: محتوى المقالة
+.<article>
+.<code>
+
+>.hr
+
+>.t3:: 1️⃣2️⃣ بلوك قسم (Section Block)
+
+<section>.
+>.t3:: 📑 قسم: التثبيت والإعداد
+
+>.t4:: المتطلبات
+
+>.ul::
+li:: Node.js 18+
+li:: npm أو yarn
+li:: TypeScript 5.0+
+
+>.t4:: خطوات التثبيت
+
+>.ol::
+li:: استنساخ المستودع
+li:: تثبيت الاعتماديات
+li:: بناء المشروع
+li:: تشغيل الاختبارات
+
+<code:bash>.
+git clone https://github.com/artoon/artoon.git
+cd artoon
+npm install
+npm run build
+npm test
+.<code>
+.<section>
+
+>.t4:: الكود
+
+<code:artoon>.
+<section>.
+>.t3:: عنوان القسم
+>.p:: محتوى القسم
+.<section>
+.<code>
+
+>.hr
+
+>.t3:: 1️⃣3️⃣ بلوك صندوق (Box Block)
+
+<box>.
+>.t4:: 📦 صندوق محتوى
+>.p:: الصناديق مفيدة لتجميع المحتوى المرتبط معاً.
+>.table::
+th:: العنصر | القيمة
+tr:: الاسم | ARTOON
+tr:: الإصدار | 2.0.0
+tr:: الحالة | مكتمل
+.<box>
+
+>.t4:: الكود
+
+<code:artoon>.
+<box>.
+>.t4:: عنوان الصندوق
+>.p:: محتوى الصندوق
+.<box>
+.<code>
+
+>.hr
+
+>.t3:: 1️⃣4️⃣ بلوك لوحة (Panel Block)
+
+<panel>.
+>.t4:: 🎛️ لوحة التحكم
+>.p:: اللوحات تُستخدم لعرض معلومات تفاعلية أو إعدادات.
+>.dl::
+dt:: الوضع
+dd:: إنتاج
+dt:: البيئة
+dd:: Linux
+dt:: الذاكرة
+dd:: 8 GB
+.<panel>
+
+>.t4:: الكود
+
+<code:artoon>.
+<panel>.
+>.t4:: عنوان اللوحة
+>.p:: محتوى اللوحة
+.<panel>
+.<code>
+
+>.hr
+
+>.t3:: 1️⃣5️⃣ بلوك حاوية (Container Block)
+
+<container>.
+>.t4:: 📦 حاوية مرنة
+
+>.p:: الحاويات توفر مساحة منظمة للمحتوى.
+
+<box>.
+>.p:: صندوق داخل حاوية
+.<box>
+
+<note>.
+>.p:: ملاحظة داخل حاوية
+.<note>
+
+>.p:: يمكن تداخل البلوكات المخصصة!
+.<container>
+
+>.t4:: الكود
+
+<code:artoon>.
+<container>.
+>.t4:: محتوى الحاوية
+<box>.
+>.p:: بلوك متداخل
+.<box>
+.<container>
+.<code>
+
+>.hr
+
+>.t2:: 🎯 ملخص البلوكات
+
+>.table::
+th:: نوع البلوك | الاسم | الاستخدام | محجوز؟
+tr:: META | meta | بيانات وصفية | ✅ نعم
+tr:: CODE | code | أكواد برمجة | ✅ نعم
+tr:: Alert | alert | تنبيهات | ❌ مخصص
+tr:: Note | note | ملاحظات | ❌ مخصص
+tr:: Info | info | معلومات | ❌ مخصص
+tr:: Success | success | نجاح | ❌ مخصص
+tr:: Error | error | أخطاء | ❌ مخصص
+tr:: Warning | warning | تحذيرات | ❌ مخصص
+tr:: Quote | quote | اقتباسات | ❌ مخصص
+tr:: Card | card | بطاقات | ❌ مخصص
+tr:: Article | article | مقالات | ❌ مخصص
+tr:: Section | section | أقسام | ❌ مخصص
+tr:: Box | box | صناديق | ❌ مخصص
+tr:: Panel | panel | لوحات | ❌ مخصص
+tr:: Container | container | حاويات | ❌ مخصص
+
+>.hr
+
+>.t2:: 💡 نصائح مهمة
+
+<info>.
+>.t4:: ℹ️ قواعد البلوكات
+
+>.ul::
+li:: [s:: بلوكان محجوزان فقط:] code و meta
+li:: [s:: البلوكات المخصصة:] يمكن تسميتها بأي اسم (ما عدا المحجوزة)
+li:: [s:: المحتوى:] يمكن أن يحتوي على أي مكونات ARTOON
+li:: [s:: التداخل:] يمكن تداخل البلوكات المخصصة
+li:: [s:: التصميم:] كل بلوك مخصص يمكن تصميمه بشكل مستقل
+.<info>
+
+>.hr
+
+>.t2:: 🚀 الخاتمة
+
+<success>.
+>.t3:: ✨ تهانينا!
+
+>.p:: الآن أنت تعرف جميع أنواع البلوكات في ARTOON 2.0:
+
+>.ul::
+li:: [s:: 2 بلوك محجوز:] code و meta
+li:: [s:: بلوكات مخصصة غير محدودة:] أنشئ ما تحتاجه!
+li:: [s:: مرونة كاملة:] أي محتوى، أي تصميم
+
+>.p:: ابدأ في إنشاء بلوكاتك المخصصة الآن! 🎨
+.<success>
+
+>.hr
+
+>.p:: [e:: © 2026 ARTOON Project - دليل البلوكات الشامل]

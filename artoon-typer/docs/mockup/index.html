@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARTOON-TYPER — معاينة الواجهة</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header__logo">
+        <span class="logo-icon">📝</span>
+        <span class="logo-text">ARTOON-TYPER</span>
+      </div>
+      <div class="header__actions">
+        <button class="btn btn--icon" title="استيراد ARTOON">📥</button>
+        <button class="btn btn--icon" title="تصدير ARTOON">📤</button>
+        <button class="btn btn--icon" title="معاينة HTML">👁</button>
+        <button class="btn btn--icon theme-toggle" title="تبديل السمة">🌙</button>
+      </div>
+    </header>
+
+    <!-- Editor Container -->
+    <main class="editor-container">
+      <div class="editor" id="editor">
+        <!-- Blocks will be rendered here by JS -->
+      </div>
+    </main>
+
+    <!-- Block Add Menu (Context Menu for +) -->
+    <div class="add-menu" id="addMenu">
+      <div class="add-menu__tabs">
+        <button class="add-menu__tab active" data-tab="text">نصية</button>
+        <button class="add-menu__tab" data-tab="list">قوائم</button>
+        <button class="add-menu__tab" data-tab="media">وسائط</button>
+        <button class="add-menu__tab" data-tab="advanced">متقدم</button>
+      </div>
+      <div class="add-menu__content" id="addMenuContent"></div>
+    </div>
+
+    <!-- Block Context Menu (for ⋮⋮) -->
+    <div class="context-menu" id="contextMenu"></div>
+
+    <!-- Inline Toolbar -->
+    <div class="inline-toolbar" id="inlineToolbar">
+      <button class="toolbar-btn" data-mark="bold" title="عريض (Ctrl+B)"><b>B</b></button>
+      <button class="toolbar-btn" data-mark="italic" title="مائل (Ctrl+I)"><i>I</i></button>
+      <button class="toolbar-btn" data-mark="underline" title="مسطر (Ctrl+U)"><u>U</u></button>
+      <button class="toolbar-btn" data-mark="strike" title="مشطوب"><s>S</s></button>
+      <div class="toolbar-divider"></div>
+      <button class="toolbar-btn" data-mark="highlight" title="تمييز">🖍</button>
+      <button class="toolbar-btn" data-action="link" title="رابط (Ctrl+K)">🔗</button>
+      <button class="toolbar-btn" data-action="code" title="كود">&lt;/&gt;</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

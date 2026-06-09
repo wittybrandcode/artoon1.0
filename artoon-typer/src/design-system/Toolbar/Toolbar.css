@@ -1,0 +1,151 @@
+/**
+ * ARTOON-TYPER Toolbar Redesign (Phase 2 & 3)
+ * Glassmorphism, Fluid Transitions, and Micro-animations
+ */
+
+.artoon-toolbar-root {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+
+    /* Glassmorphism */
+    background: var(--glass-bg, rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Borders and Depth */
+    border: 1px solid var(--glass-border, rgba(150, 150, 150, 0.2));
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: var(--shadow-glass, 0 8px 32px rgba(0, 0, 0, 0.08));
+
+    /* Layout constraints */
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 100%;
+}
+
+[data-theme="dark"] .artoon-toolbar-root {
+    --glass-bg: rgba(30, 30, 30, 0.85);
+    --glass-border: rgba(100, 100, 100, 0.3);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.artoon-toolbar-root::-webkit-scrollbar {
+    display: none;
+}
+
+/* Toolbar Group */
+.artoon-toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.artoon-toolbar-group-label {
+    font-size: var(--font-size-xs, 12px);
+    font-weight: var(--font-weight-medium, 500);
+    color: var(--color-text-muted, #888);
+    padding: 0 var(--space-2);
+    user-select: none;
+}
+
+.artoon-toolbar-group-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+/* Toolbar Separator */
+.artoon-toolbar-separator {
+    width: 1px;
+    height: 24px;
+    background: var(--color-border-light, #e0e0e0);
+    margin: 0 var(--space-1);
+}
+
+[data-theme="dark"] .artoon-toolbar-separator {
+    background: var(--color-border-dark, #444);
+}
+
+/* Toolbar Button */
+.artoon-toolbar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 var(--space-1);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm, 6px);
+    color: var(--color-text-secondary, #555);
+    cursor: pointer;
+
+    /* Fluid Transitions */
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .artoon-toolbar-btn {
+    color: var(--color-text-secondary-dark, #aaa);
+}
+
+/* Hover States with SVG scale micro-animation */
+.artoon-toolbar-btn:not(:disabled):hover {
+    background: var(--color-bg-hover, rgba(0, 0, 0, 0.05));
+    color: var(--color-text-primary, #111);
+}
+
+[data-theme="dark"] .artoon-toolbar-btn:not(:disabled):hover {
+    background: var(--color-bg-hover-dark, rgba(255, 255, 255, 0.1));
+    color: var(--color-text-primary-dark, #fff);
+}
+
+.artoon-toolbar-btn:not(:disabled):hover svg {
+    transform: scale(1.08);
+    /* Micro-animation */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Springy feel */
+}
+
+/* Active State */
+.artoon-toolbar-btn--active {
+    background: var(--color-accent-bg, rgba(37, 99, 235, 0.1));
+    color: var(--color-accent, #2563eb);
+}
+
+[data-theme="dark"] .artoon-toolbar-btn--active {
+    background: var(--color-accent-bg-dark, rgba(96, 165, 250, 0.2));
+    color: var(--color-accent-dark, #60a5fa);
+}
+
+/* Click/Press Micro-animation */
+.artoon-toolbar-btn:not(:disabled):active {
+    transform: scale(0.92);
+}
+
+/* Disabled State */
+.artoon-toolbar-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Tooltip Custom Content Formatting */
+.artoon-toolbar-tooltip-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.artoon-toolbar-kbd {
+    font-family: inherit;
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: inherit;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}

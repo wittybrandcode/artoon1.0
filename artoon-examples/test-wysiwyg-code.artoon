@@ -1,0 +1,150 @@
+>.t1:: اختبار محرر WYSIWYG - Code Blocks
+
+>.p:: هذا ملف اختبار للتحقق من أن Code Blocks تعمل بشكل احترافي في المحرر الجديد.
+
+>.t2:: 1. JavaScript Example
+
+<code:javascript>.
+// مثال JavaScript
+function greet(name) {
+  console.log(`مرحباً ${name}!`);
+  return `Hello, ${name}!`;
+}
+
+// استدعاء الدالة
+const message = greet('ARTOON');
+console.log(message);
+.<code>
+
+>.t2:: 2. Python Example
+
+<code:python>.
+# مثال Python
+def calculate_sum(numbers):
+    """حساب مجموع الأرقام"""
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+# اختبار
+numbers = [1, 2, 3, 4, 5]
+result = calculate_sum(numbers)
+print(f"المجموع: {result}")
+.<code>
+
+>.t2:: 3. HTML Example
+
+<code:html>.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحة تجريبية</title>
+</head>
+<body>
+    <h1>مرحباً بك في ARTOON</h1>
+    <p>هذا مثال على كود HTML</p>
+</body>
+</html>
+.<code>
+
+>.t2:: 4. CSS Example
+
+<code:css>.
+/* تنسيق احترافي */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  direction: rtl;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: right;
+}
+.<code>
+
+>.t2:: 5. JSON Example
+
+<code:json>.
+{
+  "name": "ARTOON-TYPER",
+  "version": "1.0.0",
+  "description": "محرر بلوكات احترافي",
+  "features": [
+    "WYSIWYG",
+    "RTL Support",
+    "Code Highlighting",
+    "Multiple Languages"
+  ],
+  "languages": {
+    "javascript": true,
+    "python": true,
+    "html": true,
+    "css": true
+  }
+}
+.<code>
+
+>.t2:: 6. SQL Example
+
+<code:sql>.
+-- استعلام SQL
+SELECT 
+    users.name,
+    users.email,
+    COUNT(posts.id) as post_count
+FROM users
+LEFT JOIN posts ON users.id = posts.user_id
+WHERE users.active = 1
+GROUP BY users.id
+ORDER BY post_count DESC
+LIMIT 10;
+.<code>
+
+>.t2:: 7. Bash Example
+
+<code:bash>.
+#!/bin/bash
+# سكريبت Bash بسيط
+
+echo "مرحباً بك في ARTOON"
+
+# تثبيت المكتبات
+npm install
+
+# بناء المشروع
+npm run build
+
+# تشغيل المحرر
+npm run dev
+
+echo "تم بنجاح!"
+.<code>
+
+>.hr
+
+>.t2:: الميزات المطلوب اختبارها:
+
+>.ul::
+li:: Language Selector - تغيير اللغة من القائمة المنسدلة
+li:: Tab Key - الضغط على Tab داخل الكود للإزاحة
+li:: Copy Button - نسخ الكود بزر واحد
+li:: contentEditable - التحرير المباشر داخل الكود
+li:: Direction - الكود دائماً LTR حتى في محرر RTL
+li:: Monospace Font - خط Monospace احترافي
+li:: Syntax Highlighting - (اختياري - سيضاف لاحقاً)
+
+>.t2:: التنسيق المتوقع:
+
+>.p:: يجب أن يظهر كل Code Block بالشكل التالي:
+
+>.q:: "إطار احترافي مع header يحتوي على Language Selector وزر Copy، والكود داخل pre + code مع تنسيق Monospace وإمكانية التحرير المباشر."
+
+>.hr
+
+>.p:: [s:: ملاحظة:] هذا الملف للاختبار فقط. جرب فتحه في المحرر والتأكد من أن جميع الميزات تعمل بشكل صحيح.

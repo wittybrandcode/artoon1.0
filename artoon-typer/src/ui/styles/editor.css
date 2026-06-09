@@ -1,0 +1,389 @@
+/**
+ * ARTOON-TYPER Editor Styles
+ * 
+ * Main editor container and layout styles.
+ */
+
+@import './variables.css';
+
+/* Reset */
+.artoon-typer * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main Container */
+.artoon-typer {
+  font-family: var(--typer-font-family);
+  background: var(--typer-bg-secondary);
+  color: var(--typer-text-primary);
+  line-height: var(--typer-line-height);
+  min-height: 100%;
+}
+
+/* Editor Container */
+.editor-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.editor {
+  width: 100%;
+  max-width: 850px;
+  background: var(--typer-bg-primary);
+  border-radius: var(--typer-radius-lg);
+  box-shadow: var(--typer-shadow-sm);
+  padding: 48px 24px 48px calc(24px + var(--typer-block-controls-width));
+  min-height: 70vh;
+}
+
+/* Placeholder */
+.placeholder {
+  color: var(--typer-text-placeholder);
+  cursor: text;
+  padding: 8px;
+}
+
+/* Block Row */
+.block-row {
+  position: relative;
+  margin: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DRAG-AND-DROP VISUAL SYSTEM
+   Using hardcoded colors with var() fallbacks for reliability.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Source block fades + shrinks while being dragged */
+.block-row--dragging {
+  opacity: 0.3 !important;
+  transform: scale(0.97) !important;
+  pointer-events: none !important;
+  filter: grayscale(0.4);
+  transition: all 0.15s ease !important;
+}
+
+/* Drop Indicator — Glowing accent line */
+.block-drop-indicator {
+  height: 4px !important;
+  min-height: 4px !important;
+  background: #228be6 !important;
+  background: var(--typer-accent-color, #228be6) !important;
+  width: 100% !important;
+  border-radius: 4px !important;
+  position: relative !important;
+  z-index: 100 !important;
+  margin: 4px 0 !important;
+  box-shadow:
+    0 0 8px rgba(34, 139, 230, 0.6),
+    0 0 16px rgba(34, 139, 230, 0.3) !important;
+  animation: dropIndicatorGlow 1.2s ease-in-out infinite !important;
+}
+
+/* Dots at the edges of the indicator for extra clarity */
+.block-drop-indicator::before,
+.block-drop-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: #228be6;
+  background: var(--typer-accent-color, #228be6);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 6px rgba(34, 139, 230, 0.5);
+}
+
+.block-drop-indicator::before {
+  left: -3px;
+}
+
+.block-drop-indicator::after {
+  right: -3px;
+}
+
+@keyframes dropIndicatorGlow {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow:
+      0 0 6px rgba(34, 139, 230, 0.5),
+      0 0 12px rgba(34, 139, 230, 0.2);
+  }
+
+  50% {
+    opacity: 0.85;
+    box-shadow:
+      0 0 10px rgba(34, 139, 230, 0.8),
+      0 0 24px rgba(34, 139, 230, 0.4);
+  }
+}
+
+/* Block */
+.block {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-height: 32px;
+  padding: 6px 8px;
+  border-radius: var(--typer-radius-sm);
+  transition: background var(--typer-transition-fast);
+}
+
+.block:hover,
+.block.focused {
+  background: var(--typer-bg-hover);
+}
+
+.block.focused {
+  outline: 2px solid var(--typer-accent-color);
+  outline-offset: -2px;
+}
+
+/* Block Controls */
+.block__controls {
+  position: absolute;
+  top: 4px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity var(--typer-transition-normal);
+  z-index: 10;
+}
+
+/* RTL: Controls on the right side (outside the block) */
+.block__controls--rtl {
+  right: calc(100% + 4px);
+}
+
+/* LTR: Controls on the left side (outside the block) */
+.block__controls--ltr {
+  left: calc(100% + 4px);
+}
+
+.block:hover .block__controls,
+.block.focused .block__controls {
+  opacity: 1;
+}
+
+/* Group container (Glassmorphism Pill) */
+.block__controls-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  padding: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .block__controls-group {
+  background: rgba(40, 40, 40, 0.6);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.block__controls-group:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Action Buttons within group */
+.block__action-btn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.block__action-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #333;
+}
+
+[data-theme="dark"] .block__action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ddd;
+}
+
+/* Drag Handle specifically */
+.block__drag {
+  cursor: grab;
+}
+
+.block__drag:active {
+  cursor: grabbing;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Direction Toggle Specifics */
+.block__dir.rtl {
+  color: var(--typer-accent-color);
+}
+
+.block__dir.ltr {
+  color: var(--typer-success-color);
+}
+
+/* RTL Blocks (default) */
+.block[dir="rtl"],
+.block:not([dir]) {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* LTR Blocks */
+.block[dir="ltr"] {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Block content direction */
+.block__content {
+  flex: 1;
+  outline: none;
+  min-height: 1.5em;
+  word-break: break-word;
+}
+
+/* RTL content */
+.block__content[dir="rtl"],
+.block[dir="rtl"] .block__content,
+.block:not([dir]) .block__content {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* LTR content */
+.block__content[dir="ltr"],
+.block[dir="ltr"] .block__content {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Force direction on contenteditable */
+[contenteditable][dir="rtl"] {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+[contenteditable][dir="ltr"] {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.block__content:empty::before {
+  content: attr(data-placeholder);
+  color: var(--typer-text-placeholder);
+  pointer-events: none;
+}
+
+.block__content:focus {
+  outline: none;
+}
+
+/* Block Separator */
+.block-separator {
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 -8px;
+  opacity: 0;
+  transition: opacity var(--typer-transition-normal);
+}
+
+.block-row:hover+.block-separator,
+.block-separator:hover,
+.block-separator--first {
+  opacity: 1;
+}
+
+.block-separator__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--typer-border-color);
+}
+
+.block-separator__btn {
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--typer-border-color);
+  border-radius: 50%;
+  background: var(--typer-bg-primary);
+  color: var(--typer-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 300;
+  transition: all var(--typer-transition-normal);
+}
+
+.block-separator__btn:hover {
+  background: var(--typer-accent-color);
+  border-color: var(--typer-accent-color);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Drop Indicator */
+.drop-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--typer-accent-color);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .editor {
+    padding: 24px 16px 24px calc(16px + 50px);
+  }
+
+  .block__controls {
+    right: calc(100% + 4px);
+  }
+}
+
+
+/* Custom Blocks Styles - Simple Frame */
+.custom-block {
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Empty Custom Block */
+.custom-block--empty {
+  border-style: dashed;
+  opacity: 0.6;
+}

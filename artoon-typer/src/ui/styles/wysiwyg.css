@@ -1,0 +1,525 @@
+/**
+ * WYSIWYG Editor Styles
+ * 
+ * Professional WYSIWYG styling for ARTOON-TYPER
+ * What You See Is What You Get - Single unified editor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Code Blocks - WYSIWYG Style */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+.code-block-wysiwyg {
+  margin: 16px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg-tertiary, #f5f5f5);
+  border: 1px solid var(--color-border-default, #e0e0e0);
+  transition: border-color 0.2s;
+}
+
+.code-block-wysiwyg:hover {
+  border-color: var(--color-primary, #0066cc);
+}
+
+.code-block-wysiwyg .code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--color-bg-secondary, #fafafa);
+  border-bottom: 1px solid var(--color-border-default, #e0e0e0);
+}
+
+.code-block-wysiwyg .code-header select {
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border-default, #ddd);
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  color: var(--color-text-primary, #1a1a1a);
+  transition: border-color 0.2s;
+}
+
+.code-block-wysiwyg .code-header select:hover {
+  border-color: var(--color-primary, #0066cc);
+}
+
+.code-block-wysiwyg .code-header select:focus {
+  outline: none;
+  border-color: var(--color-primary, #0066cc);
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+.code-block-wysiwyg .btn--icon {
+  padding: 4px 8px;
+  border: 1px solid var(--color-border-default, #ddd);
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.code-block-wysiwyg .btn--icon:hover {
+  background: var(--color-bg-hover, #f0f0f0);
+  border-color: var(--color-primary, #0066cc);
+}
+
+.code-block-wysiwyg pre {
+  margin: 0;
+  padding: 16px;
+  background: var(--color-bg-tertiary, #f5f5f5);
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+
+.code-block-wysiwyg pre code {
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-primary, #1a1a1a);
+  background: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  display: block;
+  white-space: pre;
+  word-wrap: normal;
+  tab-size: 2;
+}
+
+.code-block-wysiwyg pre code:focus {
+  outline: 2px solid var(--color-primary, #0066cc);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Text Blocks - Enhanced WYSIWYG Style */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+.block__content {
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.block__content:hover {
+  background: var(--color-bg-hover, #f9f9f9);
+}
+
+.block__content:focus {
+  outline: 2px solid var(--color-primary, #0066cc);
+  outline-offset: -2px;
+  background: white;
+}
+
+/* Headings - Professional Typography */
+.block--heading1 .block__content {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 24px 0 16px;
+}
+
+.block--heading2 .block__content {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 20px 0 12px;
+}
+
+.block--heading3 .block__content {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 16px 0 12px;
+}
+
+.block--heading4 .block__content {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 14px 0 10px;
+}
+
+.block--heading5 .block__content {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 12px 0 8px;
+}
+
+.block--heading6 .block__content {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 10px 0 8px;
+}
+
+/* Paragraph */
+.block--paragraph .block__content {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+/* Quote - Beautiful Styling */
+.block--quote .block__content {
+  border-right: 4px solid var(--color-primary, #0066cc);
+  padding-right: 16px;
+  font-style: italic;
+  color: var(--color-text-secondary, #666);
+  margin: 16px 0;
+  font-size: 1.1em;
+}
+
+.block--quote .block__content[dir="ltr"] {
+  border-right: none;
+  border-left: 4px solid var(--color-primary, #0066cc);
+  padding-right: 0;
+  padding-left: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Lists - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+.list-item {
+  display: block;
+  margin: 4px 0;
+}
+
+.list-item__marker {
+  margin-inline-end: 8px;
+  color: var(--color-text-secondary, #666);
+  user-select: none;
+  font-weight: 600;
+  min-width: 24px;
+}
+
+.list-item__content {
+  flex: 1;
+  outline: none;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.list-item__content:hover {
+  background: var(--color-bg-hover, #f9f9f9);
+}
+
+.list-item__content:focus {
+  background: var(--color-bg-hover, #f9f9f9);
+  outline: 2px solid var(--color-primary, #0066cc);
+  outline-offset: -2px;
+}
+
+/* List Item Context Menu */
+.list-item__actions {
+  opacity: 0;
+  transition: opacity 0.2s;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+}
+
+.list-item__main:hover .list-item__actions,
+.list-item__actions:focus-within {
+  opacity: 1;
+}
+
+.list-item__menu-trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: var(--color-text-tertiary, #999);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-item__menu-trigger:hover {
+  background: var(--color-bg-hover, #efefef);
+  color: var(--color-text-primary, #333);
+}
+
+.list-item__context-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  /* Align right for RTL by default, will be flipped by [dir="ltr"] if needed */
+  margin-top: 4px;
+  background: white;
+  border: 1px solid var(--color-border-default, #e0e0e0);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 4px;
+  z-index: 100;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+}
+
+.list-item__context-menu[dir="ltr"] {
+  right: auto;
+  left: 0;
+}
+
+.list-item__context-menu button {
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  text-align: right;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--color-text-primary, #333);
+  transition: background 0.2s;
+}
+
+.list-item__context-menu[dir="ltr"] button {
+  text-align: left;
+}
+
+.list-item__context-menu button:hover {
+  background: var(--color-bg-hover, #f0f4f8);
+  color: var(--color-primary, #0066cc);
+}
+
+.list-item__context-menu .menu-icon {
+  margin-inline-end: 8px;
+  font-size: 16px;
+  font-style: normal;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Tables - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  border: 1px solid var(--color-border-default, #e0e0e0);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-default, #e0e0e0);
+  text-align: right;
+  transition: background 0.2s;
+}
+
+th {
+  background: var(--color-bg-tertiary, #f5f5f5);
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+td:hover,
+th:hover {
+  background: var(--color-bg-hover, #f9f9f9);
+}
+
+td:focus,
+th:focus {
+  outline: 2px solid var(--color-primary, #0066cc);
+  outline-offset: -2px;
+  background: white;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Media - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+video,
+audio {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+figure {
+  margin: 16px 0;
+  padding: 16px;
+  background: var(--color-bg-secondary, #fafafa);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-default, #e0e0e0);
+}
+
+figcaption {
+  margin-top: 12px;
+  font-size: 0.9em;
+  font-style: italic;
+  color: var(--color-text-secondary, #666);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Custom Blocks - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+.custom-block {
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid var(--color-border-default, #ddd);
+  border-radius: 8px;
+  background: var(--color-bg-secondary, #fafafa);
+  transition: all 0.2s;
+}
+
+.custom-block:hover {
+  border-color: var(--color-primary, #0066cc);
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+}
+
+.custom-block--empty {
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Divider - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+hr {
+  border: none;
+  border-top: 2px solid var(--color-border-default, #e0e0e0);
+  margin: 24px 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Details/Summary - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+details {
+  margin: 16px 0;
+  padding: 16px;
+  background: var(--color-bg-secondary, #fafafa);
+  border: 1px solid var(--color-border-default, #e0e0e0);
+  border-radius: 8px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+summary:hover {
+  background: var(--color-bg-hover, #f0f0f0);
+}
+
+details[open] summary {
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-default, #e0e0e0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Preformatted Text - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+.preformatted-content {
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre;
+  background: var(--color-bg-tertiary, #f5f5f5);
+  padding: 16px;
+  border: 1px solid var(--color-border-default, #e0e0e0);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Definition List - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+dl {
+  margin: 16px 0;
+}
+
+dt {
+  font-weight: 600;
+  margin-top: 12px;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+dd {
+  margin-inline-start: 24px;
+  margin-top: 4px;
+  color: var(--color-text-secondary, #666);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Links - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+a {
+  color: var(--color-primary, #0066cc);
+  text-decoration: none;
+  transition: all 0.2s;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  border-bottom-color: var(--color-primary, #0066cc);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* Meta Block - Professional Styling */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+.meta-block {
+  background: var(--color-bg-tertiary, #f8f9fa);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-default, #dee2e6);
+  margin: 16px 0;
+}
+
+.meta-block strong {
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.meta-block dl {
+  margin-top: 12px;
+}
+
+.meta-block dt {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.meta-block dd {
+  margin-inline-start: 20px;
+  margin-top: 4px;
+}

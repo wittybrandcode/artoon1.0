@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARTOON Editor | محرر البلوكات</title>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/editor.css">
+  <link rel="stylesheet" href="css/blocks.css">
+  <link rel="stylesheet" href="css/menus.css">
+</head>
+<body data-theme="light">
+  <div class="app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="app-header__title">
+        <h1>ARTOON Editor</h1>
+        <span class="app-header__subtitle">محرر البلوكات الاحترافي</span>
+      </div>
+      
+      <div class="app-header__actions">
+        <button id="btn-export" class="btn">
+          📥 تصدير
+        </button>
+        <button id="btn-source" class="btn">
+          عرض المصدر
+        </button>
+        <button id="btn-theme" class="btn btn--icon" title="تبديل السمة">
+          🌙
+        </button>
+      </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="app-main">
+      <!-- Editor -->
+      <div class="editor-wrapper">
+        <div id="editor"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar">
+          <span id="block-count">0 بلوك</span>
+          <span>ARTOON v1.0</span>
+        </div>
+      </div>
+      
+      <!-- Source Panel -->
+      <div id="source" class="source-panel">
+        <h3>مصدر ARTOON</h3>
+        <pre id="source-code" class="source-panel__code"></pre>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>ARTOON Editor v1.0.0 | محرر بلوكات احترافي بدعم RTL أصلي</p>
+    </footer>
+  </div>
+  
+  <!-- App Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

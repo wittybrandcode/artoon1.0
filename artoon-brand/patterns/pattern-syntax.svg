@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0C1222"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="200" fill="url(#bg)"/>
+  <text x="40" y="70" font-family="JetBrains Mono, monospace" font-size="20" fill="#3B82F6">&gt;.t1::</text>
+  <text x="130" y="70" font-family="IBM Plex Sans Arabic, sans-serif" font-size="20" fill="#F8FAFC">9FH'F 'DEB'D</text>
+  <text x="40" y="120" font-family="JetBrains Mono, monospace" font-size="20" fill="#14B8A6">&lt;.p::</text>
+  <text x="110" y="120" font-family="DM Sans, sans-serif" font-size="20" fill="#94A3B8">Article body text in English.</text>
+  <text x="40" y="165" font-family="JetBrains Mono, monospace" font-size="14" fill="#EAB308" opacity="0.6">:: semantic separator</text>
+</svg>

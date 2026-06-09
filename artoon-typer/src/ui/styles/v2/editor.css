@@ -1,0 +1,229 @@
+/**
+ * Editor Styles - ARTOON TYPER Prototype
+ */
+
+/* Blocks Container */
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* Block Base */
+.block {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.block:hover {
+  background: var(--color-bg-hover);
+}
+
+.block:focus-within {
+  background: var(--color-bg-selected);
+  border-color: var(--color-border-light);
+}
+
+.block--focused {
+  background: var(--color-bg-selected);
+  border-color: var(--color-accent);
+}
+
+/* Block Handle */
+.block__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 24px;
+  margin-top: 2px;
+  color: var(--color-text-muted);
+  cursor: grab;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.block:hover .block__handle {
+  opacity: 1;
+}
+
+.block__handle:hover {
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
+  box-shadow: var(--shadow-xs);
+}
+
+.block__handle:active {
+  cursor: grabbing;
+  color: var(--color-accent);
+}
+
+/* Block Content */
+.block__content {
+  flex: 1;
+  min-height: 1.6em;
+  outline: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+}
+
+.block__content:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-placeholder);
+  pointer-events: none;
+}
+
+.block__content:focus {
+  outline: none;
+}
+
+/* Editable Styling */
+[contenteditable="true"] {
+  cursor: text;
+}
+
+[contenteditable="true"]:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-placeholder);
+  pointer-events: none;
+}
+
+/* Placeholder Animation */
+.block__content:empty:focus::before {
+  animation: placeholder-pulse 2s ease-in-out infinite;
+}
+
+@keyframes placeholder-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Add Block Button */
+.add-block-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
+  border: 2px dashed var(--color-border-light);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.add-block-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(35, 131, 226, 0.1),
+    transparent
+  );
+  transition: left var(--transition-slow);
+}
+
+.add-block-btn:hover::before {
+  left: 100%;
+}
+
+.add-block-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-bg);
+}
+
+.add-block-btn:active {
+  transform: scale(0.98);
+}
+
+.add-block-btn i {
+  font-size: var(--font-size-lg);
+}
+
+.add-block__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-right: var(--space-2);
+}
+
+.add-block__hint kbd {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-sm);
+  padding: 1px 4px;
+  font-family: var(--font-family-mono);
+  font-size: 10px;
+}
+
+/* Dragging State */
+.block--dragging {
+  opacity: 0.5;
+  background: var(--color-bg-hover);
+  transform: scale(0.98);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Drop Indicator */
+.drop-indicator {
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+  margin: var(--space-1) 0;
+  animation: pulse-indicator 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-indicator {
+  0%, 100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleY(1.2);
+  }
+}
+
+/* RTL/LTR */
+[data-direction="rtl"] .block {
+  direction: rtl;
+}
+
+[data-direction="ltr"] .block {
+  direction: ltr;
+}
+
+[data-direction="rtl"] .block__handle {
+  margin-right: 0;
+}
+
+[data-direction="ltr"] .block__handle {
+  margin-left: 0;
+}

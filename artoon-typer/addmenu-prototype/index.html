@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddMenu Prototype | Legendary UX</title>
+    <!-- Importing modern typography similar to Google Fonts (Inter / Cairo) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body
+    style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop') center/cover no-repeat; min-height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center;">
+
+    <!-- Background overlay for contrast -->
+    <div style="position: absolute; inset: 0; background: rgba(245, 245, 247, 0.4); backdrop-filter: blur(8px);"></div>
+
+    <!-- The Menu Prototype Wrapper -->
+    <div class="menu-wrapper" style="position: relative; display: flex;">
+
+        <!-- Main Menu Panel -->
+        <div class="slash-menu" id="slashMenu">
+            <!-- Search Section -->
+            <div class="search-container">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" class="search-input" placeholder="البحث في البلوكات..." id="searchInput">
+            </div>
+
+            <!-- Content Area (Scrollable) -->
+            <div class="content-area" id="contentArea">
+                <!-- Items injected by JS -->
+            </div>
+        </div>
+
+        <!-- Global Flyout Panel (Absolutely positioned) -->
+        <div class="blocks-list" id="globalSubmenu">
+            <div class="blocks-list-inner" id="globalSubmenuInner">
+                <!-- Submenu items injected by JS -->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

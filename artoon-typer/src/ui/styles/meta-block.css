@@ -1,0 +1,142 @@
+/**
+ * META Block Styles
+ * 
+ * Styles for the metadata block editor interface.
+ */
+
+.artoon-block__meta {
+  background: var(--color-bg-secondary, #f9f9f9);
+  border: 2px solid var(--color-border-default, #e0e0e0);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.artoon-meta-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-default, #e0e0e0);
+}
+
+.artoon-meta-icon {
+  font-size: 20px;
+}
+
+.artoon-meta-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary, #333);
+}
+
+.artoon-meta-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.artoon-meta-field {
+  display: grid;
+  grid-template-columns: 1fr auto 2fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.artoon-meta-field-name,
+.artoon-meta-field-value {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border-default, #ddd);
+  border-radius: 4px;
+  font-size: 14px;
+  background: var(--color-bg-primary, #fff);
+  color: var(--color-text-primary, #333);
+  transition: border-color 0.2s;
+}
+
+.artoon-meta-field-name {
+  font-family: var(--font-code, 'Courier New', monospace);
+}
+
+.artoon-meta-field-name:focus,
+.artoon-meta-field-value:focus {
+  outline: none;
+  border-color: var(--color-primary, #4CAF50);
+}
+
+.artoon-meta-field-name:read-only,
+.artoon-meta-field-value:read-only {
+  background: var(--color-bg-tertiary, #f5f5f5);
+  cursor: not-allowed;
+}
+
+.artoon-meta-separator {
+  color: var(--color-text-secondary, #999);
+  font-weight: 600;
+}
+
+.artoon-meta-delete-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--color-error, #f44336);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.artoon-meta-delete-btn:hover {
+  background: var(--color-error-hover, #d32f2f);
+}
+
+.artoon-meta-add-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.artoon-meta-add-btn {
+  padding: 8px 16px;
+  border: 1px dashed var(--color-primary, #4CAF50);
+  background: var(--color-bg-primary, white);
+  color: var(--color-primary, #4CAF50);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.artoon-meta-add-btn:hover {
+  background: var(--color-bg-hover, #f1f8f4);
+}
+
+/* Dark mode support */
+[data-theme="dark"] .artoon-block__meta {
+  background: var(--color-bg-secondary, #2a2a2a);
+  border-color: var(--color-border-default, #444);
+}
+
+[data-theme="dark"] .artoon-meta-field-name,
+[data-theme="dark"] .artoon-meta-field-value {
+  background: var(--color-bg-primary, #1a1a1a);
+  border-color: var(--color-border-default, #444);
+  color: var(--color-text-primary, #e0e0e0);
+}
+
+[data-theme="dark"] .artoon-meta-field-name:read-only,
+[data-theme="dark"] .artoon-meta-field-value:read-only {
+  background: var(--color-bg-tertiary, #333);
+}
+
+[data-theme="dark"] .artoon-meta-add-btn {
+  background: var(--color-bg-primary, #1a1a1a);
+}
+
+[data-theme="dark"] .artoon-meta-add-btn:hover {
+  background: var(--color-bg-hover, #2a2a2a);
+}

@@ -1,0 +1,226 @@
+<meta>.
+>.-:title: دليل استخدام META Block في ARTOON
+>.-:author: فريق تطوير ARTOON
+>.-:date: 2026-01-19
+>.-:version: 2.0.0
+>.-:lang: ar
+>.-:description: مثال شامل يوضح كيفية استخدام META block لتخزين البيانات الوصفية للمستند
+>.-:keywords: artoon, meta, metadata, documentation
+>.-:category: tutorial
+>.-:license: MIT
+.<meta>
+
+>.t1:: دليل استخدام META Block
+
+>.p:: META block هو بلوك محجوز في ARTOON 2.0 يُستخدم لتخزين البيانات الوصفية للمستند.
+
+>.t2:: الخصائص الأساسية
+
+>.ul::
+li:: محجوز (لا يمكن استخدامه كبلوك مخصص)
+li:: يحتوي فقط على حقول مخفية [c:: >.-:field: value]
+li:: مخفي في HTML output افتراضياً
+li:: يظهر في المحرر مع واجهة خاصة
+
+>.t2:: الصيغة
+
+<code:artoon>.
+<meta>.
+>.-:fieldname: value
+>.-:another: value
+.<meta>
+.<code>
+
+>.t2:: الحقول الشائعة
+
+>.t3:: معلومات المستند
+
+>.dl::
+dt:: title
+dd:: عنوان المستند
+dt:: description
+dd:: وصف مختصر للمستند
+dt:: summary
+dd:: ملخص المحتوى
+
+>.t3:: معلومات المؤلف
+
+>.dl::
+dt:: author
+dd:: اسم المؤلف أو المؤلفين
+dt:: email
+dd:: البريد الإلكتروني للتواصل
+dt:: organization
+dd:: المؤسسة أو الشركة
+
+>.t3:: التواريخ
+
+>.dl::
+dt:: date
+dd:: تاريخ الإنشاء
+dt:: modified
+dd:: تاريخ آخر تعديل
+dt:: published
+dd:: تاريخ النشر
+dt:: version
+dd:: رقم الإصدار
+
+>.t3:: التصنيف
+
+>.dl::
+dt:: tags
+dd:: وسوم للتصنيف
+dt:: keywords
+dd:: كلمات مفتاحية للبحث
+dt:: category
+dd:: الفئة أو التصنيف
+dt:: type
+dd:: نوع المستند
+
+>.t2:: أمثلة عملية
+
+>.t3:: مثال 1: مقالة مدونة
+
+<code:artoon>.
+<meta>.
+>.-:title: كيف تتعلم البرمجة
+>.-:author: أحمد محمد
+>.-:date: 2026-01-19
+>.-:category: برمجة
+>.-:tags: تعليم, برمجة, مبتدئين
+>.-:lang: ar
+.<meta>
+
+>.t1:: كيف تتعلم البرمجة
+>.p:: البرمجة مهارة مهمة في العصر الحديث...
+.<code>
+
+>.t3:: مثال 2: توثيق تقني
+
+<code:artoon>.
+<meta>.
+>.-:title: ARTOON API Reference
+>.-:version: 2.0.0
+>.-:author: ARTOON Team
+>.-:date: 2026-01-19
+>.-:type: documentation
+>.-:lang: en
+>.-:license: MIT
+.<meta>
+
+<.t1:: ARTOON API Reference
+<.p:: Complete API documentation for ARTOON 2.0...
+.<code>
+
+>.t3:: مثال 3: كتاب إلكتروني
+
+<code:artoon>.
+<meta>.
+>.-:title: رحلة في عالم البرمجة
+>.-:author: سارة أحمد
+>.-:publisher: دار النشر الرقمية
+>.-:date: 2026-01-19
+>.-:isbn: 978-1-234567-89-0
+>.-:edition: الطبعة الأولى
+>.-:lang: ar
+>.-:copyright: © 2026 سارة أحمد
+.<meta>
+
+>.t1:: رحلة في عالم البرمجة
+>.p:: مقدمة الكتاب...
+.<code>
+
+>.t2:: الفرق بين الحقول المخفية والعناصر الأبناء
+
+>.p:: من المهم التمييز بين نوعين من الصيغ:
+
+>.t3:: الحقول المخفية (Hidden Fields)
+
+<code:artoon>.
+>.-:fieldname: value
+.<code>
+
+>.ul::
+li:: تبدأ بـ [c:: :] بعد [c:: .-]
+li:: الفاصل: نقطة واحدة [c:: :] بعد اسم الحقل
+li:: مخفية في HTML output
+li:: للبيانات الوصفية (metadata)
+li:: [s:: تعمل فقط داخل META block]
+
+>.t3:: العناصر الأبناء (Child Elements)
+
+<code:artoon>.
+>.-elementname:: content
+.<code>
+
+>.ul::
+li:: لا تبدأ بـ [c:: :]
+li:: الفاصل: نقطتان [c:: ::] بعد اسم العنصر
+li:: مرئية في HTML output
+li:: للمحتوى الهيكلي
+li:: [s:: تعمل في جميع البلوكات]
+
+>.t2:: أخطاء شائعة
+
+>.t3:: ❌ خطأ: استخدام حقل مخفي خارج META
+
+<code:artoon>.
+<figure>.
+>.-:caption: وصف الصورة  ❌ خطأ
+.<figure>
+.<code>
+
+>.p:: [s:: الحل:] استخدم عنصر ابن مرئي:
+
+<code:artoon>.
+<figure>.
+>.-figcaption:: وصف الصورة  ✅ صحيح
+.<figure>
+.<code>
+
+>.t3:: ❌ خطأ: محتوى عادي في META
+
+<code:artoon>.
+<meta>.
+>.p:: هذا نص عادي  ❌ خطأ
+.<meta>
+.<code>
+
+>.p:: [s:: الحل:] استخدم حقول مخفية فقط:
+
+<code:artoon>.
+<meta>.
+>.-:description: هذا نص عادي  ✅ صحيح
+.<meta>
+.<code>
+
+>.t2:: معالجة META في HTML
+
+>.p:: بشكل افتراضي، META blocks مخفية في HTML output. لكن يمكن التحكم في ذلك:
+
+>.t3:: الوضع 1: Hide (الافتراضي)
+
+<code:typescript>.
+render(doc, { metaHandling: 'hide' });
+// META لا يظهر في HTML
+.<code>
+
+>.t3:: الوضع 2: Tags
+
+<code:typescript>.
+render(doc, { metaHandling: 'tags' });
+// <meta name="title" content="...">
+// <meta name="author" content="...">
+.<code>
+
+>.t3:: الوضع 3: Comment
+
+<code:typescript>.
+render(doc, { metaHandling: 'comment' });
+// <!-- META: title: ... -->
+// <!-- META: author: ... -->
+.<code>
+
+>.hr
+
+>.p:: [s:: ملاحظة:] هذا المثال نفسه يستخدم META block في بدايته! يمكنك رؤية البيانات الوصفية عند تحليل الملف.

@@ -1,0 +1,38 @@
+{
+  "name": "ARTOON Brand Typography",
+  "version": "2.0.0",
+  "language": "en-first",
+  "families": {
+    "display": {
+      "name": "Inter Tight",
+      "fallback": "'Inter Tight', 'Helvetica Neue', Arial, sans-serif",
+      "googleFonts": "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&display=swap",
+      "style": {
+        "textTransform": "uppercase",
+        "letterSpacing": "0.14em",
+        "fontWeight": 700
+      },
+      "usage": "Hero headlines, ARTOON wordmark, section titles"
+    },
+    "body": {
+      "name": "Inter",
+      "fallback": "'Inter', 'Helvetica Neue', system-ui, sans-serif",
+      "googleFonts": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap",
+      "usage": "Body copy, UI labels, documentation"
+    },
+    "mono": {
+      "name": "IBM Plex Mono",
+      "fallback": "'IBM Plex Mono', 'SF Mono', Consolas, monospace",
+      "googleFonts": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap",
+      "usage": "ARTOON syntax lines, CLI, code blocks"
+    }
+  },
+  "scale": {
+    "display-xl": { "size": "4.5rem", "lineHeight": "1", "letterSpacing": "0.12em" },
+    "display-lg": { "size": "3rem", "lineHeight": "1.05", "letterSpacing": "0.1em" },
+    "display-md": { "size": "1.75rem", "lineHeight": "1.15", "letterSpacing": "0.08em" },
+    "body": { "size": "1rem", "lineHeight": "1.6" },
+    "caption": { "size": "0.75rem", "lineHeight": "1.4", "letterSpacing": "0.2em" },
+    "mono": { "size": "0.875rem", "lineHeight": "1.5" }
+  }
+}

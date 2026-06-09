@@ -1,0 +1,5 @@
+/* 
+ * Legacy styles removed.
+ * Slash Menu styling is now handled entirely within src/ui/components/SlashMenu.css
+ * to prevent CSS conflicts and enforce a consistent glassmorphism aesthetic.
+ */

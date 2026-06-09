@@ -1,0 +1,11 @@
+# UI Components
+# Phase 4 will add:
+# - Editor.tsx
+# - EditorContainer.tsx
+# - BlockWrapper.tsx
+# - BlockRenderer.tsx
+# - AddMenu.tsx
+# - InlineToolbar.tsx
+# - ContextMenu.tsx
+# - DragHandle.tsx
+# - DropIndicator.tsx

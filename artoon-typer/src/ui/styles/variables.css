@@ -1,0 +1,59 @@
+/**
+ * ARTOON-TYPER CSS Variables
+ * 
+ * Design tokens for theming and consistency.
+ */
+
+:root {
+  /* Colors - Light Theme */
+  --typer-bg-primary: #ffffff;
+  --typer-bg-secondary: #f8f9fa;
+  --typer-bg-hover: #f1f3f5;
+  --typer-bg-active: #e9ecef;
+  --typer-text-primary: #212529;
+  --typer-text-secondary: #6c757d;
+  --typer-text-placeholder: #adb5bd;
+  --typer-border-color: #dee2e6;
+  --typer-accent-color: #228be6;
+  --typer-accent-hover: #1c7ed6;
+  --typer-accent-light: #e7f5ff;
+  --typer-danger-color: #fa5252;
+  --typer-success-color: #40c057;
+  
+  /* Shadows */
+  --typer-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --typer-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --typer-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
+  
+  /* Border Radius */
+  --typer-radius-sm: 4px;
+  --typer-radius-md: 8px;
+  --typer-radius-lg: 12px;
+  
+  /* Spacing */
+  --typer-block-controls-width: 70px;
+  
+  /* Typography */
+  --typer-font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --typer-font-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  --typer-line-height: 1.7;
+  
+  /* Transitions */
+  --typer-transition-fast: 100ms ease;
+  --typer-transition-normal: 150ms ease;
+}
+
+/* Dark Theme */
+.artoon-typer--dark {
+  --typer-bg-primary: #1a1b1e;
+  --typer-bg-secondary: #25262b;
+  --typer-bg-hover: #2c2e33;
+  --typer-bg-active: #373a40;
+  --typer-text-primary: #c1c2c5;
+  --typer-text-secondary: #909296;
+  --typer-text-placeholder: #5c5f66;
+  --typer-border-color: #373a40;
+  --typer-accent-color: #4dabf7;
+  --typer-accent-hover: #74c0fc;
+  --typer-accent-light: #1c3d5a;
+}

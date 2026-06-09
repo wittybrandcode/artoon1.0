@@ -1,0 +1,23 @@
+{
+  "name": "@artoon/parser",
+  "version": "1.0.0",
+  "description": "ARTOON format parser - outputs InlineContent[] directly",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "bench": "node benchmarks/parser.bench.js"
+  },
+  "keywords": ["artoon", "parser", "bidi", "rtl", "ltr"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  }
+}

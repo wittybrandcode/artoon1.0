@@ -1,0 +1,446 @@
+<meta>.
+>.-:title: دليل ARTOON 2.0 الشامل - عرض احترافي لجميع الإمكانيات
+>.-:author: فريق تطوير ARTOON
+>.-:email: team@artoon.dev
+>.-:organization: ARTOON Project
+>.-:date: 2026-01-19
+>.-:modified: 2026-01-19
+>.-:version: 2.0.0
+>.-:lang: ar
+>.-:dir: rtl
+>.-:description: مستند احترافي شامل يعرض جميع إمكانيات ARTOON 2.0 من نصوص وقوائم وجداول وصور وأكواد وبلوكات مخصصة
+>.-:keywords: artoon, documentation, tutorial, showcase, arabic, rtl, markdown
+>.-:category: documentation
+>.-:type: tutorial
+>.-:status: published
+>.-:license: MIT
+>.-:copyright: © 2026 ARTOON Project
+>.-:tags: tutorial, documentation, examples, showcase
+.<meta>
+
+>.t1:: 📚 دليل ARTOON 2.0 الشامل
+
+>.p:: مرحباً بك في العرض الاحترافي الشامل لـ ARTOON 2.0! هذا المستند يعرض [s:: جميع الإمكانيات] المتاحة في نظام ARTOON من نصوص وقوائم وجداول وصور وأكواد وبلوكات مخصصة.
+
+>.hr
+
+>.t2:: 📝 النصوص والعناوين
+
+>.t3:: العناوين بمستويات مختلفة
+
+>.p:: ARTOON يدعم 6 مستويات من العناوين (t1 إلى t6) لتنظيم المحتوى بشكل هرمي واضح.
+
+>.t4:: عنوان من المستوى الرابع
+
+>.t5:: عنوان من المستوى الخامس
+
+>.t6:: عنوان من المستوى السادس
+
+>.t3:: التنسيقات النصية
+
+>.p:: يمكنك استخدام [s:: النص الغامق] و[e:: النص المائل] و[u:: النص المسطر] و[d:: النص المشطوب] و[c:: الكود المضمن] في نفس الفقرة.
+
+>.p:: كما يمكنك [s,e:: الجمع بين التنسيقات] مثل [s,u:: غامق ومسطر] أو [e,d:: مائل ومشطوب].
+
+>.t3:: الاقتباسات
+
+>.q:: الاقتباس هو طريقة رائعة لإبراز نص مهم أو اقتباس من مصدر آخر. يظهر بتنسيق مميز يلفت الانتباه.
+
+>.q:: [s:: "التعليم هو أقوى سلاح يمكنك استخدامه لتغيير العالم"] - نيلسون مانديلا
+
+>.hr
+
+>.t2:: 🔗 الروابط والوسائط
+
+>.t3:: الروابط
+
+>.p:: يمكنك إضافة روابط بطرق مختلفة:
+
+>.ul::
+li:: رابط بسيط: [a:: https://artoon.dev; موقع ARTOON]
+li:: رابط مع نص مخصص: [a:: https://github.com/artoon; مستودع GitHub]
+li:: رابط مع تنسيق: [s,a:: https://example.com; رابط غامق]
+
+>.t3:: الصور
+
+>.p:: إضافة الصور سهلة وبسيطة:
+
+>.img:: https://via.placeholder.com/800x400/4A90E2/FFFFFF?text=ARTOON+2.0; صورة توضيحية لـ ARTOON; عرض شامل للإمكانيات
+
+>.t3:: الفيديو والصوت
+
+>.p:: دعم كامل للوسائط المتعددة:
+
+>.video:: https://example.com/video.mp4; فيديو تعليمي
+
+>.audio:: https://example.com/audio.mp3; ملف صوتي
+
+>.t3:: الملفات
+
+>.file:: https://example.com/document.pdf; تحميل المستند
+
+>.hr
+
+>.t2:: 📋 القوائم
+
+>.t3:: قائمة نقطية بسيطة
+
+>.ul::
+li:: العنصر الأول في القائمة
+li:: العنصر الثاني مع [s:: تنسيق غامق]
+li:: العنصر الثالث مع [a:: https://example.com; رابط]
+
+>.t3:: قائمة مرقمة
+
+>.ol::
+li:: الخطوة الأولى: التخطيط
+li:: الخطوة الثانية: التنفيذ
+li:: الخطوة الثالثة: الاختبار
+li:: الخطوة الرابعة: النشر
+
+>.t3:: قوائم متداخلة
+
+>.ul::
+li:: المستوى الأول
+-li:: المستوى الثاني - عنصر 1
+-li:: المستوى الثاني - عنصر 2
+--li:: المستوى الثالث
+--li:: المستوى الثالث أيضاً
+-li:: المستوى الثاني - عنصر 3
+li:: العودة للمستوى الأول
+
+>.t3:: قائمة التعريفات
+
+>.dl::
+dt:: ARTOON
+dd:: نظام كتابة ثنائي الاتجاه يدعم العربية والإنجليزية بشكل كامل
+dt:: Parser
+dd:: المحلل اللغوي الذي يحول نص ARTOON إلى AST
+dt:: Renderer
+dd:: المحول الذي يحول AST إلى HTML أو تنسيقات أخرى
+dt:: AST
+dd:: Abstract Syntax Tree - شجرة البناء النحوي المجردة
+
+>.hr
+
+>.t2:: 📊 الجداول
+
+>.t3:: جدول بسيط
+
+>.table::
+th:: الاسم | العمر | المدينة
+tr:: أحمد محمد | 25 | الرياض
+tr:: سارة أحمد | 30 | جدة
+tr:: محمد علي | 28 | الدمام
+
+>.t3:: جدول مقارنة الميزات
+
+>.table::
+th:: الميزة | ARTOON 1.0 | ARTOON 2.0
+tr:: دعم ثنائي الاتجاه | ✓ | ✓
+tr:: META blocks | ✗ | ✓
+tr:: Custom blocks | محدود | كامل
+tr:: Inline formatting | أساسي | متقدم
+tr:: Tables | بسيط | متقدم
+tr:: Code blocks | ✓ | ✓ مع syntax highlighting
+
+>.hr
+
+>.t2:: 💻 أكواد البرمجة
+
+>.t3:: كود JavaScript
+
+<code:javascript>.
+// مثال على كود JavaScript
+function greet(name) {
+  return `مرحباً ${name}!`;
+}
+
+const message = greet('ARTOON');
+console.log(message);
+
+// دالة متقدمة
+const processData = async (data) => {
+  try {
+    const result = await fetch('/api/data', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+    return await result.json();
+  } catch (error) {
+    console.error('خطأ:', error);
+  }
+};
+.<code>
+
+>.t3:: كود Python
+
+<code:python>.
+# مثال على كود Python
+def calculate_fibonacci(n):
+    """حساب متتالية فيبوناتشي"""
+    if n <= 1:
+        return n
+    return calculate_fibonacci(n-1) + calculate_fibonacci(n-2)
+
+# استخدام الدالة
+for i in range(10):
+    print(f"F({i}) = {calculate_fibonacci(i)}")
+
+# مثال على class
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def greet(self):
+        return f"مرحباً، أنا {self.name}"
+.<code>
+
+>.t3:: كود HTML/CSS
+
+<code:html>.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مثال ARTOON</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+      text-align: right;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>مرحباً بك في ARTOON</h1>
+  </div>
+</body>
+</html>
+.<code>
+
+>.t3:: كود SQL
+
+<code:sql>.
+-- إنشاء جدول المستخدمين
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- إدراج بيانات
+INSERT INTO users (name, email) VALUES
+  ('أحمد محمد', 'ahmad@example.com'),
+  ('سارة أحمد', 'sara@example.com');
+
+-- استعلام متقدم
+SELECT u.name, COUNT(p.id) as post_count
+FROM users u
+LEFT JOIN posts p ON u.id = p.user_id
+GROUP BY u.id
+HAVING post_count > 5
+ORDER BY post_count DESC;
+.<code>
+
+>.hr
+
+>.t2:: 🎨 البلوكات المخصصة
+
+>.t3:: بلوك تنبيه
+
+<alert>.
+>.t4:: ⚠️ تنبيه مهم
+>.p:: هذا مثال على بلوك مخصص يمكن استخدامه لعرض تنبيهات أو ملاحظات مهمة للقارئ.
+.<alert>
+
+>.t3:: بلوك ملاحظة
+
+<note>.
+>.t4:: 📝 ملاحظة
+>.p:: البلوكات المخصصة تتيح لك إنشاء أنواع محتوى خاصة بك مع تنسيق وتصميم مخصص.
+>.ul::
+li:: سهلة الإنشاء
+li:: مرنة في التصميم
+li:: قابلة لإعادة الاستخدام
+.<note>
+
+>.t3:: بلوك معلومات
+
+<info>.
+>.t4:: ℹ️ معلومة
+>.p:: يمكنك استخدام البلوكات المخصصة لأي غرض: تنبيهات، ملاحظات، اقتباسات خاصة، أو أي محتوى يحتاج تنسيق مميز.
+.<info>
+
+>.t3:: بلوك نجاح
+
+<success>.
+>.t4:: ✅ نجح!
+>.p:: تم إكمال العملية بنجاح. جميع الاختبارات نجحت والنظام يعمل بشكل صحيح.
+.<success>
+
+>.hr
+
+>.t2:: 🖼️ المكونات المركبة
+
+>.t3:: Figure مع صورة وتعليق
+
+<figure>.
+>.-img:: https://via.placeholder.com/600x300/2ECC71/FFFFFF?text=Architecture; معمارية ARTOON
+>.-figcaption:: معمارية نظام ARTOON 2.0 - تصميم معياري ومرن
+.<figure>
+
+>.t3:: Details قابل للطي
+
+<details>.
+>.-summary:: اضغط لعرض المزيد من التفاصيل
+>.p:: هذا محتوى مخفي يظهر عند الضغط على العنوان. مفيد للمحتوى الطويل أو التفاصيل الإضافية.
+>.ul::
+li:: يمكن إضافة أي محتوى هنا
+li:: قوائم، نصوص، صور
+li:: حتى بلوكات مخصصة!
+.<details>
+
+>.hr
+
+>.t2:: 🔤 مكونات نصية خاصة
+
+>.t3:: الاختصارات
+
+>.abbr:: HTML; HyperText Markup Language
+
+>.abbr:: CSS; Cascading Style Sheets
+
+>.abbr:: API; Application Programming Interface
+
+>.t3:: التواريخ والأوقات
+
+>.time:: 2026-01-19; 19 يناير 2026
+
+>.time:: 2026-01-19T14:30:00; الساعة 2:30 مساءً
+
+>.hr
+
+>.t2:: ➗ الفواصل
+
+>.p:: يمكنك استخدام فواصل مختلفة:
+
+>.p:: فاصل أفقي (hr):
+
+>.hr
+
+>.p:: فاصل سطر (br):
+
+>.br
+
+>.p:: فواصل متعددة:
+
+>.br;hr;br
+
+>.hr
+
+>.t2:: 📖 مثال على مستند كامل
+
+>.p:: الآن دعنا نرى مثالاً على مستند كامل يجمع عدة عناصر:
+
+<article>.
+>.t3:: 🚀 البدء مع ARTOON 2.0
+
+>.p:: ARTOON 2.0 هو نظام كتابة [s:: ثنائي الاتجاه] متقدم يدعم [e:: العربية والإنجليزية] بشكل كامل.
+
+>.t4:: الميزات الرئيسية
+
+>.ul::
+li:: [s:: دعم كامل للغة العربية] مع RTL
+li:: [s:: بلوكات محجوزة] (code, meta)
+li:: [s:: بلوكات مخصصة] غير محدودة
+li:: [s:: تنسيقات نصية] متقدمة
+li:: [s:: جداول وقوائم] متداخلة
+
+>.t4:: مثال على الكود
+
+<code:typescript>.
+interface ARTOONDocument {
+  version: '2.0';
+  meta?: MetaBlock;
+  content: ContentNode[];
+}
+
+type ContentNode = 
+  | TextNode 
+  | ListNode 
+  | TableNode 
+  | BlockNode;
+.<code>
+
+>.t4:: جدول المقارنة
+
+>.table::
+th:: الميزة | الحالة | الملاحظات
+tr:: Parser | ✅ مكتمل | 175 اختبار ناجح
+tr:: Renderer | ✅ مكتمل | دعم HTML كامل
+tr:: Serializer | ✅ مكتمل | roundtrip صحيح
+tr:: Editor | ✅ مكتمل | واجهة احترافية
+
+>.t4:: الخلاصة
+
+>.q:: ARTOON 2.0 يوفر نظام كتابة قوي ومرن يجمع بين البساطة والقوة، مع دعم كامل للغة العربية واتجاه الكتابة من اليمين لليسار.
+
+<info>.
+>.p:: 💡 [s:: نصيحة:] ابدأ بالأمثلة البسيطة ثم انتقل تدريجياً للميزات المتقدمة.
+.<info>
+.<article>
+
+>.hr
+
+>.t2:: 📚 أمثلة على ARTOON syntax داخل code blocks
+
+>.p:: يمكنك عرض أمثلة على ARTOON syntax نفسه داخل code blocks:
+
+<code:artoon>.
+>.t1:: مثال على مستند ARTOON
+
+>.p:: هذا نص عادي مع [s:: تنسيق غامق].
+
+>.ul::
+li:: عنصر في قائمة
+li:: عنصر آخر
+
+<custom>.
+>.p:: محتوى داخل بلوك مخصص
+.<custom>
+.<code>
+
+>.hr
+
+>.t2:: 🎯 الخاتمة
+
+>.p:: هذا المستند عرض شامل لجميع إمكانيات ARTOON 2.0. يمكنك استخدامه كمرجع أو نقطة انطلاق لمستنداتك الخاصة.
+
+<success>.
+>.t3:: ✨ تهانينا!
+>.p:: الآن أنت تعرف جميع إمكانيات ARTOON 2.0. ابدأ في إنشاء مستنداتك الاحترافية!
+>.ul::
+li:: استخدم META blocks للبيانات الوصفية
+li:: نظم المحتوى بالعناوين والقوائم
+li:: أضف الوسائط والجداول
+li:: استخدم البلوكات المخصصة للمحتوى الخاص
+.<success>
+
+>.hr
+
+>.p:: [s:: شكراً لاستخدامك ARTOON 2.0!] 🚀
+
+>.p:: للمزيد من المعلومات، زر [a:: https://artoon.dev; الموقع الرسمي] أو [a:: https://github.com/artoon; مستودع GitHub].
+
+>.br;hr;br
+
+>.p:: [e:: © 2026 ARTOON Project - جميع الحقوق محفوظة]

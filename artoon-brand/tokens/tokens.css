@@ -1,0 +1,111 @@
+/**
+ * ARTOON Brand Tokens v2.0
+ * Editorial dark · Syntax Stripe accent
+ * @see DESIGN.md
+ */
+
+:root {
+  /* Canvas */
+  --artoon-black: #000000;
+  --artoon-carbon: #0a0a0a;
+  --artoon-graphite: #141414;
+  --artoon-steel: #262626;
+  --artoon-silver: #737373;
+  --artoon-white: #ffffff;
+  --artoon-paper: #fafafa;
+  --artoon-ink: #0a0a0a;
+
+  /* Syntax Stripe (identity — use sparingly) */
+  --artoon-stripe-rtl: #6cb4ee;
+  --artoon-stripe-semantic: #1d4ed8;
+  --artoon-stripe-ltr: #eab308;
+  --artoon-stripe-skew: -12deg;
+  --artoon-stripe-gap: 3px;
+  --artoon-stripe-height: 4px;
+
+  /* Functional */
+  --artoon-success: #22c55e;
+  --artoon-warning: #f59e0b;
+  --artoon-danger: #ef4444;
+  --artoon-link: #6cb4ee;
+
+  /* Typography */
+  --artoon-font-display: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --artoon-font-body: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  --artoon-font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+  --artoon-tracking-display: 0.14em;
+  --artoon-tracking-overline: 0.2em;
+
+  /* Default theme = dark editorial */
+  --artoon-bg: var(--artoon-black);
+  --artoon-surface: var(--artoon-graphite);
+  --artoon-text: var(--artoon-white);
+  --artoon-text-muted: var(--artoon-silver);
+  --artoon-border: var(--artoon-steel);
+
+  /* Layout */
+  --artoon-radius-sharp: 0;
+  --artoon-radius-sm: 2px;
+  --artoon-max-content: 72rem;
+
+  /* Motion */
+  --artoon-ease-mechanical: cubic-bezier(0.4, 0, 0.2, 1);
+  --artoon-duration-fast: 120ms;
+  --artoon-duration-normal: 200ms;
+}
+
+[data-artoon-theme='light'] {
+  --artoon-bg: var(--artoon-paper);
+  --artoon-surface: var(--artoon-white);
+  --artoon-text: var(--artoon-ink);
+  --artoon-text-muted: var(--artoon-silver);
+  --artoon-border: #e5e5e5;
+}
+
+/* Display utility */
+.artoon-display {
+  font-family: var(--artoon-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--artoon-tracking-display);
+  line-height: 1.05;
+}
+
+.artoon-overline {
+  font-family: var(--artoon-font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--artoon-tracking-overline);
+  color: var(--artoon-silver);
+}
+
+/* Syntax Stripe component */
+.artoon-syntax-stripe {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--artoon-stripe-gap);
+  transform: skewX(var(--artoon-stripe-skew));
+}
+
+.artoon-syntax-stripe span {
+  display: block;
+  height: var(--artoon-stripe-height);
+  border-radius: 1px;
+}
+
+.artoon-syntax-stripe span:nth-child(1) {
+  width: 48px;
+  background: var(--artoon-stripe-rtl);
+}
+
+.artoon-syntax-stripe span:nth-child(2) {
+  width: 56px;
+  background: var(--artoon-stripe-semantic);
+}
+
+.artoon-syntax-stripe span:nth-child(3) {
+  width: 40px;
+  background: var(--artoon-stripe-ltr);
+}

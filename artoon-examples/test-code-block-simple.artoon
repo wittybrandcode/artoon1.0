@@ -1,0 +1,12 @@
+>.t1:: اختبار Code Block
+
+>.p:: هذا اختبار بسيط لـ code block يحتوي على ARTOON syntax.
+
+<code:artoon>.
+<meta>.
+>.-:title: عنوان
+>.-:author: مؤلف
+.<meta>
+.<code>
+
+>.p:: انتهى الاختبار.

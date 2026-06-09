@@ -1,0 +1,79 @@
+// ARTOON HTML Renderer Utilities
+
+/**
+ * Escape HTML special characters
+ */
+export function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
+ * Create HTML attribute string
+ */
+export function attr(name: string, value: string | undefined): string {
+  if (value === undefined || value === '') return '';
+  return ` ${name}="${escapeHtml(value)}"`;
+}
+
+/**
+ * Create HTML attributes from object
+ */
+export function attrs(attributes: Record<string, string | undefined>): string {
+  return Object.entries(attributes)
+    .filter(([_, v]) => v !== undefined && v !== '')
+    .map(([k, v]) => attr(k, v))
+    .join('');
+}
+
+/**
+ * Create opening tag
+ */
+export function openTag(
+  tag: string, 
+  attributes?: Record<string, string | undefined>,
+  selfClosing = false
+): string {
+  const attrStr = attributes ? attrs(attributes) : '';
+  return selfClosing ? `<${tag}${attrStr} />` : `<${tag}${attrStr}>`;
+}
+
+/**
+ * Create closing tag
+ */
+export function closeTag(tag: string): string {
+  return `</${tag}>`;
+}
+
+/**
+ * Wrap content in tag
+ */
+export function wrap(
+  tag: string, 
+  content: string, 
+  attributes?: Record<string, string | undefined>
+): string {
+  return `${openTag(tag, attributes)}${content}${closeTag(tag)}`;
+}
+
+/**
+ * Create self-closing tag
+ */
+export function selfClose(
+  tag: string, 
+  attributes?: Record<string, string | undefined>
+): string {
+  return openTag(tag, attributes, true);
+}
+
+/**
+ * Indent lines
+ */
+export function indent(text: string, level: number, size: number = 2): string {
+  const spaces = ' '.repeat(level * size);
+  return text.split('\n').map(line => line ? spaces + line : line).join('\n');
+}

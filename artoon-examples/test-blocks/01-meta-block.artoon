@@ -1,0 +1,60 @@
+<meta>.
+>.-:title: اختبار META Block
+>.-:author: فريق تطوير ARTOON
+>.-:date: 2026-01-19
+>.-:version: 2.0.0
+>.-:lang: ar
+>.-:description: اختبار بلوك META المحجوز
+>.-:keywords: meta, test, artoon
+>.-:category: test
+>.-:type: showcase
+.<meta>
+
+>.t1:: 🧪 اختبار META Block
+
+>.p:: هذا الملف يختبر بلوك META المحجوز.
+
+>.t2:: ما يجب أن يحدث
+
+>.ul::
+li:: بلوك META يجب أن يكون [s:: مخفياً] في المعاينة
+li:: الحقول المخفية (>.-:) يجب أن تُقرأ بشكل صحيح
+li:: يمكن تصدير واستيراد البيانات الوصفية
+
+>.t2:: مثال على META
+
+<code:artoon>.
+<meta>.
+>.-:title: عنوان المستند
+>.-:author: اسم المؤلف
+>.-:date: 2026-01-19
+.<meta>
+.<code>
+
+>.t2:: اختبار متقدم
+
+<code:artoon>.
+<meta>.
+>.-:title: دليل ARTOON الشامل
+>.-:author: أحمد محمد
+>.-:email: ahmad@example.com
+>.-:organization: ARTOON Project
+>.-:date: 2026-01-19
+>.-:modified: 2026-01-19
+>.-:version: 2.0.0
+>.-:lang: ar
+>.-:dir: rtl
+>.-:description: وصف شامل للمستند
+>.-:keywords: artoon, tutorial, documentation
+>.-:category: documentation
+>.-:type: tutorial
+>.-:status: published
+>.-:license: MIT
+>.-:copyright: © 2026 ARTOON Project
+>.-:tags: tutorial, examples, showcase
+.<meta>
+.<code>
+
+>.hr
+
+>.p:: [s:: النتيجة المتوقعة:] بلوك META في أعلى هذا الملف يجب أن يكون مخفياً في المعاينة.

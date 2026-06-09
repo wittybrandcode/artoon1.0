@@ -1,0 +1,61 @@
+>.t1:: 🧪 اختبار Error Block (مخصص)
+
+>.p:: هذا الملف يختبر بلوك Error المخصص.
+
+>.t2:: ما يجب أن يحدث
+
+>.ul::
+li:: البلوك يظهر بشكل صحيح
+li:: مناسب لرسائل الأخطاء
+li:: يدعم عرض الأكواد والتفاصيل
+
+>.hr
+
+>.t2:: مثال بسيط
+
+<error>.
+>.t4:: ❌ حدث خطأ
+>.p:: بلوك الخطأ يُستخدم لعرض رسائل الأخطاء والمشاكل.
+.<error>
+
+>.t2:: مثال مع كود الخطأ
+
+<error>.
+>.t4:: ❌ خطأ في التنفيذ
+<code:text>.
+Error: Cannot find module 'artoon-parser'
+  at require (internal/modules/cjs/loader.js:883:19)
+  at Object.<anonymous> (index.js:1:15)
+.<code>
+.<error>
+
+>.t2:: مثال مع قائمة الحلول
+
+<error>.
+>.t4:: ❌ فشل البناء
+>.p:: الأسباب المحتملة:
+>.ul::
+li:: المكتبات غير مثبتة
+li:: إصدار Node.js قديم
+li:: ملفات مفقودة
+>.p:: الحلول المقترحة:
+>.ol::
+li:: قم بتشغيل npm install
+li:: حدّث Node.js إلى الإصدار 18+
+li:: تحقق من وجود جميع الملفات
+.<error>
+
+>.t2:: مثال مع جدول الأخطاء
+
+<error>.
+>.t4:: ❌ أخطاء التحقق
+>.table::
+th:: الملف | السطر | الخطأ
+tr:: parser.ts | 45 | Type error
+tr:: renderer.ts | 120 | Null reference
+tr:: serializer.ts | 89 | Invalid syntax
+.<error>
+
+>.hr
+
+>.p:: [s:: النتيجة المتوقعة:] جميع بلوكات Error تظهر بشكل صحيح.

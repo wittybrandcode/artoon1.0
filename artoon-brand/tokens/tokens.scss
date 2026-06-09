@@ -1,0 +1,36 @@
+// ARTOON Brand SCSS v2.0 — see DESIGN.md
+
+$artoon-black: #000000;
+$artoon-carbon: #0a0a0a;
+$artoon-graphite: #141414;
+$artoon-steel: #262626;
+$artoon-silver: #737373;
+$artoon-white: #ffffff;
+
+$artoon-stripe-rtl: #6cb4ee;
+$artoon-stripe-semantic: #1d4ed8;
+$artoon-stripe-ltr: #eab308;
+
+$artoon-font-display: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+$artoon-font-body: 'Inter', system-ui, sans-serif;
+$artoon-font-mono: 'IBM Plex Mono', Consolas, monospace;
+
+@mixin artoon-display {
+  font-family: $artoon-font-display;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  line-height: 1.05;
+  color: $artoon-white;
+}
+
+@mixin artoon-syntax-stripe {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  transform: skewX(-12deg);
+
+  span:nth-child(1) { width: 48px; height: 4px; background: $artoon-stripe-rtl; }
+  span:nth-child(2) { width: 56px; height: 4px; background: $artoon-stripe-semantic; }
+  span:nth-child(3) { width: 40px; height: 4px; background: $artoon-stripe-ltr; }
+}

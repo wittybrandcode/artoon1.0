@@ -1,0 +1,476 @@
+<meta>.
+>.-:title: الدليل الشامل لصيغة ARTOON 2.0
+>.-:description: مقال يعرض جميع إمكانيات صيغة ARTOON - 28 نوع بلوك
+>.-:author: فريق ARTOON
+>.-:date: 2026-01-16
+>.-:version: 2.0
+>.-:lang: ar
+>.-:dir: rtl
+>.-:keywords: artoon; syntax; documentation; دليل; صيغة
+>.-:license: MIT
+.<meta>
+
+>.t1:: الدليل الشامل لصيغة ARTOON 2.0
+
+>.p:: مرحباً بك في [s:: الدليل الشامل] لصيغة ARTOON 2.0. هذا المقال يعرض جميع [e:: 28 نوع بلوك] المدعومة في النظام، مع أمثلة عملية لكل منها.
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: القسم الأول: المكونات النصية (Text Blocks)
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ١. العناوين (Headings)
+
+>.p:: تدعم ARTOON ستة مستويات من العناوين:
+
+>.t1:: عنوان المستوى الأول (t1)
+>.t2:: عنوان المستوى الثاني (t2)
+>.t3:: عنوان المستوى الثالث (t3)
+>.t4:: عنوان المستوى الرابع (t4)
+>.t5:: عنوان المستوى الخامس (t5)
+>.t6:: عنوان المستوى السادس (t6)
+
+>.hr
+
+>.t2:: ٢. الفقرات (Paragraphs)
+
+>.p:: هذه فقرة عربية بسيطة تُكتب من اليمين إلى اليسار. يمكن أن تحتوي على [s:: نص مهم] و[e:: نص مؤكد] و[u:: نص مسطر].
+
+<.p:: This is an English paragraph written from left to right. It can contain [s:: bold text] and [e:: emphasized text] and [u:: underlined text].
+
+>.p:: فقرة مختلطة: نص عربي مع [c:: English code] ورابط [a:: https://example.com; مثال] داخلها.
+
+>.hr
+
+>.t2:: ٣. الاقتباسات (Quotes)
+
+>.q:: العلم نور والجهل ظلام — حكمة عربية قديمة
+
+<.q:: The only way to do great work is to love what you do. — Steve Jobs
+
+>.q:: [s:: الإبداع] هو الذكاء وهو يستمتع — [e:: ألبرت أينشتاين]
+
+>.hr
+
+>.t2:: ٤. النص المحفوظ التنسيق (Preformatted)
+
+>.p:: مكون [c:: pre] يحفظ المسافات والتنسيق كما هو:
+
+>.pre:: نص عربي    محفوظ    التنسيق    مع مسافات متعددة
+<.pre:: English    preformatted    text    with    spaces
+
+>.pre::     مسافات في البداية
+    وسطر ثاني
+        وسطر ثالث بمسافة أكبر
+
+>.pre:: ┌─────────────────────────────┐
+│   جدول ASCII بالعربية      │
+├─────────────────────────────┤
+│   الاسم    │   العمر       │
+│   أحمد     │   25          │
+└─────────────────────────────┘
+
+>.hr
+
+>.t2:: ٥. فاصل السطر (Line Break)
+
+>.p:: النص قبل فاصل السطر
+
+>.br
+
+>.p:: النص بعد فاصل السطر
+
+>.hr
+
+>.t2:: ٦. فاصل الكلمة (Word Break)
+
+>.p:: كلمة طويلة جداً
+
+>.wbr
+
+>.p:: يمكن أن تنقسم هنا عند الحاجة
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: القسم الثاني: القوائم (List Blocks)
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ٧. القائمة النقطية (Bullet List)
+
+>.ul::
+li:: العنصر الأول في القائمة
+li:: العنصر الثاني مع [s:: نص مهم]
+li:: العنصر الثالث مع [a:: https://example.com; رابط]
+li:: العنصر الرابع
+
+<.ul::
+li:: First item in English
+li:: Second item with [e:: emphasis]
+li:: Third item
+
+>.hr
+
+>.t2:: ٨. القائمة المرقمة (Numbered List)
+
+>.ol::
+li:: الخطوة الأولى: تثبيت المكتبة
+li:: الخطوة الثانية: استيراد الوحدات
+li:: الخطوة الثالثة: كتابة الكود
+li:: الخطوة الرابعة: تشغيل الاختبارات
+
+<.ol::
+li:: Step 1: Install the library
+li:: Step 2: Import modules
+li:: Step 3: Write code
+li:: Step 4: Run tests
+
+>.hr
+
+>.t2:: ٩. قائمة التعريفات (Definition List)
+
+>.dl::
+dt:: ARTOON
+dd:: صيغة محتوى دلالي متقدمة تدعم RTL و LTR
+dt:: AST
+dd:: شجرة الصيغة المجردة (Abstract Syntax Tree)
+dt:: Parser
+dd:: محلل يحول النص إلى AST
+dt:: Serializer
+dd:: محول يحول AST إلى نص ARTOON
+
+<.dl::
+dt:: HTML
+dd:: HyperText Markup Language
+dt:: CSS
+dd:: Cascading Style Sheets
+dt:: JavaScript
+dd:: Programming language for the web
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: القسم الثالث: الوسائط (Media Blocks)
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ١٠. الصور (Images)
+
+>.img:: https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800; جبال الألب الخلابة; صورة طبيعية للجبال
+>.img:: https://picsum.photos/600/400; صورة عشوائية
+
+>.hr
+
+>.t2:: ١١. الفيديو (Video)
+
+>.video:: https://www.w3schools.com/html/mov_bbb.mp4; فيديو تجريبي - Big Buck Bunny
+
+>.hr
+
+>.t2:: ١٢. الصوت (Audio)
+
+>.audio:: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3; موسيقى تجريبية - SoundHelix
+
+>.hr
+
+>.t2:: ١٣. الشكل مع تعليق (Figure)
+
+>.figure::
+>.-img:: https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600; مخطط إحصائي
+>.-caption:: الشكل ١: مخطط نمو المستخدمين خلال عام ٢٠٢٥
+
+>.figure::
+>.-video:: https://www.w3schools.com/html/mov_bbb.mp4; فيديو توضيحي
+>.-caption:: الشكل ٢: فيديو توضيحي للمنتج
+
+>.hr
+
+>.t2:: ١٤. الملفات (Files)
+
+>.file:: https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf; تحميل ملف PDF تجريبي
+>.file:: https://example.com/document.docx; تحميل مستند Word
+>.file:: https://example.com/data.xlsx; تحميل جدول Excel
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: القسم الرابع: المكونات المتقدمة (Advanced Blocks)
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ١٥. الكود (Code)
+
+<code:javascript>.
+// مثال JavaScript
+const greeting = 'مرحباً بالعالم';
+console.log(greeting);
+
+function calculateSum(a, b) {
+  return a + b;
+}
+.<code>
+
+<code:python>.
+# مثال Python
+def greet(name):
+    return f"مرحباً {name}"
+
+class Calculator:
+    def add(self, a, b):
+        return a + b
+.<code>
+
+<code:typescript>.
+// مثال TypeScript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+const createUser = (data: Partial<User>): User => ({
+  id: generateId(),
+  name: data.name ?? 'مستخدم',
+  email: data.email ?? '',
+});
+.<code>
+
+<code>.
+كود بدون تحديد لغة
+يمكن أن يحتوي على أي نص
+.<code>
+
+>.hr
+
+>.t2:: ١٦. الجداول (Tables)
+
+>.table::
+th:: الاسم; العمر; المدينة; الوظيفة
+tr:: أحمد محمد; 25; الرياض; مطور برمجيات
+tr:: سارة علي; 30; جدة; مصممة واجهات
+tr:: خالد عبدالله; 28; الدمام; مدير مشاريع
+
+<.table::
+tr:: Name; Age; City; Role
+tr:: John Smith; 32; New York; Developer
+tr:: Jane Doe; 28; London; Designer
+tr:: Bob Wilson; 35; Sydney; Manager
+
+>.hr
+
+>.t2:: ١٧. الفاصل (Divider)
+
+>.p:: نص قبل الفاصل
+
+>.hr
+
+>.p:: نص بعد الفاصل
+
+>.hr
+
+>.t2:: ١٨. المحتوى القابل للطي (Details)
+
+>.details:: انقر لعرض المزيد من المعلومات
+>.-p:: هذا محتوى مخفي يظهر عند النقر على العنوان.
+>.-p:: يمكن أن يحتوي على فقرات متعددة.
+
+>.details::
+>.-summary:: معلومات تقنية متقدمة
+>.-p:: هذا القسم يحتوي على تفاصيل تقنية للمطورين.
+>.-p:: يشمل معلومات عن البنية الداخلية والـ API.
+
+>.details:: الأسئلة الشائعة
+>.-p:: س: ما هي ARTOON؟
+>.-p:: ج: صيغة محتوى دلالي متقدمة.
+
+>.hr
+
+>.t2:: ١٩. التاريخ والوقت (Time Block)
+
+>.time:: 2026-01-16
+>.time:: 2026-01-16; السادس عشر من يناير ٢٠٢٦
+>.time:: 2026-01-16T14:30:00; الساعة ٢:٣٠ مساءً
+
+>.hr
+
+>.t2:: ٢٠. الاختصارات (Abbreviation Block)
+
+>.abbr:: HTML; HyperText Markup Language
+>.abbr:: CSS; Cascading Style Sheets
+>.abbr:: ARTOON; Advanced Rich Text Object Oriented Notation
+>.abbr:: API; Application Programming Interface
+>.abbr:: RTL; Right-to-Left
+>.abbr:: LTR; Left-to-Right
+
+>.hr
+
+>.t2:: ٢١. البيانات الوصفية (Meta Block)
+
+<meta>.
+>.-:title: عنوان المستند الداخلي
+>.-:author: اسم المؤلف
+>.-:created: 2026-01-16
+>.-:modified: 2026-01-16
+>.-:tags: artoon; documentation; example
+.<meta>
+
+>.hr
+
+>.t2:: ٢٢. الروابط كبلوكات (Link Block)
+
+>.a:: https://github.com; موقع GitHub - منصة استضافة الكود
+>.a:: https://developer.mozilla.org/ar/; توثيق MDN بالعربية
+>.a:: https://www.typescriptlang.org/; موقع TypeScript الرسمي
+
+>.hr
+
+>.t2:: ٢٣. البلوكات المخصصة (Custom Block)
+
+<card>.
+>.t3:: بطاقة معلومات
+>.p:: هذه بطاقة مخصصة يمكن استخدامها لعرض معلومات مميزة.
+>.p:: تدعم جميع المكونات الداخلية.
+.<card>
+
+<note>.
+>.p:: [s:: ملاحظة مهمة:] هذا بلوك مخصص من نوع note.
+.<note>
+
+<warning>.
+>.p:: [s:: تحذير:] هذا بلوك تحذيري مخصص.
+.<warning>
+
+<callout>.
+>.t4:: نصيحة
+>.p:: يمكنك إنشاء بلوكات مخصصة بأي اسم تريده.
+.<callout>
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: القسم الخامس: المُعدِّلات والمكونات الداخلية (Inline Elements)
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ٢٤. المُعدِّلات السبعة (Marks)
+
+>.p:: [s:: نص مهم (Strong)] — للتأكيد القوي
+>.p:: [e:: نص مؤكد (Emphasis)] — للتأكيد الخفيف
+>.p:: [u:: نص مسطر (Underline)] — للتسطير
+>.p:: [d:: نص محذوف (Deleted)] — للنص المحذوف
+>.p:: [mark:: نص مميز (Highlight)] — للتمييز
+>.p:: H[sub:: 2]O — نص سفلي (Subscript)
+>.p:: x[sup:: 2] + y[sup:: 2] = z[sup:: 2] — نص علوي (Superscript)
+
+>.t3:: المُعدِّلات المركبة
+
+>.p:: [s+e:: مهم ومؤكد معاً]
+>.p:: [s+u:: مهم ومسطر معاً]
+>.p:: [e+u:: مؤكد ومسطر معاً]
+>.p:: [s+e+u:: مهم ومؤكد ومسطر]
+>.p:: [s+mark:: مهم ومميز]
+
+>.hr
+
+>.t2:: ٢٥. المكونات الداخلية (Inline Components)
+
+>.t3:: الروابط
+
+>.p:: رابط بسيط: [a:: https://google.com; محرك البحث جوجل]
+>.p:: رابط مع تنسيق: [s+a:: https://wikipedia.org; ويكيبيديا]
+>.p:: رابط مؤكد: [e+a:: https://github.com; GitHub]
+
+>.t3:: الكود المضمن
+
+>.p:: كود بسيط: [c:: npm install @artoon/core]
+>.p:: كود مع لغة: [c:: const x = 1; javascript]
+>.p:: كود Python: [c:: print("مرحباً"); python]
+
+>.t3:: الصور المضمنة
+
+>.p:: صورة صغيرة: [img:: https://picsum.photos/50/50; أيقونة]
+>.p:: نص مع صورة [img:: https://picsum.photos/30/30; رمز] في المنتصف
+
+>.t3:: الوقت المضمن
+
+>.p:: تاريخ النشر: [time:: 2026-01-16; ١٦ يناير ٢٠٢٦]
+>.p:: آخر تحديث: [time:: 2026-01-16T14:30:00; الساعة ٢:٣٠ م]
+
+>.t3:: الاختصارات المضمنة
+
+>.p:: لغة [abbr:: HTML; HyperText Markup Language] هي أساس الويب
+>.p:: نستخدم [abbr:: CSS; Cascading Style Sheets] للتنسيق
+>.p:: و [abbr:: JS; JavaScript] للتفاعلية
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: القسم السادس: دعم الاتجاهين (Bidirectional Support)
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ٢٦. دعم RTL و LTR
+
+>.t3:: نصوص عربية (RTL)
+
+>.p:: هذا نص عربي يُكتب من اليمين إلى اليسار.
+>.p:: يدعم ARTOON اللغة العربية بشكل كامل مع جميع المكونات.
+
+>.t3:: English Texts (LTR)
+
+<.p:: This is English text written from left to right.
+<.p:: ARTOON fully supports English and other LTR languages.
+
+>.t3:: النصوص المختلطة
+
+>.p:: نص عربي مع [c:: English code] ورقم 123 ورابط [a:: https://example.com; Example].
+
+<.p:: English text with عربي and number ١٢٣ and link [a:: https://example.com; مثال].
+
+>.p:: معادلة: E = mc[sup:: 2] حيث c = [c:: 299,792,458 m/s]
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: القسم السابع: التعليقات (Comments)
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ٢٧. التعليقات
+
+>.::: هذا تعليق عربي — لن يظهر في الإخراج النهائي
+<.::: This is an English comment — won't appear in final output
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: يمكن استخدام التعليقات لتنظيم الكود وإضافة ملاحظات للمطورين
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.::: TODO: إضافة المزيد من الأمثلة
+>.::: FIXME: تحسين التنسيق
+>.::: NOTE: هذا القسم للتوثيق فقط
+
+>.::: ═══════════════════════════════════════════════════════════════════════════
+>.::: الخاتمة
+>.::: ═══════════════════════════════════════════════════════════════════════════
+
+>.hr
+
+>.t2:: ٢٨. الخلاصة
+
+>.p:: هذا المقال عرض جميع [s:: 28 نوع بلوك] المدعومة في ARTOON 2.0:
+
+>.ol::
+li:: [s:: Text Blocks (10):] paragraph, heading1-6, quote, preformatted, line-break, word-break
+-li:: [s:: List Blocks (3):] bullet-list, numbered-list, definition-list
+--li:: [s:: Media Blocks (5):] image, video, audio, figure, file
+li:: [s:: Advanced Blocks (10):] code, table, divider, details, time-block, abbr-block, meta, link-block, custom
+
+>.p:: بالإضافة إلى [e:: 7 معدلات] (strong, emphasis, underline, deleted, highlight, subscript, superscript) و[e:: 5 مكونات داخلية] (link, code, image, time, abbr).
+
+>.hr
+
+>.p:: [s:: آخر تحديث:] [time:: 2026-01-16; ١٦ يناير ٢٠٢٦]
+
+>.p:: [e:: تم إنشاء هذا الملف لاختبار محرر ARTOON 2.0]
+
+<meta>.
+>.-:generated: true
+>.-:generator: ARTOON Documentation System
+>.-:version: 2.0.0
+.<meta>
