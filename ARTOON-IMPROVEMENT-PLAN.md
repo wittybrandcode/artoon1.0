@@ -1,117 +1,172 @@
-# ARTOON Improvement & Correction Plan (خطة التحسين والتصحيح)
-**Version:** 1.0
+# ARTOON Strategic Roadmap & Improvement Plan
+**Version:** 2.0 (Architect-Approved)
 **Author:** Lead Software Architect
 **Date:** June 2026
+**Status:** AUTHORITATIVE
 
 ---
 
 ## 1. IMMEDIATE CORRECTIONS (تصحيحات فورية)
-*These must be addressed within the next 30 days.*
+*Timeline: Next 30 days. Priority: Critical.*
 
-### A. Security: URL Protocol Sanitization
-- **Issue:** Link and Media components render `href` and `src` attributes without checking the protocol. This allows `javascript:alert(1)` attacks.
-- **Action:** Implement a whitelist of safe protocols (`http:`, `https:`, `mailto:`, `tel:`, `data:image/`) in `@artoon/renderer-html` and `artoon-typer`.
-- **Implementation:** Add a `sanitizeUrl` utility function and apply it to all link/media renderers.
+### A. Security: Advanced URL & Link Sanitization
+- **Issue:** Current renderer lacks protocol validation, risking XSS and tabnabbing.
+- **Action:**
+  - Implement a robust `sanitizeUrl` utility using the `new URL()` constructor.
+  - **Protocol Whitelist:** `https:`, `http:`, `mailto:`, `tel:`, `blob:`, `data:image/`. Reject all others.
+  - **Attribute Safety:** Automatically inject `rel="noopener noreferrer"` for all `target="_blank"` links to prevent Reverse Tabnabbing.
+  - **Verification:** Implement automated security tests for malformed and dangerous URIs.
 
-### B. Stability: Resolve Parser Type Errors
-- **Issue:** The `@artoon/parser` package has failing tests due to mismatched TypeScript interfaces (specifically the `line` property in `BaseNode`).
-- **Action:** Standardize the `BaseNode` interface across `@artoon/ast` and `@artoon/parser`. Eliminate the shadowed types in the parser's internal definitions.
+### B. Stability: Canonical AST Unification
+- **Philosophy:** `@artoon/ast` must be the **Single Source of Truth** for the entire ecosystem (Parser, Compiler, Renderer, Editor, Linter).
+- **Action:**
+  - Standardize the `BaseNode` interface across all packages.
+  - Eliminate all shadowed or duplicated interfaces in `@artoon/parser`.
+  - Ensure strict dependency on `@artoon/ast` types for all cross-package data flow.
 
-### C. Maintenance: Modularize `BlockRenderer.tsx`
-- **Issue:** This file is >1500 lines, making it a "God Component". It is extremely difficult to debug or extend.
-- **Action:** Decompose `BlockRenderer` into atomic component files (e.g., `TextBlock.tsx`, `MediaBlock.tsx`, `ListBlock.tsx`) under a new directory `src/ui/components/blocks/`.
+### C. Maintenance: Plugin-Based Renderer Architecture
+- **Issue:** `BlockRenderer.tsx` is a 1500-line "God Component".
+- **Action:**
+  - Implement a **Renderer Plugin System**.
+  - Create a `RendererRegistry` where each block type (Paragraph, List, Image, etc.) is registered as a standalone plugin.
+  - Usage: `RendererRegistry.get(node.type).render(node)`.
+  - This allows for easy extensibility without modifying the core renderer logic.
 
 ---
 
-## 2. TECHNICAL IMPROVEMENTS (تحسينات تقنية)
-*Target: Next 3-6 months.*
+## 2. TECHNICAL EXCELLENCE (تحسينات تقنية)
+*Timeline: 3-6 months.*
 
-### A. Complete Type Unification
-- **Goal:** Reach 0 occurrences of `as any`.
-- **Action:** Refactor the AST Builder to strictly use the Canonical AST types from `@artoon/ast`. Replace type assertions with proper type guards.
-
-### B. Performance Optimization
-- **Goal:** Improve responsiveness for documents >500 nodes.
+### A. The "Zero-Any" Policy
+- **Goal:** 100% Type Safety.
 - **Action:**
-  - Implement memoization for `nodeSize` calculations in `@artoon/state`.
-  - Use virtualization (e.g., `react-window`) for the block list in the Typer editor.
-  - Switch recursive traversals to iterative stacks where possible.
+  - Enable ESLint `no-explicit-any` as a blocking error.
+  - Automated PR rejection for any code containing `any` or unsafe type assertions.
+  - Systematic refactoring to replace existing `as any` (220+ occurrences) with proper type guards and discriminated unions.
 
-### C. Logic Consolidation
-- **Goal:** Single source of truth for utility logic.
-- **Action:** Move the `escapeHtml` logic into a shared `@artoon/utils` package or keep it only in `@artoon/ast` to be used by both `renderer-html` and `typer`.
+### B. High-Performance State Kernel
+- **Subtree Memoization:** Add cached properties to nodes (`cachedHeight`, `cachedHash`, `cachedChildrenCount`, `cachedVersion`). Recompute only when a node or its children change.
+- **Complexity:** Move from $O(n)$ to **O(changed subtree)** for document updates.
+- **Incremental Rendering:** Transition from simple virtualization to **Incremental Rendering** (Notion/Figma style) for professional-grade document performance.
+
+### C. Creation of `@artoon/core`
+- **Goal:** Logic Consolidation.
+- **Contents:** Centralize `escapeHtml`, `sanitizeUrl`, `normalizeText`, `slugify`, `unicode`, `bidi`, and entity encoding/decoding.
+- **Dependency:** All packages MUST import these utilities from `@artoon/core` only.
 
 ---
 
 ## 3. STRATEGIC ADVANCEMENTS (تطورات استراتيجية)
-*Target: 6-12 months.*
+*Timeline: 6-12 months.*
 
-### A. Full Custom Block Nesting
-- **Goal:** Allow `<card>.<note>.content.<note>.<card>`.
-- **Action:** Upgrade the Context Stack in `@artoon/parser` to support arbitrary recursive depth for custom block types.
+### A. Deep Custom Block Nesting
+- **Goal:** Support arbitrary recursive depth for structural blocks (e.g., `card > note > warning > quote > code`).
+- **Impact:** Positions ARTOON as a simpler, more powerful alternative to XML/DITA for complex documentation.
 
-### B. Tree-sitter Grammar
-- **Goal:** Industrial-grade parsing for IDEs and high-performance editors.
-- **Action:** Create an official Tree-sitter ARTOON grammar. This will provide instantaneous syntax highlighting and better error recovery in the VS Code extension.
+### B. Tree-sitter Grammar (v1.0 Priority)
+- **Requirement:** This is no longer "future work" but a **v1.0 launch priority**.
+- **Deliverables:** Industrial-grade syntax highlighting, incremental parsing, semantic selection, and robust IDE integration (Folding, Hover).
 
-### C. Collaborative Editing
-- **Goal:** Real-time collaboration.
-- **Action:** Integrate **Yjs** or **Automerge** with the `@artoon/state` kernel to support multi-user editing.
+### C. Operations-Based Collaboration
+- **Strategy:** Use **Yjs** for real-time synchronization.
+- **Architecture:** Sync **Document Operations** (`InsertNode`, `DeleteNode`, `UpdateAttribute`) rather than the AST itself. This ensures optimal performance and conflict resolution.
 
 ---
 
-## 4. ADVICE FOR THE TEAM (نصائح للفريق)
+## 4. ECOSYSTEM & STANDARDIZATION (المعايير والنظام البيئي)
+*New Strategic Pillar: Establishing ARTOON as an Industry Standard.*
 
-1.  **"Core First" Philosophy:** Never add a feature to the editor (`typer`) before it is fully specified in `@artoon/ast` and `@artoon/parser`. The format is the product; the editor is the tool.
-2.  **AI Validation:** Continuously run "Adversarial AI" tests. Ask an LLM to try and break the format syntax and use the results to harden the parser's error recovery.
-3.  **Community Standards:** Before the public launch, ensure every public API has TSDoc comments. High-quality documentation is the only way a new language survives.
-4.  **Bidi Testing:** Make Arabic (RTL) the default testing direction. If it works in Arabic, it will work in English. If you test only in English, you will break the Bidi logic.
+### A. Official Language Specification
+- Publish a standalone **Language Specification** document independent of the TypeScript implementation.
+- Establish a **Reference Test Suite** with thousands of edge cases to ensure interoperability between third-party parsers and compilers.
+
+### B. Tooling Suite
+- **artoon-prettier:** An official formatter to ensure consistent code style.
+- **artoon-linter:** A static analysis tool for content quality and structural constraints.
+- **ARTOON LSP:** A Language Server Protocol implementation to provide IDE features across all editors (VS Code, JetBrains, Vim).
+
+### C. Extension Registry
+- Establish an official **Plugin & Extension Registry** to prevent fragmentation and ensure all community-contributed blocks remain compatible with the core specification.
+
+---
+
+## 5. CORE ADVICE: "THE FORMAT IS THE PRODUCT"
+
+> **"The format is the product; the editor is the tool."**
+
+We must prioritize the strength of the language over the features of the editor. A strong language enables an infinite ecosystem of tools (CLI, Mobile, Web, AI-integrations). A weak language restricts us to a single editor.
 
 ---
 ---
 
 # (النسخة العربية - Arabic Version)
 
-# خطة التحسين والتصحيح لمشروع ARTOON
-**الإصدار:** 1.0
+# خارطة الطريق الاستراتيجية وخطة التحسين (ARTOON 2.0)
+**الإصدار:** 2.0 (معتمد من كبير المهندسين)
 **التاريخ:** يونيو 2026
+**الحالة:** مرجع نهائي وملزم
 
 ---
 
 ## 1. تصحيحات فورية (عاجلة)
-*يجب تنفيذها خلال الـ 30 يوماً القادمة.*
+*الجدول الزمني: خلال 30 يوماً. الأولوية: قصوى.*
 
-### أ. الأمان: تنقية روابط URL
-- **المشكلة:** يتم عرض الروابط دون التحقق من البروتوكول، مما يسمح بهجمات XSS عبر `javascript:`.
-- **الإجراء:** إعداد قائمة بيضاء للبروتوكولات المسموحة (`http`, `https`, إلخ) في حزم العرض والمحرر.
+### أ. الأمان: نظام متطور لتنقية الروابط (URL Sanitization)
+- **المشكلة:** غياب التحقق من البروتوكولات يعرض النظام لهجمات XSS.
+- **الإجراء:**
+  - استخدام `new URL()` للتحقق الصارم من الروابط.
+  - **القائمة البيضاء:** السماح بـ `https:`, `http:`, `mailto:`, `tel:`, `blob:`, `data:image/` فقط.
+  - **الحماية من Tabnabbing:** إضافة التوصيف `rel="noopener noreferrer"` تلقائياً لجميع الروابط التي تفتح في نافذة جديدة.
 
-### ب. الاستقرار: إصلاح أخطاء الأنواع (Types) في المحلل
-- **المشكلة:** وجود تعارض في تعريف واجهة `BaseNode` يؤدي لفشل الاختبارات البرمجية.
-- **الإجراء:** توحيد واجهات البرمجة بين حزمة `AST` وحزمة `Parser` بشكل نهائي وحذف التعريفات المكررة.
+### ب. الاستقرار: توحيد الـ AST المرجعي
+- **الفلسفة:** حزمة `@artoon/ast` هي **المصدر الوحيد للحقيقة**.
+- **الإجراء:** توحيد واجهة `BaseNode` في جميع الحزم (المحلل، المترجم، المصيّر، المحرر) ومنع تكرار التعريفات البرمجية نهائياً.
 
-### ج. الصيانة: تفكيك ملف `BlockRenderer.tsx`
-- **المشكلة:** الملف ضخم جداً (أكثر من 1500 سطر) مما يجعله "نقطة فشل مركزية".
-- **الإجراء:** تقسيم المكون إلى ملفات صغيرة ومنفصلة لكل نوع من أنواع البلوكات.
-
----
-
-## 2. تحسينات تقنية (المدى المتوسط)
-*الهدف: خلال 3-6 أشهر.*
-
-### أ. توحيد الأنواع البرمجية بالكامل
-- **الهدف:** الوصول إلى صفر استخدام لتعبيرات `as any`.
-- **الإجراء:** إعادة بناء "باني الـ AST" ليعتمد بشكل صارم على الأنواع الموحدة واستخدام "حراس الأنواع" (Type Guards).
-
-### ب. تحسين الأداء
-- **الهدف:** سلاسة المحرر في المستندات الضخمة.
-- **الإجراء:** استخدام تقنيات التخزين المؤقت (Memoization) لحسابات أحجام العقد، واستخدام العرض الافتراضي (Virtualization) للقوائم الطويلة.
+### ج. الصيانة: معمارية المصيّر القائمة على الإضافات (Plugins)
+- **الإجراء:** تحويل `BlockRenderer` من مكون ضخم إلى نظام "سجل الإضافات" (Renderer Registry). كل نوع من البلوكات يصبح إضافة مستقلة، مما يسهل التوسع دون تعديل نواة النظام.
 
 ---
 
-## 3. نصائح استراتيجية للفريق
+## 2. التميز التقني (خلال 3-6 أشهر)
 
-1.  **فلسفة "النواة أولاً":** لا تضف أي ميزة للمحرر المرئي قبل أن يتم توثيقها وبرمجتها بالكامل في حزمة اللغة (Parser) وحزمة الهيكل (AST). اللغة هي المنتج الحقيقي، والمحرر هو مجرد أداة.
-2.  **اختبارات الذكاء الاصطناعي العدائية:** اطلب من نماذج الذكاء الاصطناعي محاولة "كسر" قواعد اللغة واستخدم النتائج لتقوية قدرة المحلل على التعافي من الأخطاء.
-3.  **أولوية اللغة العربية:** اجعل الاتجاه من اليمين إلى اليسار (RTL) هو الاتجاه الافتراضي للاختبارات. إذا نجحت الميزة في العربية، ستنجح حتماً في الإنجليزية.
+### أ. سياسة "صفر Any"
+- **الهدف:** أمان برمج مئة بالمئة.
+- **الإجراء:** تفعيل قواعد ESLint الصارمة لمنع `any`. أي Pull Request يحتوي عليها سيُرفض تلقائياً.
+
+### ب. نواة الحالة عالية الأداء
+- **التخزين المؤقت للـ Subtree:** إضافة خاصية التخزين المؤقت (Memoization) لكل عقدة (Hash, Version, Count). الحسابات تتم فقط عند تغيير الجزء المتأثر وليس المستند كاملاً.
+- **العرض التزايدي (Incremental Rendering):** الانتقال من العرض الافتراضي البسيط إلى تقنيات العرض التزايدي الاحترافية (مثل Notion و Figma).
+
+### ج. إنشاء حزمة `@artoon/core`
+- توحيد منطق العمليات المشتركة (تشفير HTML، تنقية الروابط، معالجة النصوص، دعم الـ Bidi و Unicode) في طبقة مركزية واحدة يعتمد عليها النظام بالكامل.
 
 ---
+
+## 3. التطورات الاستراتيجية (خلال 6-12 شهراً)
+
+### أ. تداخل البلوكات المخصصة بعمق غير محدود
+- دعم التداخل المعقد (مثلاً: بطاقة > ملاحظة > تحذير > اقتباس > كود) لجعل ARTOON أقوى بديل لـ XML في أنظمة التوثيق المعقدة.
+
+### ب. قواعد Tree-sitter (أولوية الإصدار 1.0)
+- لم تعد ميزة ثانوية، بل هي ضرورة للإطلاق. توفر تظليلاً (Highlight) فائق السرعة وتكاملاً عميقاً مع بيئات التطوير (IDEs).
+
+### ج. التحرير التعاوني القائم على العمليات
+- استخدام **Yjs** لمزامنة **عمليات المستند** (إضافة، حذف، تحريك عقدة) وليس شجرة AST كاملة، لضمان أفضل أداء وحل للتعارضات.
+
+---
+
+## 4. النظام البيئي والمعايير (Ecosystem & Standardization)
+
+### أ. المواصفة الرسمية للغة
+- إصدار وثيقة **Language Specification** مستقلة عن التنفيذ البرمجي، مع توفير **Reference Test Suite** لضمان توافق أي تطبيق خارجي مع معيار ARTOON.
+
+### أ. أدوات النمط والجودة
+- تطوير **artoon-prettier** للتنسيق التلقائي، و **artoon-linter** للتحقق من جودة البنية، وتوفير **ARTOON LSP** لدعم جميع محررات الأكواد العالمية.
+
+---
+
+## 5. النصيحة الجوهرية: "اللغة هي المنتج"
+
+> **"اللغة هي المنتج؛ والمحرر هو مجرد أداة."**
+
+يجب تقديم قوة اللغة وقواعدها على ميزات المحرر. اللغة القوية تفتح الباب لنظام بيئي لا نهائي من الأدوات (تطبيقات جوال، أدوات CLI، تكامل مع الذكاء الاصطناعي)، بينما اللغة الضعيفة تقيد المشروع داخل أداة واحدة.
