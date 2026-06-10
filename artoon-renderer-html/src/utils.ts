@@ -13,6 +13,24 @@ export function escapeHtml(text: string): string {
 }
 
 /**
+ * Sanitize URL to prevent XSS (javascript: urls)
+ */
+export function sanitizeUrl(url: string): string {
+  if (!url) return '';
+  const trimmed = url.trim();
+  // Prevent javascript:, data: (except images), and vbscript:
+  if (trimmed.match(/^(javascript|vbscript):/i)) {
+    return 'about:blank';
+  }
+  // Data URLs are risky but sometimes used for images.
+  // For links we should probably block them too.
+  if (trimmed.match(/^data:/i) && !trimmed.match(/^data:image\/(png|jpeg|jpg|gif|webp|svg\+xml);base64,/i)) {
+    return 'about:blank';
+  }
+  return trimmed;
+}
+
+/**
  * Create HTML attribute string
  */
 export function attr(name: string, value: string | undefined): string {
