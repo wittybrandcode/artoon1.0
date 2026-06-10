@@ -9,7 +9,7 @@ import {
   isInlineComponent
 } from '@artoon/ast';
 import { RenderOptions, HTML_MAPPING } from '../types.js';
-import { escapeHtml, wrap, selfClose, attr } from '../utils.js';
+import { escapeHtml, wrap, selfClose, attr, sanitizeUrl } from '../utils.js';
 
 /**
  * Render inline content array
@@ -89,7 +89,7 @@ function renderParserInline(inline: any, options: RenderOptions): string {
       const url = params.url || params.path || attributes[0] || '#';
       const linkText = attributes[1] || params.text || url;
       const linkTitle = attributes[2] || params.title;
-      const linkAttrs: Record<string, string | undefined> = { href: url };
+      const linkAttrs: Record<string, string | undefined> = { href: sanitizeUrl(url) };
       if (linkTitle) {
         linkAttrs.title = linkTitle;
       }
@@ -97,7 +97,7 @@ function renderParserInline(inline: any, options: RenderOptions): string {
       break;
     case 'img':
       html = selfClose('img', {
-        src: params.path || params.src || attributes[0] || '',
+        src: sanitizeUrl(params.path || params.src || attributes[0] || ''),
         alt: params.alt || attributes[1] || ''
       });
       break;
@@ -240,7 +240,7 @@ function renderLink(
   const text = attributes.text || value || url;
   const title = attributes.title;
 
-  const attrs: Record<string, string | undefined> = { href: url };
+  const attrs: Record<string, string | undefined> = { href: sanitizeUrl(url) };
   if (title) {
     attrs.title = title;
   }
@@ -252,7 +252,7 @@ function renderLink(
  * Render image
  */
 function renderImage(attributes: Record<string, string>): string {
-  const src = attributes.path || attributes.src || '';
+  const src = sanitizeUrl(attributes.path || attributes.src || '');
   const alt = attributes.alt || '';
   const title = attributes.title;
 
@@ -263,7 +263,7 @@ function renderImage(attributes: Record<string, string>): string {
  * Render audio
  */
 function renderAudio(attributes: Record<string, string>): string {
-  const src = attributes.path || attributes.src || '';
+  const src = sanitizeUrl(attributes.path || attributes.src || '');
   const title = attributes.title;
 
   return wrap('audio', '', {
@@ -277,7 +277,7 @@ function renderAudio(attributes: Record<string, string>): string {
  * Render video
  */
 function renderVideo(attributes: Record<string, string>): string {
-  const src = attributes.path || attributes.src || '';
+  const src = sanitizeUrl(attributes.path || attributes.src || '');
   const title = attributes.title;
 
   return wrap('video', '', {

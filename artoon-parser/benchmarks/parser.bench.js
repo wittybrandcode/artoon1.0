@@ -24,3 +24,10 @@ console.log('ARTOON Parser Benchmark');
 console.log(`iterations: ${iterations}`);
 console.log(`totalMs: ${totalMs.toFixed(2)}`);
 console.log(`avgMs: ${avgMs.toFixed(4)}`);
+
+// Large document benchmark
+const largeDoc = source.repeat(50);
+const startL = performance.now();
+parse(largeDoc);
+const endL = performance.now();
+console.log('Large Document (50x):', (endL - startL).toFixed(4), 'ms');
