@@ -139,7 +139,7 @@ describe('Integration - Compound Components', () => {
     expect(errors).toHaveLength(0);
     const figure = result.ast.children[0];
     expect(figure.type).toBe('compound');
-    expect((figure as any).componentType).toBe('figure');
+    expect((figure as any).compoundType).toBe('figure');
     expect((figure as any).children).toHaveLength(2);
   });
   
@@ -232,7 +232,7 @@ describe('Integration - Time/Abbr Line Components', () => {
     expect(result.ast.children).toHaveLength(1);
     const node = result.ast.children[0] as any;
     expect(node.type).toBe('text');
-    expect(node.componentType).toBe('time');
+    expect(node.textType).toBe('time');
     // New structure: content is InlineContent[]
     expect(Array.isArray(node.content)).toBe(true);
     const plainText = node.content.find((c: any) => c.type === 'plain');
@@ -244,7 +244,7 @@ describe('Integration - Time/Abbr Line Components', () => {
     
     expect(result.errors).toHaveLength(0);
     const node = result.ast.children[0] as any;
-    expect(node.componentType).toBe('time');
+    expect(node.textType).toBe('time');
     // New structure: content is InlineContent[]
     const plainText = node.content.find((c: any) => c.type === 'plain');
     expect(plainText?.value).toContain('2026-01-15');
@@ -257,7 +257,7 @@ describe('Integration - Time/Abbr Line Components', () => {
     expect(result.ast.children).toHaveLength(1);
     const node = result.ast.children[0] as any;
     expect(node.type).toBe('text');
-    expect(node.componentType).toBe('abbr');
+    expect(node.textType).toBe('abbr');
     // New structure: content is InlineContent[]
     const plainText = node.content.find((c: any) => c.type === 'plain');
     expect(plainText?.value).toContain('HTML');
@@ -269,7 +269,7 @@ describe('Integration - Time/Abbr Line Components', () => {
     expect(result.errors).toHaveLength(0);
     const node = result.ast.children[0] as any;
     expect(node.direction).toBe('rtl');
-    expect(node.componentType).toBe('abbr');
+    expect(node.textType).toBe('abbr');
   });
   
   test('parse LTR time', () => {
@@ -278,7 +278,7 @@ describe('Integration - Time/Abbr Line Components', () => {
     expect(result.errors).toHaveLength(0);
     const node = result.ast.children[0] as any;
     expect(node.direction).toBe('ltr');
-    expect(node.componentType).toBe('time');
+    expect(node.textType).toBe('time');
   });
   
   test('time and abbr in document', () => {
@@ -291,8 +291,8 @@ describe('Integration - Time/Abbr Line Components', () => {
     
     expect(result.errors).toHaveLength(0);
     expect(result.ast.children).toHaveLength(4);
-    expect((result.ast.children[1] as any).componentType).toBe('time');
-    expect((result.ast.children[3] as any).componentType).toBe('abbr');
+    expect((result.ast.children[1] as any).textType).toBe('time');
+    expect((result.ast.children[3] as any).textType).toBe('abbr');
   });
   
 });

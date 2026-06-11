@@ -32,6 +32,10 @@ import type {
   InlineComponent,
 } from '@artoon/ast';
 
+import { isTextNode as isTextNodeInternal } from '@artoon/ast';
+
+export const isTextNode = isTextNodeInternal;
+
 // Re-export types for internal use
 export type {
   Direction,
@@ -64,7 +68,7 @@ export type {
  */
 export interface TextNode extends BaseNode {
   type: 'text';
-  componentType: TextType | 'summary';  // summary is used in details compound
+  textType: TextType;
   content: InlineContent[];
 }
 
@@ -99,7 +103,7 @@ export interface TableNode extends BaseNode {
  */
 export interface CompoundNode extends BaseNode {
   type: 'compound';
-  componentType: CompoundType;
+  compoundType: CompoundType;
   children: ASTNode[];
 }
 

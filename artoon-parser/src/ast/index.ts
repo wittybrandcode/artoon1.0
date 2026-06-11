@@ -3,6 +3,7 @@
 // v2.0 - Unified types with @artoon/ast
 
 import { Direction, SEPARATOR_COMPONENTS } from '../types';
+import { TextType } from '../ast/types';
 import {
   Token, ASTNode, DocumentNode, TextNode, SeparatorNode,
   ListNode, ListItem, TableNode, CompoundNode, BlockNode,
@@ -126,7 +127,7 @@ function processToken(token: Token, state: BuilderState): void {
   }
 
   // Handle compound child elements
-  if (token.isChildElement && state.currentCompound) {
+  if (token.isChildElement && (state.currentCompound || state.currentList)) {
     processCompoundChild(token, state);
     return;
   }
@@ -209,12 +210,12 @@ function processToken(token: Token, state: BuilderState): void {
     // Let's attach the specific listType that the flat syntax requested to it.
     if (state.currentList && state.currentList.items.length > 0) {
       const lastItem = state.currentList.items[state.currentList.items.length - 1];
-      (lastItem as any).listType = implicitType;
+      lastItem.listType = implicitType;
 
       // If this item created a new context (implicit root or nested),
       // update the listType of that container to match what the user requested.
       if (state.currentList.items.length === 1) {
-        (state.currentList as any).listType = implicitType;
+        state.currentList.listType = implicitType;
       }
     }
 
@@ -272,7 +273,7 @@ function processTextComponent(token: Token, state: BuilderState): void {
     type: 'text',
     line: token.line,
     direction: token.direction,
-    componentType: (token.componentType || 'p') as any,
+    textType: (token.componentType as any || 'p'),
     content
   };
 
@@ -467,7 +468,7 @@ function startCompound(token: Token, state: BuilderState): void {
       type: 'text',
       line: token.line,
       direction: token.direction,
-      componentType: 'summary',
+      textType: 'summary',
       content
     };
 
@@ -516,7 +517,7 @@ function processCompoundChild(token: Token, state: BuilderState): void {
       type: 'text',
       line: token.line,
       direction: token.direction,
-      componentType: childType || 'p',
+      textType: childType || 'p',
       content
     } as TextNode;
   }
@@ -556,12 +557,12 @@ function startList(token: Token, state: BuilderState): void {
     if (lastItem) {
       // Initialize children array if needed
       if (!lastItem.children) {
-        (lastItem as any).children = [];
+        lastItem.children = [];
       }
 
       // Capture the child list type (if different from default / to override parent)
       // This allows mixing list types (e.g., numbered inside bulleted)
-      (lastItem as any).childListType = token.componentType as 'ul' | 'ol' | 'dl';
+      lastItem.childListType = token.componentType as 'ul' | 'ol' | 'dl';
       // Note: We'll add items directly, not wrap in ListNode
     }
     state.listStack.push(state.currentList);
@@ -624,7 +625,7 @@ function processListItem(token: Token, state: BuilderState): void {
 
     // Initialize children array if needed
     if (!lastItem.children) {
-      (lastItem as any).children = [];
+      lastItem.children = [];
     }
 
     // Push current list to stack

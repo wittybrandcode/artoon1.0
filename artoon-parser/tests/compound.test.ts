@@ -118,7 +118,7 @@ describe('Compound - State Management', () => {
     const node = buildCompoundNode(state);
     
     expect(node.type).toBe('compound');
-    expect(node.componentType).toBe('figure');
+    expect(node.compoundType).toBe('figure');
     expect(node.children).toHaveLength(1);
   });
   

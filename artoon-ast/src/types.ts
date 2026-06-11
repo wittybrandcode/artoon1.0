@@ -33,7 +33,7 @@ export type Modifier = 's' | 'e' | 'u' | 'd' | 'mark' | 'sub' | 'sup';
  * - time: date/time (line component)
  * - abbr: abbreviation (line component)
  */
-export type TextType = 'p' | 't1' | 't2' | 't3' | 't4' | 't5' | 't6' | 'q' | 'pre' | 'time' | 'abbr';
+export type TextType = 'p' | 't1' | 't2' | 't3' | 't4' | 't5' | 't6' | 'q' | 'pre' | 'time' | 'abbr' | 'summary' | 'caption' | 'figcaption';
 
 /**
  * List types
@@ -76,22 +76,22 @@ export interface BaseNode {
    * Node type discriminator.
    * This is the canonical property - use this in new code.
    */
-  readonly type: string;
+  type: string;
 
   /** 
    * @deprecated Since v2.0. Use `type` instead.
    * Kept for backward compatibility. Will be removed in v3.0.
    */
-  readonly nodeType?: string;
+  nodeType?: string;
 
   /** Source line number */
-  readonly line: number;
+  line: number;
 
   /** Text direction */
-  readonly direction: Direction;
+  direction: Direction;
 
   /** Optional ID (used by editor) */
-  readonly id?: string;
+  id?: string;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -102,19 +102,19 @@ export interface BaseNode {
  * Plain text content
  */
 export interface PlainText {
-  readonly type: 'plain';
-  readonly value: string;
+  type: 'plain';
+  value: string;
 }
 
 /**
  * Inline component (links, media, code, etc.)
  */
 export interface InlineComponent {
-  readonly type: 'inline';
-  readonly component?: InlineComponentType;
-  readonly modifiers?: ReadonlyArray<Modifier>;
-  readonly attributes: Readonly<Record<string, string>>;
-  readonly value?: string;
+  type: 'inline';
+  component?: InlineComponentType;
+  modifiers?: Array<Modifier>;
+  attributes: Record<string, string>;
+  value?: string;
 }
 
 /**
@@ -130,10 +130,10 @@ export type InlineContent = PlainText | InlineComponent;
  * Text node (p, t1-t6, q, pre)
  */
 export interface TextNode extends BaseNode {
-  readonly type: 'text';
-  readonly nodeType?: 'text';
-  readonly textType: TextType;
-  readonly content: ReadonlyArray<InlineContent>;
+  type: 'text';
+  nodeType?: 'text';
+  textType: TextType;
+  content: Array<InlineContent>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -148,20 +148,20 @@ export interface TextNode extends BaseNode {
  * - `separators` is deprecated (was array)
  */
 export interface SeparatorNode extends BaseNode {
-  readonly type: 'separator';
-  readonly nodeType?: 'separator';
+  type: 'separator';
+  nodeType?: 'separator';
 
   /** 
    * Separator type - single value.
    * Multiple separators should be separate nodes.
    */
-  readonly separatorType: SeparatorType;
+  separatorType: SeparatorType;
 
   /**
    * @deprecated Since v2.0. Use `separatorType` instead.
    * Kept for backward compatibility. Will be removed in v3.0.
    */
-  readonly separators?: ReadonlyArray<SeparatorType>;
+    separators?: Array<SeparatorType>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -177,10 +177,10 @@ export interface SeparatorNode extends BaseNode {
  */
 export interface ListItem {
   /** Optional ID (used by editor) */
-  readonly id?: string;
+  id?: string;
 
   /** Item type (li, dt, dd) */
-  readonly itemType: ListItemType;
+  itemType: ListItemType;
 
   /** 
    * List type for THIS item's own rendering (ul, ol, dl).
@@ -188,13 +188,13 @@ export interface ListItem {
    * Enables mixed-type lists at the same nesting level.
    * @since v2.1
    */
-  readonly listType?: ListType;
+    listType?: ListType;
 
   /** Item content */
-  readonly content: ReadonlyArray<InlineContent>;
+  content: Array<InlineContent>;
 
   /** Type of the nested list container (if different from parent) */
-  readonly childListType?: ListType;
+    childListType?: ListType;
 
   /** 
    * Nested items - direct children, NOT wrapped in ListNode.
@@ -202,17 +202,17 @@ export interface ListItem {
    * 
    * @migration v2.0 Changed from `ListNode` to `ListItem[]`
    */
-  readonly children?: ReadonlyArray<ListItem>;
+    children?: Array<ListItem>;
 }
 
 /**
  * List node (ul, ol, dl)
  */
 export interface ListNode extends BaseNode {
-  readonly type: 'list';
-  readonly nodeType?: 'list';
-  readonly listType: ListType;
-  readonly items: ReadonlyArray<ListItem>;
+  type: 'list';
+  nodeType?: 'list';
+  listType: ListType;
+  items: Array<ListItem>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -223,25 +223,25 @@ export interface ListNode extends BaseNode {
  * Table cell
  */
 export interface TableCell {
-  readonly content: ReadonlyArray<InlineContent>;
+  content: Array<InlineContent>;
 }
 
 /**
  * Table row
  */
 export interface TableRow {
-  readonly rowType: 'th' | 'tr';
-  readonly cells: ReadonlyArray<TableCell>;
+  rowType: 'th' | 'tr';
+  cells: Array<TableCell>;
 }
 
 /**
  * Table node
  */
 export interface TableNode extends BaseNode {
-  readonly type: 'table';
-  readonly nodeType?: 'table';
-  readonly headers?: TableRow;
-  readonly rows: ReadonlyArray<TableRow>;
+  type: 'table';
+  nodeType?: 'table';
+    headers?: TableRow;
+    rows: Array<TableRow>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -257,18 +257,18 @@ export type CompoundChildRole = 'content' | 'caption' | 'summary';
  * Compound child
  */
 export interface CompoundChild {
-  readonly role: CompoundChildRole;
-  readonly node: ContentNode | InlineComponent;
+  role: CompoundChildRole;
+  node: ContentNode | InlineComponent;
 }
 
 /**
  * Compound node (figure, details)
  */
 export interface CompoundNode extends BaseNode {
-  readonly type: 'compound';
-  readonly nodeType?: 'compound';
-  readonly compoundType: CompoundType;
-  readonly children: ReadonlyArray<CompoundChild>;
+  type: 'compound';
+  nodeType?: 'compound';
+  compoundType: CompoundType;
+  children: Array<CompoundChild>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -279,22 +279,22 @@ export interface CompoundNode extends BaseNode {
  * Meta field
  */
 export interface MetaField {
-  readonly name: string;
-  readonly direction: Direction;
-  readonly value: string;
+  name: string;
+  direction: Direction;
+  value: string;
 }
 
 /**
  * Block node (meta, code, custom)
  */
 export interface BlockNode extends BaseNode {
-  readonly type: 'block';
-  readonly nodeType?: 'block';
-  readonly blockName: string;
-  readonly isCode: boolean;
-  readonly language?: string;
-  readonly content: ReadonlyArray<ContentNode> | string;
-  readonly fields?: ReadonlyArray<MetaField>;
+  type: 'block';
+  nodeType?: 'block';
+  blockName: string;
+  isCode: boolean;
+  language?: string;
+  content: Array<ContentNode> | string;
+  fields?: Array<MetaField>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -305,13 +305,13 @@ export interface BlockNode extends BaseNode {
  * Media node (img, video, audio, file)
  */
 export interface MediaNode extends BaseNode {
-  readonly type: 'media';
-  readonly nodeType?: 'media';
-  readonly mediaType: 'img' | 'video' | 'audio' | 'file';
-  readonly src: string;
-  readonly alt?: string;
-  readonly title?: string;
-  readonly label?: string;
+  type: 'media';
+  nodeType?: 'media';
+  mediaType: 'img' | 'video' | 'audio' | 'file';
+  src: string;
+  alt?: string;
+  title?: string;
+  label?: string;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -322,11 +322,11 @@ export interface MediaNode extends BaseNode {
  * Link node
  */
 export interface LinkNode extends BaseNode {
-  readonly type: 'link';
-  readonly nodeType?: 'link';
-  readonly url: string;
-  readonly text?: string;
-  readonly modifiers: ReadonlyArray<Modifier>;
+  type: 'link';
+  nodeType?: 'link';
+  url: string;
+  text?: string;
+  modifiers: Array<Modifier>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -337,10 +337,10 @@ export interface LinkNode extends BaseNode {
  * Inline code node
  */
 export interface CodeNode extends BaseNode {
-  readonly type: 'code';
-  readonly nodeType?: 'code';
-  readonly code: string;
-  readonly language?: string;
+  type: 'code';
+  nodeType?: 'code';
+  code: string;
+  language?: string;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -351,9 +351,9 @@ export interface CodeNode extends BaseNode {
  * Comment node
  */
 export interface CommentNode extends BaseNode {
-  readonly type: 'comment';
-  readonly nodeType?: 'comment';
-  readonly content: string;
+  type: 'comment';
+  nodeType?: 'comment';
+  content: string;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -383,38 +383,38 @@ export type ContentNode =
  * Document meta information
  */
 export interface DocumentMeta {
-  readonly title?: string;
-  readonly description?: string;
-  readonly author?: string;
-  readonly date?: string;
-  readonly lang?: string;
-  readonly dir?: Direction;
-  readonly version?: string;
-  readonly status?: string;
-  readonly license?: string;
-  readonly tags?: ReadonlyArray<string>;
-  readonly custom?: Readonly<Record<string, string>>;
+  title?: string;
+  description?: string;
+  author?: string;
+  date?: string;
+  lang?: string;
+  dir?: Direction;
+  version?: string;
+  status?: string;
+  license?: string;
+  tags?: Array<string>;
+  custom?: Record<string, string>;
 }
 
 /**
  * Parse error
  */
 export interface ParseError {
-  readonly type: 'syntax' | 'structure' | 'semantic' | 'constraint';
-  readonly line: number;
-  readonly column?: number;
-  readonly message: string;
-  readonly suggestion?: string;
+  type: 'syntax' | 'structure' | 'semantic' | 'constraint';
+  line: number;
+    column?: number;
+    message: string;
+    suggestion?: string;
 }
 
 /**
  * ARTOON Document - root node
  */
 export interface ARTOONDocument {
-  readonly version: '1.0' | '2.0';
-  readonly meta?: DocumentMeta;
-  readonly content: ReadonlyArray<ContentNode>;
-  readonly errors?: ReadonlyArray<ParseError>;
+    version: '1.0' | '2.0';
+  meta?: DocumentMeta;
+  content: Array<ContentNode>;
+  errors?: Array<ParseError>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
