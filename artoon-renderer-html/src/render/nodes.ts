@@ -96,7 +96,7 @@ function renderTextNode(
 ): string {
   // Support both AST types and parser output
   const typedNode = node as TextNode & NodeLike;
-  const textType = typedNode.textType || typedNode.componentType;
+  const textType = typedNode.textType || (typedNode as any).componentType;
   const tag = (HTML_MAPPING.text as Record<string, string>)[textType] || 'p';
   const content = renderInlineContent(node.content, options);
   const attrs = getDirectionAttrs(resolveDirection(node), options);
@@ -186,7 +186,7 @@ function renderListNode(
   level: number
 ): string {
   // Support both AST types and parser output
-  const nodeListType = (node as any).listType || (node as any).componentType || 'ul';
+  const nodeListType = (node as any).listType || node.listType || 'ul';
   const attrs = getDirectionAttrs(node.direction, options);
 
   // Check if any item has its own listType (Phase 18 mixed-type support)
@@ -388,7 +388,7 @@ function renderCompoundNode(
 ): string {
   // Support both AST types and parser output
   const compoundType = (node as any).compoundType || (node as any).componentType;
-  const tag = (HTML_MAPPING.compound as Record<string, string>)[compoundType] || 'div';
+  const tag = (HTML_MAPPING as any).compound[compoundType] || 'div';
   const attrs = getDirectionAttrs(resolveDirection(node), options);
   if (options.includeAria && compoundType === 'figure') {
     attrs.role = 'figure';
@@ -401,7 +401,7 @@ function renderCompoundNode(
     // Parser format: direct node
     if ((child as any).type) {
       const childNode = child as any;
-      const childType = childNode.componentType || childNode.type;
+      const childType = childNode.textType || childNode.componentType || childNode.type;
 
       if (childType === 'caption' || childType === 'figcaption') {
         // figcaption for figure
@@ -425,7 +425,7 @@ function renderCompoundNode(
     if ((child as any).role === 'caption') {
       // figcaption for figure
       const captionTag = 'figcaption';
-      if ('nodeType' in childNode && childNode.nodeType === 'text') {
+      if (childNode.type && childNode.type === 'text') {
         const textNode = childNode as TextNode;
         const childContent = renderInlineContent(textNode.content, options);
         content += wrap(captionTag, childContent);
@@ -434,7 +434,7 @@ function renderCompoundNode(
       }
     } else if ((child as any).role === 'summary') {
       // summary for details
-      if ('nodeType' in childNode && childNode.nodeType === 'text') {
+      if (childNode.type && childNode.type === 'text') {
         const textNode = childNode as TextNode;
         const childContent = renderInlineContent(textNode.content, options);
         content += wrap('summary', childContent);
@@ -443,7 +443,7 @@ function renderCompoundNode(
       }
     } else {
       // Regular content
-      if ('nodeType' in childNode) {
+      if (childNode.type) {
         content += renderNode(childNode, options, level + 1);
       }
     }

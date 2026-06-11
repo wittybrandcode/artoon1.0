@@ -162,7 +162,10 @@ export const HTML_MAPPING = {
     q: 'blockquote',
     pre: 'pre',
     time: 'time',
-    abbr: 'abbr'
+    abbr: 'abbr',
+    summary: 'summary',
+    caption: 'figcaption',
+    figcaption: 'figcaption'
   },
   
   // List components
@@ -197,6 +200,9 @@ export const HTML_MAPPING = {
     audio: 'audio',
     video: 'video',
     abbr: 'abbr',
+    summary: 'summary',
+    caption: 'figcaption',
+    figcaption: 'figcaption',
     time: 'time',
     c: 'code'
   },
