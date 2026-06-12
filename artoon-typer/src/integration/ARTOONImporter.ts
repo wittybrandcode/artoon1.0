@@ -57,7 +57,7 @@ interface ParserASTNode {
 
 interface ParserTextNode extends ParserASTNode {
   type: 'text';
-  componentType: string;
+  textType: string;
   content: readonly InlineContent[];  // Parser now outputs InlineContent[] directly!
 }
 
@@ -96,7 +96,7 @@ interface ParserSeparatorNode extends ParserASTNode {
 
 interface ParserCompoundNode extends ParserASTNode {
   type: 'compound';
-  componentType: 'figure' | 'details';
+  compoundType: 'figure' | 'details';
   children: ParserASTNode[];
 }
 
@@ -228,7 +228,7 @@ export class ARTOONImporter {
    */
   private convertTextNode(node: ParserTextNode): TextBlock | PreformattedBlock | LineBreakBlock | TimeBlock | AbbrBlock | WordBreakBlock | MediaBlock | FileBlock {
     // Handle preformatted text
-    if (node.componentType === 'pre') {
+    if (node.textType === 'pre') {
       const plainText = this.getPlainText(node.content);
       return {
         id: generateId(),
@@ -239,7 +239,7 @@ export class ARTOONImporter {
     }
 
     // Handle line break
-    if (node.componentType === 'br') {
+    if (node.textType === 'br') {
       return {
         id: generateId(),
         type: 'line-break',
@@ -248,7 +248,7 @@ export class ARTOONImporter {
     }
 
     // Handle word break
-    if (node.componentType === 'wbr') {
+    if (node.textType === 'wbr') {
       return {
         id: generateId(),
         type: 'word-break',
@@ -257,11 +257,11 @@ export class ARTOONImporter {
     }
 
     // Handle media components (img, video, audio)
-    if (node.componentType === 'img' || node.componentType === 'video' || node.componentType === 'audio') {
+    if (node.textType === 'img' || node.textType === 'video' || node.textType === 'audio') {
       const text = this.getPlainText(node.content);
       const parts = text.split(';').map((s: string) => s.trim());
-      const mediaType = node.componentType === 'video' ? 'video' :
-        node.componentType === 'audio' ? 'audio' : 'image';
+      const mediaType = node.textType === 'video' ? 'video' :
+        node.textType === 'audio' ? 'audio' : 'image';
       return {
         id: generateId(),
         type: mediaType,
@@ -273,7 +273,7 @@ export class ARTOONImporter {
     }
 
     // Handle file component
-    if (node.componentType === 'file') {
+    if (node.textType === 'file') {
       const text = this.getPlainText(node.content);
       const parts = text.split(';').map((s: string) => s.trim());
       return {
@@ -286,7 +286,7 @@ export class ARTOONImporter {
     }
 
     // Handle time block
-    if (node.componentType === 'time') {
+    if (node.textType === 'time') {
       const text = this.getPlainText(node.content);
       const parts = text.split(';').map((s: string) => s.trim());
       return {
@@ -299,7 +299,7 @@ export class ARTOONImporter {
     }
 
     // Handle abbr block
-    if (node.componentType === 'abbr') {
+    if (node.textType === 'abbr') {
       const text = this.getPlainText(node.content);
       const parts = text.split(';').map((s: string) => s.trim());
       return {
@@ -314,7 +314,7 @@ export class ARTOONImporter {
     // NOTE: Standalone links (>.a::) are handled by convertLinkNode via case 'link'
     // They never reach this method as TextNode
 
-    const blockType = this.getTextBlockType(node.componentType);
+    const blockType = this.getTextBlockType(node.textType);
 
     return {
       id: generateId(),
@@ -501,8 +501,8 @@ export class ARTOONImporter {
 
       if (Array.isArray(node.content)) {
         for (const child of node.content) {
-          const childAny = child as { fieldName?: string; componentType?: string; content?: readonly InlineContent[] };
-          if (childAny.fieldName === 'summary' || childAny.componentType === 'summary') {
+          const childAny = child as { fieldName?: string; textType?: string; content?: readonly InlineContent[] };
+          if (childAny.fieldName === 'summary' || childAny.textType === 'summary') {
             summary = [...(childAny.content || [])];
           } else {
             const block = this.convertNode(child as ParserASTNode);
@@ -536,9 +536,9 @@ export class ARTOONImporter {
     } else if (Array.isArray(node.content)) {
       // Content is already an array of nodes
       children = node.content.map((child) => {
-        const childAny = child as { componentType?: string; content?: readonly InlineContent[] | string };
-        const componentType = childAny.componentType || 'p';
-        const blockType = this.getBlockType(componentType);
+        const childAny = child as { textType?: string; content?: readonly InlineContent[] | string };
+        const textType = childAny.textType || 'p';
+        const blockType = this.getBlockType(textType);
 
         return {
           id: generateId(),
@@ -670,11 +670,11 @@ export class ARTOONImporter {
    * Convert compound node to FigureBlock or DetailsBlock
    */
   private convertCompoundNode(node: ParserCompoundNode): FigureBlock | DetailsBlock | null {
-    if (node.componentType === 'figure') {
+    if (node.compoundType === 'figure') {
       return this.convertFigureNode(node);
     }
 
-    if (node.componentType === 'details') {
+    if (node.compoundType === 'details') {
       return this.convertDetailsNode(node);
     }
 
@@ -698,8 +698,8 @@ export class ARTOONImporter {
     // Extract caption child (figcaption or caption)
     const captionChild = node.children.find(
       child => child.type === 'text' &&
-        ((child as ParserTextNode).componentType === 'figcaption' ||
-          (child as ParserTextNode).componentType === 'caption')
+        ((child as ParserTextNode).textType === 'figcaption' ||
+          (child as ParserTextNode).textType === 'caption')
     ) as ParserTextNode | undefined;
 
     // Map media type
@@ -723,13 +723,13 @@ export class ARTOONImporter {
     // Extract summary child
     const summaryChild = node.children.find(
       child => child.type === 'text' &&
-        (child as ParserTextNode).componentType === 'summary'
+        (child as ParserTextNode).textType === 'summary'
     ) as ParserTextNode | undefined;
 
     // Extract content children (all except summary)
     const contentChildren = node.children.filter(
       child => !(child.type === 'text' &&
-        (child as ParserTextNode).componentType === 'summary')
+        (child as ParserTextNode).textType === 'summary')
     );
 
     // Convert content children to blocks

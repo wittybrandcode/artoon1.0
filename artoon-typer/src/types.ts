@@ -483,6 +483,8 @@ export interface BlockDefinition {
   shortcut?: string;
   /** Create default block */
   create: () => Block;
+  /** React component to render the block content */
+  component?: React.ComponentType<any>;
   /** Can this block be converted to another type */
   canConvertTo?: BlockType[];
 }

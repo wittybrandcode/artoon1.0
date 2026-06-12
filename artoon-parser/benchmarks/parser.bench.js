@@ -31,3 +31,14 @@ const startL = performance.now();
 parse(largeDoc);
 const endL = performance.now();
 console.log('Large Document (50x):', (endL - startL).toFixed(4), 'ms');
+
+// Incremental Update Benchmark
+const { initIncremental, updateLine } = require('../dist');
+const incrementalState = initIncremental(largeDoc);
+const startI = performance.now();
+for (let i = 0; i < 100; i++) {
+  updateLine(incrementalState, 10, '>.p:: Updated line ' + i);
+}
+const endI = performance.now();
+console.log('Incremental Update (100 updates on 50x doc):', (endI - startI).toFixed(4), 'ms');
+console.log('Avg Incremental Update:', ((endI - startI) / 100).toFixed(4), 'ms');

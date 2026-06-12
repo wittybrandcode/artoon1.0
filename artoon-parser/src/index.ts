@@ -139,3 +139,4 @@ export default {
   ARTOONParseError,
   VERSION
 };
+export * from './incremental';
