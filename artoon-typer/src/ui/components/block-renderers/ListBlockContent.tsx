@@ -21,7 +21,7 @@ const inlineRenderer = createInlineRenderer();
 /**
  * Individual List Item Component for Memoization
  */
-const ListItemComponent = React.memo(({
+const ListItemComponent = (React.memo || ((c: any) => c))(({
   item,
   depth,
   direction,

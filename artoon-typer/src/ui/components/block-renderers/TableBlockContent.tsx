@@ -4,7 +4,7 @@ import { createInlineRenderer } from '../../../inline/InlineRenderer';
 
 const inlineRenderer = createInlineRenderer();
 
-const TableCellComponent = React.memo(({ cell, isHeader, isEditable, direction, isRTL }: any) => {
+const TableCellComponent = (React.memo || ((c: any) => c))(({ cell, isHeader, isEditable, direction, isRTL }: any) => {
   const html = useMemo(() => inlineRenderer.render(cell.content), [cell.content]);
   const CellTag = isHeader ? 'th' : 'td';
 

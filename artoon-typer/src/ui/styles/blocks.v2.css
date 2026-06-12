@@ -1,0 +1,90 @@
+/**
+ * ARTOON Blocks V2 Styles - Modular & Plugin Ready
+ */
+
+.block__content {
+  position: relative;
+  min-height: 1.5em;
+}
+
+/* List Items */
+.list-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.25rem;
+}
+
+.list-item__main {
+  display: flex;
+  align-items: flex-start;
+}
+
+.list-item__marker {
+  display: inline-block;
+  user-select: none;
+  color: var(--color-text-secondary, #666);
+  font-weight: 500;
+}
+
+.list-item__content {
+  flex-grow: 1;
+  outline: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Media Blocks */
+.media-container {
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-default, #eee);
+  background: var(--color-bg-secondary, #fafafa);
+}
+
+.media-container img, .media-container video {
+  max-width: 100%;
+  display: block;
+}
+
+.media-caption {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #666);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Table Blocks */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  border: 1px solid var(--color-border-default, #ddd);
+  padding: 8px 12px;
+  min-width: 50px;
+}
+
+th {
+  background: var(--color-bg-secondary, #f0f0f0);
+  font-weight: bold;
+}
+
+/* Custom Blocks */
+.custom-block {
+  border: 2px dashed var(--color-border-default, #ccc);
+  border-radius: 8px;
+  padding: 1rem;
+  background: var(--color-bg-tertiary, #fff);
+}
+
+.custom-block__header {
+  font-size: 0.8rem;
+  color: var(--color-primary, #0066cc);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}

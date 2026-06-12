@@ -4,15 +4,20 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-vi.mock('react', () => ({
-  useState: vi.fn((initial) => [initial, vi.fn()]),
-  useCallback: vi.fn((fn) => fn),
-  useEffect: vi.fn(),
-  useRef: vi.fn(() => ({ current: null })),
-  useMemo: vi.fn((fn) => fn()),
-  createContext: vi.fn(),
-  useContext: vi.fn(),
-}));
+vi.mock('react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react')>();
+  return {
+    ...actual,
+    useState: vi.fn((initial) => [initial, vi.fn()]),
+    useCallback: vi.fn((fn) => fn),
+    useEffect: vi.fn(),
+    useRef: vi.fn(() => ({ current: null })),
+    useMemo: vi.fn((fn) => fn()),
+    createContext: vi.fn(),
+    useContext: vi.fn(),
+    default: actual.default || actual,
+  };
+});
 
 describe('E2E: Basic Editing', () => {
   beforeEach(() => {
