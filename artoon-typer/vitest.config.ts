@@ -10,7 +10,7 @@ export default defineConfig({
       '@artoon/ast': resolve(__dirname, '../artoon-ast/src'),
       '@artoon/parser': resolve(__dirname, '../artoon-parser/src'),
       '@artoon/serializer': resolve(__dirname, '../artoon-serializer/src'),
-      '@artoon/state': resolve(__dirname, '../artoon-state/src'),
+      '@artoon/core': resolve(__dirname, '../artoon-core/src'), '@artoon/state': resolve(__dirname, '../artoon-state/src'),
     },
   },
   test: {

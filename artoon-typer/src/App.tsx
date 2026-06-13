@@ -22,7 +22,6 @@ import { Button, TooltipProvider } from './design-system';
 // Import styles
 import './ui/styles/bubble-menu.css';
 import './ui/styles/wysiwyg.css';
-import './ui/styles/blocks.v2.css';
 
 // Sample ARTOON content for demonstration
 const SAMPLE_CONTENT = `>.p:: مرحباً بك في محرر ARTOON-TYPER! هذا محرر بلوكات احترافي يدعم العربية بشكل أصلي.

@@ -189,4 +189,3 @@ export { keymapPlugin, keymapPluginKey, combineKeymaps } from './plugins/builtin
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const VERSION = '1.0.0';
-export * from './incremental';

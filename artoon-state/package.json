@@ -28,8 +28,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@artoon/ast": "file:../artoon-ast",
-    "@artoon/parser": "file:../artoon-parser"
+    "@artoon/ast": "file:../artoon-ast"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
