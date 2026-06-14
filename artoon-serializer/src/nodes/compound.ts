@@ -83,9 +83,9 @@ function serializeCompoundChild(child: CompoundChild, dir: '>' | '<'): string {
 
 // Type guards
 function isTextNode(node: any): node is TextNode {
-  return node && node.nodeType === 'text';
+  return node && (node.type === 'text' || node.nodeType === 'text');
 }
 
 function isMediaNode(node: any): node is MediaNode {
-  return node && node.nodeType === 'media';
+  return node && (node.type === 'media' || node.nodeType === 'media');
 }
