@@ -39,38 +39,38 @@ type ErrorTemplate = {
 export const ERROR_MESSAGES: Record<string, ErrorTemplate> = {
   [ERROR_CODES.MISSING_SPACE_AFTER_SEPARATOR]: {
     what: 'Missing space after ::',
-    why: 'Separator :: should be followed by a space between component type and content.',
-    suggestion: 'Add one space after ::'
+    why: 'The :: separator must be followed by a space to clearly distinguish the component type from its content.',
+    suggestion: 'Add a single space immediately after the :: separator.'
   },
   [ERROR_CODES.UNCLOSED_BRACKET]: {
     what: 'Unclosed [ bracket',
-    why: 'Each [ must be closed with ] on the same line.',
-    suggestion: 'Add ] to close the bracket'
+    why: 'Inline components and modifiers starting with [ must be terminated with a matching ] on the same line.',
+    suggestion: 'Append a ] to correctly close the inline component or modifier block.'
   },
   [ERROR_CODES.UNCLOSED_BLOCK]: {
     what: (name: string) => `Unclosed <${name}> block`,
-    why: 'Every opened block must have a matching closing marker.',
-    suggestion: (name: string) => `Add .<${name}> to close the block`
+    why: 'Multi-line blocks initiated with <name>. require a corresponding .<name> termination marker to maintain structural integrity.',
+    suggestion: (name: string) => `Insert .<${name}> on a new line to close the block.`
   },
   [ERROR_CODES.MODIFIER_ON_NON_TEXT]: {
-    what: (mod: string, comp: string) => `Modifier "${mod}" used on non-text component ${comp}`,
-    why: (comp: string) => `Text modifiers are only valid on text-capable components, not ${comp}.`,
-    suggestion: 'Move modifier usage to a text component'
+    what: (mod: string, comp: string) => `Modifier "${mod}" applied to non-text component: ${comp}`,
+    why: (comp: string) => `Semantic modifiers (like bold or italic) are only applicable to text-based components. The "${comp}" component does not support these modifiers.`,
+    suggestion: 'Remove the modifier from the component or move the content to a text-capable component.'
   },
   [ERROR_CODES.INLINE_LIST]: {
-    what: 'List component used inline',
-    why: 'List components are structural blocks and cannot be embedded inline.',
-    suggestion: 'Create the list as standalone list nodes'
+    what: 'List component embedded inline',
+    why: 'Lists are structural block-level elements in ARTOON and cannot be nested within inline text content.',
+    suggestion: 'Extract the list and define it as a standalone block-level list component.'
   },
   [ERROR_CODES.PRESENTATION_LEAK]: {
-    what: (keyword: string) => `Presentation leak: "${keyword}"`,
-    why: 'ARTOON should describe semantics, not visual styling details.',
-    suggestion: 'Remove style/presentation terms from content'
+    what: (keyword: string) => `Presentation leak detected: "${keyword}"`,
+    why: 'ARTOON is a semantic-first format. Visual styling information (like colors or explicit sizes) violates the separation of content and presentation.',
+    suggestion: 'Remove the styling keyword and rely on the renderer to determine visual appearance based on component semantics.'
   },
   [ERROR_CODES.BEHAVIOR_LEAK]: {
-    what: (keyword: string) => `Behavior leak: "${keyword}"`,
-    why: 'ARTOON should describe content semantics, not runtime behavior.',
-    suggestion: 'Remove behavior/event handler references from content'
+    what: (keyword: string) => `Behavior leak detected: "${keyword}"`,
+    why: 'ARTOON describes what the content is, not how it behaves at runtime. Interactive logic and event handlers should be handled by the application layer.',
+    suggestion: 'Remove the behavioral reference or event handler from the content.'
   }
 };
 
