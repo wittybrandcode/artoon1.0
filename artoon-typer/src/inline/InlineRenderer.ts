@@ -181,7 +181,7 @@ export class InlineRenderer {
   // ═══════════════════════════════════════════════════════════════════════════
 
   private renderLink(attrs: Record<string, string>, value?: string): string {
-    const url = this.escapeAttr(attrs.url || attrs.href || '');
+    const url = sanitizeUrl(attrs.url || attrs.href || '');
     const text = value || attrs.text || url;
     const title = attrs.title ? ` title="${this.escapeAttr(attrs.title)}"` : '';
 
@@ -197,7 +197,7 @@ export class InlineRenderer {
   }
 
   private renderImage(attrs: Record<string, string>): string {
-    const src = this.escapeAttr(attrs.src || attrs.path || '');
+    const src = sanitizeUrl(attrs.src || attrs.path || '');
     const alt = this.escapeAttr(attrs.alt || '');
     const title = attrs.title ? ` title="${this.escapeAttr(attrs.title)}"` : '';
     const width = attrs.width ? ` width="${this.escapeAttr(attrs.width)}"` : '';
@@ -207,7 +207,7 @@ export class InlineRenderer {
   }
 
   private renderVideo(attrs: Record<string, string>): string {
-    const src = this.escapeAttr(attrs.src || '');
+    const src = sanitizeUrl(attrs.src || '');
     const controls = ' controls';
     const width = attrs.width ? ` width="${this.escapeAttr(attrs.width)}"` : '';
     const height = attrs.height ? ` height="${this.escapeAttr(attrs.height)}"` : '';
@@ -216,7 +216,7 @@ export class InlineRenderer {
   }
 
   private renderAudio(attrs: Record<string, string>): string {
-    const src = this.escapeAttr(attrs.src || '');
+    const src = sanitizeUrl(attrs.src || '');
     const controls = ' controls';
 
     return `<audio src="${src}"${controls}></audio>`;
@@ -237,7 +237,7 @@ export class InlineRenderer {
   }
 
   private renderFile(attrs: Record<string, string>): string {
-    const src = this.escapeAttr(attrs.src || '');
+    const src = sanitizeUrl(attrs.src || '');
     const label = attrs.label || attrs.name || 'Download';
 
     return `<a href="${src}" download>${this.escape(label)}</a>`;

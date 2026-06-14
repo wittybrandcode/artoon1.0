@@ -1,0 +1,22 @@
+{
+  "Paragraph": {
+    "prefix": "p",
+    "body": [">.p:: ${1:النص هنا}"],
+    "description": "فقرة نصية (RTL)"
+  },
+  "Heading 1": {
+    "prefix": "h1",
+    "body": [">.t1:: ${1:العنوان}"],
+    "description": "عنوان مستوى 1"
+  },
+  "Figure": {
+    "prefix": "figure",
+    "body": [
+      "<figure",
+      ">.img:: ${1:url}",
+      ">.figcaption:: ${2:شرح الصورة}",
+      ".figure>"
+    ],
+    "description": "صورة مع شرح"
+  }
+}

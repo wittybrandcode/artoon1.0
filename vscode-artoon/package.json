@@ -43,7 +43,8 @@
                                                        }
                                           }
                                       ],
-                        "grammars":  [
+                         "snippets": [{"language": "artoon", "path": "./snippets/artoon.json"}],
+"grammars":  [
                                          {
                                              "language":  "artoon",
                                              "scopeName":  "source.artoon",

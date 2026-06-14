@@ -27,7 +27,7 @@ import {
   isCommentNode
 } from '@artoon/ast';
 import { RenderOptions, HTML_MAPPING } from '../types.js';
-import { wrap, selfClose, escapeHtml, indent } from '../utils.js';
+import { wrap, selfClose, escapeHtml, indent, sanitizeUrl } from '../utils.js';
 import { renderInlineContent } from './inline.js';
 
 type DirectionLike = 'rtl' | 'ltr' | undefined;
@@ -674,7 +674,7 @@ function renderMediaNode(
     case 'img':
       return selfClose('img', {
         ...attrs,
-        src: node.src,
+        src: sanitizeUrl(node.src),
         alt: node.alt || '',
         title: node.title,
         'aria-label': options.includeAria ? (node.alt || node.title || 'Image') : undefined
@@ -683,7 +683,7 @@ function renderMediaNode(
     case 'audio':
       return wrap('audio', '', {
         ...attrs,
-        src: node.src,
+        src: sanitizeUrl(node.src),
         controls: 'controls',
         title: node.title,
         'aria-label': options.includeAria ? (node.title || 'Audio') : undefined
@@ -692,7 +692,7 @@ function renderMediaNode(
     case 'video':
       return wrap('video', '', {
         ...attrs,
-        src: node.src,
+        src: sanitizeUrl(node.src),
         controls: 'controls',
         title: node.title,
         'aria-label': options.includeAria ? (node.title || 'Video') : undefined
@@ -701,7 +701,7 @@ function renderMediaNode(
     case 'file':
       return wrap('a', escapeHtml(node.label || node.src), {
         ...attrs,
-        href: node.src,
+        href: sanitizeUrl(node.src),
         download: 'download',
         'aria-label': options.includeAria ? (node.label || 'Download file') : undefined
       });
@@ -720,7 +720,7 @@ function renderLinkNode(
   level: number
 ): string {
   const attrs = getDirectionAttrs(resolveDirection(node), options);
-  attrs.href = node.url;
+  attrs.href = sanitizeUrl(node.url);
   if (options.includeAria) {
     attrs['aria-label'] = node.text || node.url;
   }
