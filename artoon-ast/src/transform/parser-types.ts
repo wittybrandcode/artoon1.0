@@ -11,7 +11,7 @@ import type {
 
 export interface ParserTextNode extends BaseNode {
     type: 'text';
-    textType: TextType | 'summary';
+    componentType: TextType | 'summary';
     content: InlineContent[];
 }
 
@@ -43,7 +43,7 @@ export interface ParserTableNode extends BaseNode {
 
 export interface ParserCompoundNode extends BaseNode {
     type: 'compound';
-    compoundType: CompoundType;
+    componentType: CompoundType;
     children: ParserNode[];
 }
 

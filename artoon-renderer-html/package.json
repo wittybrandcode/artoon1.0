@@ -21,7 +21,7 @@
   },
   "keywords": ["artoon", "renderer", "html"],
   "license": "MIT",
-  "dependencies": {
+  "dependencies": { "@artoon/core": "file:../artoon-core",
     "@artoon/ast": "file:../artoon-ast"
   },
   "devDependencies": {

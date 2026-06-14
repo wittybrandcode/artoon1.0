@@ -11,7 +11,7 @@
     "artoon-renderer-html",
     "artoon-cli",
     "artoon-state",
-    "artoon-typer"
+    "artoon-typer", "artoon-core"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",

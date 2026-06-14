@@ -177,7 +177,7 @@ function transformTextNode(node: ParserTextNode): TextNode {
     type: 'text',
     line: node.line,
     direction: node.direction,
-    textType: node.textType as TextType,
+    textType: node.componentType as TextType,
     content: transformInlineContent(node.content)
   });
 }
@@ -294,7 +294,7 @@ function transformCompoundNode(node: ParserCompoundNode): CompoundNode {
     type: 'compound',
     line: node.line,
     direction: node.direction,
-    compoundType: node.compoundType,
+    compoundType: node.componentType,
     children: node.children.map(transformCompoundChild)
   });
 }
@@ -307,7 +307,7 @@ function transformCompoundChild(child: ParserNode & { componentType?: string }):
   let role: 'content' | 'caption' | 'summary' = 'content';
 
   // Check componentType for text nodes
-  const compType = (child as any).textType || (child as any).componentType;
+  const compType = child.componentType;
   if (compType === 'caption' || compType === 'figcaption') {
     role = 'caption';
   } else if (compType === 'summary') {

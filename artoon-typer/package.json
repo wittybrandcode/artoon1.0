@@ -26,7 +26,7 @@
     "lint": "eslint src --ext .ts,.tsx",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
+  "dependencies": { "@artoon/core": "file:../artoon-core",
     "@artoon/renderer-html": "file:../artoon-renderer-html",
     "@artoon/state": "file:../artoon-state",
     "@dnd-kit/core": "^6.3.1",

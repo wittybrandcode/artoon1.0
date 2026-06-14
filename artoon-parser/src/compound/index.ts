@@ -2,7 +2,7 @@
 // Handles figure and details components
 
 import { Direction } from '../types';
-import { Token, ASTNode, CompoundNode, ParseError, isTextNode } from '../ast/types';
+import { Token, ASTNode, CompoundNode, ParseError } from '../ast/types';
 
 /**
  * Compound component types
@@ -13,8 +13,8 @@ export type CompoundType = 'figure' | 'details';
  * Valid children for compound components
  */
 export const COMPOUND_CHILDREN: Record<CompoundType, string[]> = {
-  figure: ['figure', 'details', 'img', 'video', 'audio', 'caption', 'figcaption'],
-  details: ['figure', 'details', 'summary', 'p', 't1', 't2', 't3', 't4', 't5', 't6', 'ul', 'ol', 'dl', 'table', 'c', 'code']
+  figure: ['img', 'video', 'audio', 'caption', 'figcaption'],
+  details: ['summary', 'p', 't1', 't2', 't3', 't4', 't5', 't6', 'ul', 'ol', 'dl', 'table', 'c', 'code']
 };
 
 /**
@@ -98,7 +98,7 @@ export function buildCompoundNode(state: CompoundState): CompoundNode {
     type: 'compound',
     line: state.startLine,
     direction: state.direction,
-    compoundType: state.type,
+    componentType: state.type,
     children: state.children
   };
 }
@@ -158,7 +158,7 @@ export function validateCompoundComplete(
   
   if (state.type === 'details') {
     const hasSummary = state.children.some(
-      c => isTextNode(c as any) && (c as any).textType === 'summary'
+      c => 'componentType' in c && (c as any).componentType === 'summary'
     );
     if (!hasSummary) {
       warnings.push('details missing summary element');
