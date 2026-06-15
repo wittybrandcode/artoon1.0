@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Block } from '../../types';
+import type { Block } from '../../../types';
 
 export interface PreformattedBlockContentProps {
   block: any;
