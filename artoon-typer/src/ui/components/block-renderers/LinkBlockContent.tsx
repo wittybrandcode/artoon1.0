@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import type { Block } from '../../../types';
+import type { Block, LinkBlock } from '../../../types';
 
 interface LinkBlockContentProps {
-  block: any;
+  block: LinkBlock;
   isEditable: boolean;
   onUpdate: (updates: Partial<Block>) => void;
 }
@@ -24,7 +24,7 @@ export function LinkBlockContent({ block, isEditable, onUpdate }: LinkBlockConte
       url: localUrl.trim(),
       text: localText.trim() || localUrl.trim(),
       modifiers: block.modifiers || [],
-    } as any);
+    } as Partial<LinkBlock>);
     setIsEditing(false);
   };
 
