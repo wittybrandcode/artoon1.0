@@ -1,10 +1,10 @@
 import React from 'react';
-import type { Block } from '../../../types';
+import type { Block, CustomBlock, TextBlock } from '../../../types';
 import { generateId } from '@artoon/core';
 import { BlockRenderer } from '../BlockRenderer';
 
 interface CustomBlockContentProps {
-  block: any;
+  block: CustomBlock;
   isEditable: boolean;
   onUpdate: (updates: Partial<Block>) => void;
 }
@@ -34,13 +34,13 @@ export function CustomBlockContent({ block, isEditable, onUpdate }: CustomBlockC
       className={`block__content custom-block custom-block-${block.name}`}
       dir={direction}
     >
-      {block.children.map((child: any) => {
-        const childBlock: Block = {
+      {block.children.map((child) => {
+        const childBlock: TextBlock = {
           id: child.id || generateId(),
-          type: child.type || 'paragraph',
+          type: (child.type as any) || 'paragraph',
           direction: direction,
           content: Array.isArray(child.content) ? child.content : [],
-        } as any;
+        };
 
         return (
           <BlockRenderer
