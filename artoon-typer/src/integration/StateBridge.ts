@@ -228,14 +228,7 @@ function replaceAllBlocksInState(state: EditorState, blocks: Block[]): EditorSta
 
   const replacementNodes = nextNodes.slice(startMatch, nextNodes.length - endMatch);
 
-  // If from === to, this is a pure insertion and @artoon/state replaceWith behaves unexpectedly.
-  // So we expand the range to include the next node and replace it with itself.
-  if (from === to && startMatch < currentNodes.length) {
-    const nextNode = currentNodes[startMatch];
-    (tr as any).replaceWith(from, from + nodeSize(nextNode), [...replacementNodes, nextNode]);
-  } else {
-    (tr as any).replaceWith(from, to, replacementNodes);
-  }
+  (tr as any).replaceWith(from, to, replacementNodes);
   return state.apply(tr);
 }
 
