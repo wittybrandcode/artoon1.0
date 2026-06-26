@@ -216,6 +216,10 @@ function replaceAllBlocksInState(state: EditorState, blocks: Block[]): EditorSta
     return state; // No change needed
   }
 
+  if (startMatch === currentNodes.length && startMatch === nextNodes.length) {
+    return state; // No change needed
+  }
+
   let from = 1;
   for (let i = 0; i < startMatch; i++) {
     from += nodeSize(currentNodes[i]);

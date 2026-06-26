@@ -85,7 +85,7 @@ export class EditorController implements EditorControllerInterface {
   // ─────────────────────────────────────────────────────────────────────────
 
   getBlocks(): Block[] {
-    return deepClone(editorStateToBlocks(this._editorState));
+    return editorStateToBlocks(this._editorState);
   }
 
   getBlock(id: string): Block | undefined {
