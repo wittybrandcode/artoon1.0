@@ -31,35 +31,40 @@ export function serialize(
   
   // Serialize META block first if present
   // Handle both BlockNode (from parser) and DocumentMeta (from AST)
-  if (doc.meta) {
+  if (doc && doc.meta) {
     // Check if it's a BlockNode (has type property)
     if (typeof doc.meta === 'object' && 'type' in doc.meta && doc.meta.type === 'block') {
       const metaSerialized = serializeBlock(doc.meta as any, opts);
       lines.push(metaSerialized);
       
       // Add blank line after META if there's content
-      if (doc.content.length > 0 && opts.blankLinesBetween) {
+      const childrenCount = doc.content ? doc.content.length : ((doc as any).children ? (doc as any).children.length : 0);
+      if (childrenCount > 0 && opts.blankLinesBetween) {
         lines.push('');
       }
     }
     // Otherwise it's DocumentMeta - skip for now (could be serialized as META block in future)
   }
   
-  for (let i = 0; i < doc.content.length; i++) {
-    const node = doc.content[i];
-    
-    // Skip comments if not preserving
-    if (!opts.preserveComments && node.nodeType === 'comment') {
-      continue;
-    }
-    
-    // Serialize node
-    const serialized = serializeNode(node, opts);
-    lines.push(serialized);
-    
-    // Add blank line between elements (except last)
-    if (opts.blankLinesBetween && i < doc.content.length - 1) {
-      lines.push('');
+  // Handle both AST shapes: `content` or `children`
+  const children = doc ? (doc.content || (doc as any).children || []) : [];
+  if (children.length > 0) {
+    for (let i = 0; i < children.length; i++) {
+      const node = children[i];
+
+      // Skip comments if not preserving
+      if (!opts.preserveComments && node.nodeType === 'comment') {
+        continue;
+      }
+
+      // Serialize node
+      const serialized = serializeNode(node, opts);
+      lines.push(serialized);
+
+      // Add blank line between elements (except last)
+      if (opts.blankLinesBetween && i < children.length - 1) {
+        lines.push('');
+      }
     }
   }
   

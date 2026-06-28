@@ -1,4 +1,4 @@
-import { sanitizeUrl, escapeHtml } from "@artoon/core";
+import { sanitizeUrl, escapeHtml } from "../core/utils";
 /**
  * InlineRenderer
  * 

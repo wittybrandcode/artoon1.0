@@ -39,3 +39,22 @@ export function arraysEqual<T>(a: T[], b: T[]): boolean {
   if (a.length !== b.length) return false;
   return a.every((val, i) => val === b[i]);
 }
+
+export function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+export function sanitizeUrl(url: string): string {
+  if (!url) return '';
+  // Very basic sanitization, preventing javascript: and data: links unless explicitly allowed
+  const lowerUrl = url.toLowerCase().trim();
+  if (lowerUrl.startsWith('javascript:') || lowerUrl.startsWith('data:text/html') || lowerUrl.startsWith('vbscript:')) {
+    return 'about:blank';
+  }
+  return url;
+}

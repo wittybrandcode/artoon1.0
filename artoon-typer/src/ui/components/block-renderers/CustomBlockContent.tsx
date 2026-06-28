@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Block, CustomBlock, TextBlock } from '../../../types';
-import { generateId } from '@artoon/core';
+import { generateId } from '../../../core/utils';
 import { BlockRenderer } from '../BlockRenderer';
 
 interface CustomBlockContentProps {
