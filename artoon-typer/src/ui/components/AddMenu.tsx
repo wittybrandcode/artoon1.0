@@ -302,6 +302,7 @@ export function AddMenu({ isOpen, position, onSelect, onClose }: AddMenuProps) {
       className={`${styles.menuWrapper} artoon-slash-menu`}
       role="dialog"
       aria-label="Add block"
+      data-testid="add-menu"
       style={{
         position: 'fixed',
         top: posY,
@@ -326,6 +327,7 @@ export function AddMenu({ isOpen, position, onSelect, onClose }: AddMenuProps) {
             type="text"
             className={styles.input}
             aria-label="Search blocks"
+            data-testid="add-menu-search"
             placeholder="البحث في البلوكات..."
             value={searchQuery}
             onChange={(e) => {
@@ -352,6 +354,7 @@ export function AddMenu({ isOpen, position, onSelect, onClose }: AddMenuProps) {
                 role="button"
                 tabIndex={0}
                 aria-expanded={isExpanded}
+                data-testid={`category-row-${cat.id}`}
                 onClick={(e) => {
                   e.preventDefault();
                   if (isExpanded) {
@@ -397,6 +400,7 @@ export function AddMenu({ isOpen, position, onSelect, onClose }: AddMenuProps) {
                     className={`${styles.blockItem} ${isHovered ? styles.blockItemHovered : ''}`}
                     role="button"
                     tabIndex={0}
+                    data-testid={`block-item-${block.type}`}
                     onClick={(e) => {
                       e.preventDefault();
                       onSelect(block.type);
@@ -430,6 +434,7 @@ export function AddMenu({ isOpen, position, onSelect, onClose }: AddMenuProps) {
                 className={`${styles.blockItem} ${isHovered ? styles.blockItemHovered : ''}`}
                 role="button"
                 tabIndex={0}
+                data-testid={`block-item-${block.type}`}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();

@@ -250,6 +250,7 @@ function blockToContentNode(block: Block): ContentNode {
 
     case 'bullet-list':
     case 'numbered-list':
+    case 'definition-list':
       return listBlockToNode(block as ListBlock);
 
     case 'code':
@@ -302,7 +303,7 @@ function textBlockToNode(block: TextBlock): TextNode {
   } as any;
 }
 
-function listBlockToNode(block: ListBlock): ListNode {
+function listBlockToNode(block: ListBlock | any): ListNode {
   const convertItems = (items: readonly ListItem[]): any[] => {
     return items.map(item => ({
       id: item.id,
@@ -314,7 +315,7 @@ function listBlockToNode(block: ListBlock): ListNode {
     }));
   };
 
-  const fallbackListType = block.type === 'numbered-list' ? 'ol' : 'ul';
+  const fallbackListType = block.type === 'numbered-list' ? 'ol' : block.type === 'definition-list' ? 'dl' : 'ul';
   const firstItemListType = block.items[0]?.listType;
   const resolvedListType =
     firstItemListType === 'ol' ? 'ol' :
@@ -461,9 +462,10 @@ function listNodeToBlock(node: ListNode): ListBlock {
     }));
   };
 
+  const type = node.listType === 'ol' ? 'numbered-list' : node.listType === 'dl' ? 'definition-list' : 'bullet-list';
   return {
     id: getNodeBlockId(node, node.listType),
-    type: 'list',
+    type: type as any,
     direction: node.direction,
     items: convertItems(node.items),
   };
