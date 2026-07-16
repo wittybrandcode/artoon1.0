@@ -9,10 +9,7 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react';
 import type { MarkType } from '../../types';
-import { Toolbar } from '../../design-system/Toolbar';
-import {
-  Bold, Italic, Underline, Strikethrough, Highlighter, Link, Code
-} from 'lucide-react';
+import { Toolbar, CommonFormattingButtons, CommonLinkCodeButtons } from '../../design-system/Toolbar';
 
 export interface BubbleMenuProps {
   /** Callback when a format is toggled */
@@ -151,20 +148,9 @@ export function BubbleMenu({
         selection={{ isCollapsed: false, blockId: '', anchorOffset: 0, focusOffset: 0 }} // Force text-selection context
         blocks={[]}
       >
-        <Toolbar.Group>
-          <Toolbar.Button format="bold" icon={<Bold size={18} strokeWidth={2.5} />} tooltip="عريض" shortcut="Ctrl+B" />
-          <Toolbar.Button format="italic" icon={<Italic size={18} strokeWidth={2.5} />} tooltip="مائل" shortcut="Ctrl+I" />
-          <Toolbar.Button format="underline" icon={<Underline size={18} strokeWidth={2.5} />} tooltip="مسطر" shortcut="Ctrl+U" />
-          <Toolbar.Button format="strikethrough" icon={<Strikethrough size={18} strokeWidth={2.5} />} tooltip="مشطوب" />
-          <Toolbar.Button format="mark" icon={<Highlighter size={18} strokeWidth={2.5} />} tooltip="تظليل" />
-        </Toolbar.Group>
-
+        <CommonFormattingButtons />
         <Toolbar.Separator />
-
-        <Toolbar.Group>
-          <Toolbar.Button action="link" icon={<Link size={18} strokeWidth={2.5} />} tooltip="رابط" shortcut="Ctrl+K" />
-          <Toolbar.Button format="code" icon={<Code size={18} strokeWidth={2.5} />} tooltip="كود" />
-        </Toolbar.Group>
+        <CommonLinkCodeButtons />
       </Toolbar.Root>
     </div>
   );

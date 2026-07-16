@@ -15,3 +15,4 @@ export type { ToolbarRootProps } from './ToolbarRoot';
 export type { ToolbarGroupProps } from './ToolbarGroup';
 export type { ToolbarButtonProps } from './ToolbarButton';
 export type { ToolbarSeparatorProps } from './ToolbarSeparator';
+export * from './common';
