@@ -119,15 +119,23 @@ export class DocumentImpl implements Document {
     let pos = 0;
     let replaced = false;
 
+    // For pure insertions
+    const isInsertion = contentFrom === contentTo;
+
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
       const size = nodeSize(node);
       const nodeStart = pos;
       const nodeEnd = pos + size;
 
+      if (isInsertion && nodeStart === contentFrom && !replaced) {
+        result.push(...slice.content.toArray());
+        replaced = true;
+      }
+
       // Check if this node overlaps with the replacement range
       // A node overlaps if: nodeStart < contentTo AND nodeEnd > contentFrom
-      const overlapsRange = nodeStart < contentTo && nodeEnd > contentFrom;
+      const overlapsRange = !isInsertion && nodeStart < contentTo && nodeEnd > contentFrom;
 
       if (!overlapsRange) {
         // Node doesn't overlap - keep it as is
@@ -146,8 +154,8 @@ export class DocumentImpl implements Document {
       pos = nodeEnd;
     }
 
-    // If we never replaced anything (empty document or insertion at end)
-    if (!replaced && slice.content.childCount > 0) {
+    // If we never replaced anything (empty document, insertion at end, or out of bounds)
+    if (!replaced && slice.content.childCount > 0 && (isInsertion || nodes.length === 0)) {
       result.push(...slice.content.toArray());
     }
 

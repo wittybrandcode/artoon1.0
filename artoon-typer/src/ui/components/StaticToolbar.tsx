@@ -1,9 +1,8 @@
 import React from 'react';
 import type { MarkType, BlockType, Direction, SelectionState } from '../../types';
-import { Toolbar } from '../../design-system/Toolbar';
+import { Toolbar, CommonFormattingButtons, CommonLinkCodeButtons } from '../../design-system/Toolbar';
 import {
-    Bold, Italic, Underline, Strikethrough, Highlighter,
-    Code, Link, Superscript, Subscript,
+    Superscript, Subscript,
     AlignLeft, AlignCenter, AlignRight,
     List, ListOrdered, Quote,
     Undo, Redo
@@ -53,20 +52,12 @@ export function StaticToolbar({
                 blocks={[]}
             >
                 {/* Basic Formatting */}
-                <Toolbar.Group label="أساسي" showIf={['caret', 'text-selection']}>
-                    <Toolbar.Button format="bold" icon={<Bold size={18} strokeWidth={2.5} />} tooltip="عريض" shortcut="Ctrl+B" />
-                    <Toolbar.Button format="italic" icon={<Italic size={18} strokeWidth={2.5} />} tooltip="مائل" shortcut="Ctrl+I" />
-                    <Toolbar.Button format="underline" icon={<Underline size={18} strokeWidth={2.5} />} tooltip="مسطر" shortcut="Ctrl+U" />
-                    <Toolbar.Button format="strikethrough" icon={<Strikethrough size={18} strokeWidth={2.5} />} tooltip="مشطوب" />
-                    <Toolbar.Button format="mark" icon={<Highlighter size={18} strokeWidth={2.5} />} tooltip="تظليل" />
-                </Toolbar.Group>
-
+                <CommonFormattingButtons />
                 <Toolbar.Separator />
 
                 {/* Inline Elements */}
-                <Toolbar.Group label="مضمن" showIf={['caret', 'text-selection']}>
-                    <Toolbar.Button format="code" icon={<Code size={18} strokeWidth={2.5} />} tooltip="كود مضمن" />
-                    <Toolbar.Button action="link" icon={<Link size={18} strokeWidth={2.5} />} tooltip="رابط" shortcut="Ctrl+K" />
+                <CommonLinkCodeButtons />
+                <Toolbar.Group showIf={['caret', 'text-selection']}>
                     <Toolbar.Button format="sup" icon={<Superscript size={18} strokeWidth={2.5} />} tooltip="أعلى" />
                     <Toolbar.Button format="sub" icon={<Subscript size={18} strokeWidth={2.5} />} tooltip="أسفل" />
                 </Toolbar.Group>

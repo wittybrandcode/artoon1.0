@@ -81,6 +81,7 @@ export function BlockWrapper({
       case 'list': return 'block--list';
       case 'bullet-list': return 'block--bullet-list';
       case 'numbered-list': return 'block--numbered-list';
+      case 'definition-list': return 'block--definition-list';
       case 'divider': return 'block--divider';
       case 'image': return 'block--image';
       default: return 'block--paragraph';

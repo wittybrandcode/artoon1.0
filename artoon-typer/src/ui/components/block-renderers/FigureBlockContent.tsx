@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import type { Block } from '../../../types';
 import { createInlineRenderer } from '../../../inline/InlineRenderer';
-import { sanitizeUrl } from '@artoon/core';
+import { sanitizeUrl } from '../../../core/utils';
 
 interface FigureBlockContentProps {
   block: any;

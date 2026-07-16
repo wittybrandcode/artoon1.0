@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { MediaBlock, Block } from '../../../types';
 import { createInlineRenderer } from '../../../inline/InlineRenderer';
-import { sanitizeUrl } from '@artoon/core';
+import { sanitizeUrl } from '../../../core/utils';
 
 interface MediaBlockContentProps {
   block: MediaBlock;

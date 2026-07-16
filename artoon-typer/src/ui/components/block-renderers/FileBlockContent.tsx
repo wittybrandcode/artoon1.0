@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Block } from '../../../types';
-import { sanitizeUrl } from '@artoon/core';
+import { sanitizeUrl } from '../../../core/utils';
 
 interface FileBlockContentProps {
   block: any;
