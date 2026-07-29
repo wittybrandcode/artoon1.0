@@ -381,8 +381,8 @@ describe('useEditor', () => {
       // Mock the selection manager to return a valid selection
       const spy = vi.spyOn(SelectionManager.prototype, 'getSelection').mockReturnValue({
         blockId: 'b1',
-        from: 0,
-        to: 4,
+        anchorOffset: 0,
+        focusOffset: 4,
         isCollapsed: false
       });
 
@@ -400,8 +400,8 @@ describe('useEditor', () => {
     it('should close link dialog', () => {
       const spy = vi.spyOn(SelectionManager.prototype, 'getSelection').mockReturnValue({
         blockId: 'b1',
-        from: 0,
-        to: 4,
+        anchorOffset: 0,
+        focusOffset: 4,
         isCollapsed: false
       });
 

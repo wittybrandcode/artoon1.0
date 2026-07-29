@@ -11,7 +11,7 @@ import { ARTOONImporter, createARTOONImporter } from '../../integration/ARTOONIm
 import { ARTOONExporter, createARTOONExporter } from '../../integration/ARTOONExporter';
 import { getDefaultRegistry } from '../../core/BlockRegistry';
 import { MarkManager, createMarkManager } from '../../inline/MarkManager';
-import { SelectionManager, createSelectionManager, TextSelection } from '../../core/SelectionManager';
+import { SelectionManager, createSelectionManager } from '../../core/SelectionManager';
 import type { InlineContent as ASTInlineContent } from '@artoon/ast';
 import type {
   Block,
@@ -231,7 +231,7 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
   });
 
   // Save selection before opening dialog (to prevent losing it when clicking on dialog inputs)
-  const [savedSelection, setSavedSelection] = useState<TextSelection | null>(null);
+  const [savedSelection, setSavedSelection] = useState<SelectionState | null>(null);
 
   // Sync state with controller
   const syncState = useCallback(() => {
@@ -261,13 +261,7 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
       if (!selection) return;
 
       // Sync DOM selection to EditorState via controller
-      const selState: SelectionState = {
-        blockId: selection.blockId,
-        anchorOffset: selection.from,
-        focusOffset: selection.to,
-        isCollapsed: selection.isCollapsed,
-      };
-      controller.setSelection(selState);
+      controller.setSelection(selection);
 
       if (selection.isCollapsed) {
         // No selection - keep current activeMarks for typing
@@ -287,7 +281,7 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
       }
 
       // Get active marks at selection start
-      const marks = markManager.getActiveMarks(textBlock.content, selection.from);
+      const marks = markManager.getActiveMarks(textBlock.content, selection.anchorOffset);
       setActiveMarks(marks);
       setHasTextSelection(true);
     };
@@ -458,8 +452,8 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
     }
 
     // 4. Trim selection - remove leading/trailing spaces
-    let trimmedFrom = selection.from;
-    let trimmedTo = selection.to;
+    let trimmedFrom = selection.anchorOffset;
+    let trimmedTo = selection.focusOffset;
 
     // Get the text content to check for spaces
     const getText = (content: readonly InlineContent[]): string => {
@@ -550,14 +544,14 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
 
     const newContent = markManager.applyMark(
       textBlock.content,
-      selection.from,
-      selection.to,
+      selection.anchorOffset,
+      selection.focusOffset,
       mark
     );
 
     updateBlock(selection.blockId, { content: newContent } as Partial<Block>);
 
-    const newActiveMarks = markManager.getActiveMarks(newContent, selection.from);
+    const newActiveMarks = markManager.getActiveMarks(newContent, selection.anchorOffset);
     setActiveMarks(newActiveMarks);
   }, [blocks, activeMarks, updateBlock]);
 
@@ -578,14 +572,14 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
 
     const newContent = markManager.removeMark(
       textBlock.content,
-      selection.from,
-      selection.to,
+      selection.anchorOffset,
+      selection.focusOffset,
       mark
     );
 
     updateBlock(selection.blockId, { content: newContent } as Partial<Block>);
 
-    const newActiveMarks = markManager.getActiveMarks(newContent, selection.from);
+    const newActiveMarks = markManager.getActiveMarks(newContent, selection.anchorOffset);
     setActiveMarks(newActiveMarks);
   }, [blocks, activeMarks, updateBlock]);
 
@@ -755,8 +749,8 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
     }
 
     // CRITICAL: Trim selection - remove leading/trailing spaces
-    let trimmedFrom = selection.from;
-    let trimmedTo = selection.to;
+    let trimmedFrom = selection.anchorOffset;
+    let trimmedTo = selection.focusOffset;
 
     // Get the text content to check for spaces
     const getText = (content: readonly InlineContent[]): string => {
