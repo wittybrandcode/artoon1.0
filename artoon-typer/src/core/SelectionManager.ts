@@ -5,20 +5,15 @@
  * Provides a unified interface for getting/setting selection.
  */
 
-export interface TextSelection {
-  blockId: string;
-  from: number;
-  to: number;
-  isCollapsed: boolean;
-}
+import type { SelectionState } from '../types';
 
 export class SelectionManager {
-  private currentSelection: TextSelection | null = null;
+  private currentSelection: SelectionState | null = null;
   
   /**
    * Get current selection from DOM
    */
-  getSelection(): TextSelection | null {
+  getSelection(): SelectionState | null {
     const selection = window.getSelection();
     if (!selection || selection.rangeCount === 0) {
       return null;
@@ -52,10 +47,10 @@ export class SelectionManager {
     const from = this.getOffset(blockElement, range.startContainer, range.startOffset);
     const to = this.getOffset(blockElement, range.endContainer, range.endOffset);
     
-    const textSelection: TextSelection = {
+    const textSelection: SelectionState = {
       blockId,
-      from,
-      to,
+      anchorOffset: from,
+      focusOffset: to,
       isCollapsed: from === to,
     };
     
@@ -85,7 +80,7 @@ export class SelectionManager {
         selection?.removeAllRanges();
         selection?.addRange(range);
         
-        this.currentSelection = { blockId, from, to, isCollapsed: from === to };
+        this.currentSelection = { blockId, anchorOffset: from, focusOffset: to, isCollapsed: from === to };
       } catch (error) {
         console.warn('SelectionManager: Failed to set selection', error);
       }
@@ -111,7 +106,7 @@ export class SelectionManager {
   /**
    * Get last known selection
    */
-  getLastSelection(): TextSelection | null {
+  getLastSelection(): SelectionState | null {
     return this.currentSelection;
   }
   

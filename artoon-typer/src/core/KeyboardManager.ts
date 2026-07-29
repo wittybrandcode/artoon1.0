@@ -575,7 +575,7 @@ function splitBlock(controller: EditorControllerInterface, event: KeyboardEvent)
   const markManager = new MarkManager();
 
   const flat = markManager.flattenContent(textBlock.content);
-  const splitIndex = selection.from;
+  const splitIndex = selection.anchorOffset;
 
   const firstHalf = flat.slice(0, splitIndex);
   const secondHalf = flat.slice(splitIndex);
@@ -629,7 +629,7 @@ function mergeBlockUp(controller: EditorControllerInterface, event: KeyboardEven
   const selection = selectionManager.getSelection();
 
   // ONLY intercept if caret is exactly at position 0
-  if (!selection || selection.blockId !== focusedBlock.id || !selection.isCollapsed || selection.from !== 0) {
+  if (!selection || selection.blockId !== focusedBlock.id || !selection.isCollapsed || selection.anchorOffset !== 0) {
     return false;
   }
 
