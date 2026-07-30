@@ -97,24 +97,33 @@ function AppContent() {
     input.onchange = async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (file) {
-        const text = await file.text();
-        setContent(text);
         setFileName(file.name);
-        setContentKey(prev => prev + 1);
+        try {
+          const text = await file.text();
+          setContent(text);
+          setContentKey(prev => prev + 1); // Force editor recreation
+        } catch (err) {
+          alert('❌ فشل الاستيراد: ' + (err instanceof Error ? err.message : String(err)));
+        }
       }
     };
     input.click();
   }, []);
 
+
   // Export ARTOON file
   const handleExport = useCallback(() => {
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    try {
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = fileName || 'document.artoon';
     a.click();
-    URL.revokeObjectURL(url);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('❌ فشل التصدير: ' + (err instanceof Error ? err.message : String(err)));
+    }
   }, [content, fileName]);
 
   // Toggle default direction for new blocks

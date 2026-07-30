@@ -16,6 +16,7 @@ import { ContextMenu } from './ContextMenu';
 import { LinkDialog } from './LinkDialog';
 import { StaticToolbar } from './StaticToolbar';
 import { StatusBar } from './StatusBar';
+import { ValidationPanel } from './ValidationPanel';
 import type { Block, BlockType, MarkType, Direction } from '../../types';
 import { generateId } from '../../core/utils';
 
@@ -76,6 +77,7 @@ export function EditorContainer({
     blockMenu,
     linkDialog,
     hasTextSelection,
+    validationResult,
     activeMarks,
     selectionPosition,
     editorRef,
@@ -164,6 +166,7 @@ export function EditorContainer({
   );
 
   const blockIds = useMemo(() => blocks.map((b) => b.id), [blocks]);
+  const [showValidationPanel, setShowValidationPanel] = useState(false);
 
   // ─── Event Handlers ─────────────────────────────────────────────────
 
@@ -352,7 +355,15 @@ export function EditorContainer({
             blockCount={blocks.length}
             theme={theme}
             direction={defaultDirection}
+            validationResult={editor.validationResult}
+            onToggleValidationPanel={() => setShowValidationPanel(prev => !prev)}
           />
+          {showValidationPanel && (
+            <ValidationPanel
+              validationResult={editor.validationResult}
+              onClose={() => setShowValidationPanel(false)}
+            />
+          )}
         </div>
       </main>
 
