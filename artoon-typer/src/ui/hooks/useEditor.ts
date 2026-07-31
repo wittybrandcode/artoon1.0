@@ -11,7 +11,6 @@ import { ARTOONImporter, createARTOONImporter } from '../../integration/ARTOONIm
 import { ARTOONExporter, createARTOONExporter } from '../../integration/ARTOONExporter';
 import { validate, type ValidationResult } from '@artoon/validator';
 import { parse } from '@artoon/parser';
-import { EditorStateImpl } from '@artoon/state';
 import { getDefaultRegistry } from '../../core/BlockRegistry';
 import { MarkManager, createMarkManager } from '../../inline/MarkManager';
 import { SelectionManager, createSelectionManager } from '../../core/SelectionManager';
@@ -262,8 +261,6 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
     validationTimeoutRef.current = setTimeout(() => {
       try {
         const content = exporter.export(newBlocks);
-        const state = EditorStateImpl.create({ doc: controller.getRegistry().create('paragraph') as any }); // dummy just for typing if needed, actually we just parse and pass ast
-        // Better: use validate directly on the exported string parsed to AST
         const parseResult = parse(content);
         const result = validate(parseResult.ast || {}, content);
         setValidationResult(result);
@@ -280,6 +277,15 @@ export function useEditor(options: UseEditorOptions = {}): UseEditorReturn {
     }, 300);
 
   }, [controller, exporter, onChange, onBlocksChange]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (validationTimeoutRef.current) {
+        clearTimeout(validationTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Initialize managers
   const markManager = useRef(createMarkManager()).current;
