@@ -4,7 +4,7 @@ Welcome to the ARTOON development environment. This document explains how to set
 
 ## 🛠 Prerequisites
 
-- **Node.js**: v18.x or higher (v20.x recommended)
+- **Node.js**: v22.x or higher
 - **npm**: v9.x or higher
 
 ## 🚀 Quick Start

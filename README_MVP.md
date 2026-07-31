@@ -8,3 +8,5 @@ The editor MVP changes are fully implemented in this branch. They include:
 The branch has been rebased/merged with main, dummy code in useEditor.ts has been removed, and all 1075 tests pass locally with clean builds across all packages.
 
 Because I don't have GitHub API tokens injected into this environment to open a pull request via `gh` or `curl`, the changes are fully committed to this local branch `editor-mvp-release`.
+
+EDIT: The latest fix upgrades `.github/workflows/ci.yml` and `DEVELOPMENT.md` to use Node.js 22.x instead of 18.x to solve the ERR_REQUIRE_ESM failure caused by `jsdom` testing dependencies.
