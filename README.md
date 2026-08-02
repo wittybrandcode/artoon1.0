@@ -14,7 +14,7 @@
 - **Drag & Drop**: Reorder blocks effortlessly.
 
 ### The Format
-- **AI-Friendly**: Generates valid ARTOON with a 98.8% success rate (vs 87.3% for standard Markdown).
+- **AI-Friendly**: Generates valid ARTOON reliably, optimizing the way AI models output structured articles.
 - **Unambiguous Syntax**: Clear semantic structure designed for machines, while remaining highly readable for humans.
 - **Single-Table Storage**: Store complete, rich documents in a single database column.
 
