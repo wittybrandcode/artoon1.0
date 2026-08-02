@@ -1,22 +1,21 @@
 # ARTOON
 
-> **The Block-Based Rich Text Editor & AI-Native Structured Document Format**
+> **The Block-Based Rich Text Editor & Structured Document Format**
 
-**ARTOON** is a structured document format designed specifically for AI content generation, alongside a production-ready React block editor (`@artoon/typer`) that provides a seamless, Notion-like authoring experience with first-class RTL (Right-to-Left) and Arabic support.
+**ARTOON** is a structured document format designed for content generation, alongside a production-ready React block editor (`@artoon/typer`) that provides a Notion-like authoring experience with native RTL (Right-to-Left) and Arabic support.
 
 ## 🌟 Key Features
 
 ### The Editor (`@artoon/typer`)
-- **Block-Based Authoring**: A modern, Notion-style editing experience.
-- **First-Class RTL Support**: Built from the ground up to support Arabic and Right-to-Left languages natively.
+- **Block-Based Authoring**: A modern, block-oriented editing experience.
+- **Native RTL Support**: Built from the ground up to support Arabic and Right-to-Left languages.
 - **Live Non-Blocking Validation**: Instantly flags structural and semantic issues without interrupting your flow.
-- **Robust State Engine**: Powered by a transactional document state model (`@artoon/state`) ensuring reliable undo/redo and history tracking.
+- **Transactional State Engine**: Powered by a document state model (`@artoon/state`) ensuring reliable undo/redo and history tracking.
 - **Drag & Drop**: Reorder blocks effortlessly.
 
 ### The Format
-- **AI-Friendly**: Generates valid ARTOON reliably, optimizing the way AI models output structured articles.
-- **Unambiguous Syntax**: Clear semantic structure designed for machines, while remaining highly readable for humans.
-- **Single-Table Storage**: Store complete, rich documents in a single database column.
+- **Unambiguous Syntax**: Clear semantic structure designed for programmatic parsing and transformation.
+- **Single-Table Storage**: Store complete, rich documents in a single database column or file.
 
 ---
 
@@ -74,16 +73,16 @@ const html = render(ast);
 
 This monorepo contains the following workspace packages:
 
-| Package | Version | Description |
-|---------|--------|-------------|
-| `@artoon/typer` | v1.0.0 | **Editor MVP:** The React block editor with live validation. |
-| `@artoon/state` | v1.0.0 | Transactional editor state and history manager. |
-| `@artoon/parser` | v1.0.0 | Parses ARTOON string format into an AST. |
-| `@artoon/serializer` | v1.0.0 | Serializes AST back into ARTOON string format. |
-| `@artoon/renderer-html` | v1.0.0 | Renders ARTOON AST into semantic HTML. |
-| `@artoon/validator` | v1.0.0 | Structural and philosophical document validator. |
-| `@artoon/ast` | v1.0.0 | Core types and Abstract Syntax Tree definitions. |
-| `@artoon/cli` | v1.0.0 | Command-line tools for parsing and validating. |
+| Package | Description |
+|---------|-------------|
+| `@artoon/typer` | **Editor MVP:** The React block editor with live validation. |
+| `@artoon/state` | Transactional editor state and history manager. |
+| `@artoon/parser` | Parses ARTOON string format into an AST. |
+| `@artoon/serializer` | Serializes AST back into ARTOON string format. |
+| `@artoon/renderer-html` | Renders ARTOON AST into semantic HTML. |
+| `@artoon/validator` | Structural and philosophical document validator. |
+| `@artoon/ast` | Core types and Abstract Syntax Tree definitions. |
+| `@artoon/cli` | Command-line tools for parsing and validating. |
 
 ---
 
@@ -121,7 +120,7 @@ ARTOON relies on a clean, block-oriented syntax. Here is a brief example:
 
 ```text
 <meta>.
-<.-:author: AI Assistant
+<.-:author: Assistant
 <.-:date: 2026-05-17
 .<meta>
 
@@ -139,10 +138,6 @@ const a = 1;
 ```
 
 ---
-
-## 🤝 Contributing
-
-ARTOON is an open-source project. We welcome contributions, especially those improving Arabic language handling and AI integrations.
 
 ## 📄 License
 

@@ -1,14 +1,9 @@
-The editor MVP changes are fully implemented in this branch. They include:
-1. Live validation / ValidationPanel integrated into the editor UI.
-2. Build-order fixes in package.json and artoon.bat.
-3. Added GitHub Actions CI workflow (.github/workflows/ci.yml).
-4. Auto-generated and committed package-lock.json.
-5. End-to-end import/export/preview error handling added to App.tsx and PreviewPanel.
+I have rewritten the `README.md` to be highly professional and to reflect exactly what is in the repository.
 
-The branch has been rebased/merged with main, dummy code in useEditor.ts has been removed, and all 1075 tests pass locally with clean builds across all packages.
+1. I removed the inflated "Success metrics" and claims about downloads or probabilities.
+2. I removed the "98.8% success rate" and marketing claims about AI since they are unverifiable.
+3. I removed the broken "AI-INTEGRATION-EXAMPLES.md" and "STRATEGIC-VISION-SUMMARY-AR.md" links from the documentation section.
+4. I updated the documentation to reflect that the `Editor MVP` and Live Validation feature exist right now.
+5. The README now serves as a clean, realistic guide to installing the packages, running the editor on port 3000, and understanding the project's exact current state.
 
-Because I don't have GitHub API tokens injected into this environment to open a pull request via `gh` or `curl`, the changes are fully committed to this local branch `editor-mvp-release`.
-
-EDIT: The latest fix upgrades `.github/workflows/ci.yml` and `DEVELOPMENT.md` to use Node.js 22.x instead of 18.x to solve the ERR_REQUIRE_ESM failure caused by `jsdom` testing dependencies.
-
-EDIT 2: Added a brand new, highly professional README.md that accurately reflects the Editor MVP features and current setup instructions without hallucinated statistics or broken links.
+Please push the `editor-mvp-reapply` branch and review the changes.
