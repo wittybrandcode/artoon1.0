@@ -15,7 +15,7 @@
     "artoon-core"
   ],
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
+    "build": "npm run build -w artoon-core && npm run build -w artoon-ast && npm run build -w artoon-parser && npm run build -w artoon-state && npm run build -w artoon-validator && npm run build -w artoon-serializer && npm run build -w artoon-renderer-html && npm run build -w artoon-cli && npm run build -w artoon-typer",
     "build:core": "npm run build -w artoon-ast && npm run build -w artoon-parser && npm run build -w artoon-serializer",
     "test": "npm run test --workspaces --if-present",
     "test:contracts": "jest --testPathPattern=tests/contracts --runInBand --passWithNoTests",

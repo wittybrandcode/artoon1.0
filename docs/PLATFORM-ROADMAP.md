@@ -221,9 +221,9 @@ Grew from ~48 tests to **183 tests** across 8 suites.
 
 ### 3.5 artoon-typer — Test Stabilization (Out of Scope)
 
-- [ ] Fix list type mismatch failures (`list` vs `bullet-list` / `numbered-list`)
-- [ ] Fix React mock missing `createContext` export
-- [ ] 1047/1074 tests pass — 27 failures in artoon-typer only
+- [x] Fix list type mismatch failures (`list` vs `bullet-list` / `numbered-list`)
+- [x] Fix React mock missing `createContext` export
+- [x] 1070/1070 tests pass — 0 failures in artoon-typer
 
 **Deliverable:** All core test suites pass. No `.skip` files remain in core packages.
 

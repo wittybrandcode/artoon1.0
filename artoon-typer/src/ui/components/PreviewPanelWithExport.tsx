@@ -67,7 +67,7 @@ export function PreviewPanelWithExport({ content, className = '' }: PreviewPanel
       return render(doc);
     } catch (error) {
       console.error('Preview error:', error);
-      return `<div class="preview-error"><h3>❌ خطأ في المعاينة</h3></div>`;
+      return `<div class="preview-error" style="color: red; padding: 20px;"><h3>❌ خطأ في المعاينة</h3><pre>${error instanceof Error ? error.message : String(error)}</pre></div>`;
     }
   }, [content]);
   

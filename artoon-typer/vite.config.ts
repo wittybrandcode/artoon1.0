@@ -11,6 +11,8 @@ export default defineConfig({
       '@artoon/parser': resolve(__dirname, '../artoon-parser/src'),
       '@artoon/serializer': resolve(__dirname, '../artoon-serializer/src'),
       '@artoon/core': resolve(__dirname, '../artoon-core/src'), '@artoon/state': resolve(__dirname, '../artoon-state/src'),
+      '@artoon/validator': resolve(__dirname, '../artoon-validator/src'),
+      '@artoon/renderer-html': resolve(__dirname, '../artoon-renderer-html/src'),
     },
   },
   // Development server configuration

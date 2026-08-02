@@ -1,246 +1,149 @@
-# ARTOON 1.0
+# ARTOON
 
-> **AI-Native Structured Article Format**
-> 
-> Structured for machines, readable for humans.
+> **The Block-Based Rich Text Editor & AI-Native Structured Document Format**
 
----
+**ARTOON** is a structured document format designed specifically for AI content generation, alongside a production-ready React block editor (`@artoon/typer`) that provides a seamless, Notion-like authoring experience with first-class RTL (Right-to-Left) and Arabic support.
 
-## 🤖 What is ARTOON?
+## 🌟 Key Features
 
-ARTOON is a structured format specifically designed for AI content generation and analysis:
+### The Editor (`@artoon/typer`)
+- **Block-Based Authoring**: A modern, Notion-style editing experience.
+- **First-Class RTL Support**: Built from the ground up to support Arabic and Right-to-Left languages natively.
+- **Live Non-Blocking Validation**: Instantly flags structural and semantic issues without interrupting your flow.
+- **Robust State Engine**: Powered by a transactional document state model (`@artoon/state`) ensuring reliable undo/redo and history tracking.
+- **Drag & Drop**: Reorder blocks effortlessly.
 
-- ✅ **AI-Friendly**: 98.8% generation success rate (vs 87.3% Markdown)
-- ✅ **Database-Optimized**: Single-table storage (vs 5-10 tables)
-- ✅ **Semantic Structure**: Clear, unambiguous syntax
-- ✅ **Universal**: Supports all languages (not just Arabic)
+### The Format
+- **AI-Friendly**: Generates valid ARTOON reliably, optimizing the way AI models output structured articles.
+- **Unambiguous Syntax**: Clear semantic structure designed for machines, while remaining highly readable for humans.
+- **Single-Table Storage**: Store complete, rich documents in a single database column.
 
 ---
 
 ## 🚀 Quick Start
 
+### 1. The React Editor
+Install the editor package:
+```bash
+npm install @artoon/typer
+```
+
+Basic usage:
+```tsx
+import { EditorContainer } from '@artoon/typer';
+import '@artoon/typer/styles.css';
+
+export default function MyEditor() {
+  return (
+    <EditorContainer
+      initialContent="<.p:: Welcome to ARTOON!>"
+      theme="light"
+      defaultDirection="rtl"
+      onChange={(content) => console.log(content)}
+    />
+  );
+}
+```
+
+### 2. Core Packages (Parsing & Rendering)
+Install the parser and HTML renderer:
 ```bash
 npm install @artoon/parser @artoon/renderer-html
 ```
 
+Basic usage:
 ```typescript
 import { parse } from '@artoon/parser';
 import { render } from '@artoon/renderer-html';
 
-const artoon = `
+const artoonDoc = `
 <meta>.
-<.-:title: My First Article
-<.-:author: AI Assistant
-<.-:date: 2026-01-22
+<.-:title: Hello World
 .<meta>
-
-<.t1:: Hello World
-<.p:: This is my first ARTOON article.
+<.t1:: Welcome to ARTOON
+<.p:: This is a structured document.
 `;
 
-const { ast } = parse(artoon);
+const { ast } = parse(artoonDoc);
 const html = render(ast);
-console.log(html);
 ```
-
-## 📊 Current Status
-
-```
-✅ Core packages: Production-ready (9/10 quality)
-✅ All tests passing (304/304)
-✅ Documentation: Comprehensive
-✅ Ready for NPM publishing
-🎯 Next: Launch in 7 days
-```
-
-**Next Action:** Read [`QUICK-REFERENCE-CARD.md`](./QUICK-REFERENCE-CARD.md) 🎯
-
-## 🎯 Why ARTOON?
-
-### For AI Developers
-- **Reliable Generation**: AI generates valid ARTOON 98.8% of the time
-- **Easy Parsing**: Unambiguous structure, clear semantics
-- **Structured Output**: Perfect for content automation
-
-### For CMS Platforms
-- **Database Optimization**: Store articles in a single table
-- **Embedded Metadata**: No separate meta tables needed
-- **Portable Format**: One file = complete article
-
-### For Content Creators
-- **Clear Syntax**: Easy to read and write
-- **Powerful Features**: Blocks, inline formatting, media
-- **Universal**: Works with any language
 
 ---
 
-## 📦 Packages
+## 📦 Packages Overview
 
-| Package | Status | Description |
+This monorepo contains the following workspace packages:
+
+| Package | Version | Description |
 |---------|--------|-------------|
-| `@artoon/parser` | ✅ Ready | Parse ARTOON to AST |
-| `@artoon/serializer` | ✅ Ready | AST to ARTOON text |
-| `@artoon/renderer-html` | ✅ Ready | AST to HTML |
-| `@artoon/cli` | ✅ Ready | Command-line tools |
-| `@artoon/validator` | ⚠️ In Progress | Content validation |
-| `@artoon/editor-state` | ⚠️ In Progress | Editor state management |
-| `@artoon/typer` | ⚠️ In Progress | Visual editor |
+| `@artoon/typer` | v1.0.0 | **Editor MVP:** The React block editor with live validation. |
+| `@artoon/state` | v1.0.0 | Transactional editor state and history manager. |
+| `@artoon/parser` | v1.0.0 | Parses ARTOON string format into an AST. |
+| `@artoon/serializer` | v1.0.0 | Serializes AST back into ARTOON string format. |
+| `@artoon/renderer-html` | v1.0.0 | Renders ARTOON AST into semantic HTML. |
+| `@artoon/validator` | v1.0.0 | Structural and philosophical document validator. |
+| `@artoon/ast` | v1.0.0 | Core types and Abstract Syntax Tree definitions. |
+| `@artoon/cli` | v1.0.0 | Command-line tools for parsing and validating. |
 
 ---
 
-## 📚 Documentation
+## 🛠 Development Setup
 
-### Strategic Documents
-- 🎯 [**Quick Reference Card**](./QUICK-REFERENCE-CARD.md) - Start here!
-- 📊 [**Strategic Vision Summary**](./STRATEGIC-VISION-SUMMARY-AR.md) - Complete overview
-- ⚡ [**Immediate Action Plan**](./IMMEDIATE-ACTION-PLAN-AR.md) - 7-day launch plan
-- 🤖 [**AI Integration Examples**](./AI-INTEGRATION-EXAMPLES.md) - Working code examples
-- 🚀 [**AI-Native Positioning Strategy**](./AI-NATIVE-POSITIONING-STRATEGY-AR.md) - Full strategy
+### Prerequisites
+- **Node.js**: v22.x or higher
+- **npm**: v9.x or higher
 
-### Technical Documentation
-- 📖 [**Syntax Reference**](./Core%20Invariants/SYNTAX-REFERENCE.md) - Complete syntax guide
-- 📦 [**NPM Publishing Guide**](./NPM-PUBLISHING-GUIDE-AR.md) - Publishing instructions
-- 🔧 [**Developer Guide**](./docs/05-DEVELOPER-GUIDE.md) - Development guide
-- 📝 [**Examples**](./artoon-examples/) - Sample ARTOON files
+### Installation & Build
+```bash
+# 1. Install dependencies
+npm install
 
----
+# 2. Build the workspace (builds packages in topological order)
+npm run build
 
-## 🚀 Launch Plan
+# 3. Start the Editor Dev Server (Runs on port 3000)
+npm run dev -w @artoon/typer
 
-**Timeline:** 7 days
-
-### Day 1-2: Preparation
-- Update positioning to "AI-Native"
-- Update package.json files
-- Add LICENSE and READMEs
-
-### Day 3-4: Publishing
-- Build and test all packages
-- Publish to NPM
-- Create GitHub Release
-
-### Day 5-6: Examples & Tools
-- Create AI integration examples
-- Build simple playground
-- Write Getting Started guide
-
-### Day 7: Announcement
-- Write announcement article
-- Share on Twitter/X, Reddit, Dev.to
-- Engage with AI communities
-
-**Details:** See [IMMEDIATE-ACTION-PLAN-AR.md](./IMMEDIATE-ACTION-PLAN-AR.md)
-
----
-
-## 💡 Use Cases
-
-### AI Content Generation
-```typescript
-// AI generates ARTOON reliably
-const article = await generateWithAI('TypeScript Best Practices');
-const { ast } = parse(article);
-const html = render(ast);
+# 4. Run Tests across all packages
+npm test
 ```
 
-### Content Analysis
-```typescript
-// Extract structured data easily
-const { ast } = parse(artoonContent);
-const metadata = extractMetadata(ast);
-const headings = extractHeadings(ast);
-const analysis = await analyzeWithAI({ metadata, headings });
-```
-
-### Database Storage
-```sql
--- Single table for all articles
-CREATE TABLE articles (
-  id INT PRIMARY KEY,
-  content TEXT  -- Complete ARTOON content
-);
-
--- Simple queries, no JOINs needed
-SELECT content FROM articles WHERE id = 1;
+Alternatively, you can use the provided Windows batch script:
+```cmd
+.\artoon.bat
 ```
 
 ---
 
-## 🎯 Success Metrics
+## 📝 Syntax Snapshot
 
-**Probability of Success: 60-70%**
+ARTOON relies on a clean, block-oriented syntax. Here is a brief example:
 
-### After 3 Months:
-- 📦 200+ downloads/week
-- ⭐ 30+ GitHub stars
-- 🔌 1+ CMS plugin
+```text
+<meta>.
+<.-:author: AI Assistant
+<.-:date: 2026-05-17
+.<meta>
 
-### After 6 Months:
-- 📦 1000+ downloads/week
-- ⭐ 100+ GitHub stars
-- 🏢 2+ companies in production
+<.t1:: Artoon Syntax
+<.p:: It supports blocks, lists, and tables.
 
-### After 1 Year:
-- 📦 5000+ downloads/week
-- ⭐ 500+ GitHub stars
-- 🏢 10+ enterprise customers
+<ul::
+<.-:: Item 1
+<.-:: Item 2
+>
 
----
-
-## ⚠️ Current Limitations
-
-### Nested Custom Blocks
-
-**Status:** ⏳ Not supported yet (deferred to Phase 2 - Q2 2026)
-
-Currently, the system doesn't support nesting custom blocks inside each other.
-
-**Working blocks:** ✅ 8/15
-- `code`, `meta`, `note`, `info`, `quote`, `card`, `box`, `panel`
-
-**Deferred blocks:** ⏳ 7/15  
-- `alert`, `success`, `error`, `warning`, `article`, `section`, `container`
-
-**Workaround:** Use simple blocks without nesting.
-
-**Roadmap:** Phase 2 (Q2 2026) - Full nesting support
-
-**Details:** [`Core Invariants/09-CONSTRAINTS-AND-ANTI-PATTERNS.md`](./Core%20Invariants/09-CONSTRAINTS-AND-ANTI-PATTERNS.md#01-تداخل-البلوكات-المخصصة-nested-custom-blocks)
-
----
-
-## 🔗 Quick Links
-
-- 🎯 [Quick Reference Card](./QUICK-REFERENCE-CARD.md) - Start here!
-- 📊 [Strategic Vision](./STRATEGIC-VISION-SUMMARY-AR.md) - Complete overview
-- ⚡ [7-Day Launch Plan](./IMMEDIATE-ACTION-PLAN-AR.md) - Action plan
-- 🤖 [AI Examples](./AI-INTEGRATION-EXAMPLES.md) - Working code
-- 📖 [Syntax Reference](./Core%20Invariants/SYNTAX-REFERENCE.md) - Full syntax
-- 📦 [Publishing Guide](./NPM-PUBLISHING-GUIDE-AR.md) - NPM publishing
+<code:typescript>.
+const a = 1;
+.<code>
+```
 
 ---
 
 ## 🤝 Contributing
 
-ARTOON is open source and welcomes contributions!
-
-- 🐛 [Report bugs](https://github.com/yourusername/artoon/issues)
-- 💡 [Suggest features](https://github.com/yourusername/artoon/issues)
-- 🔧 [Submit pull requests](https://github.com/yourusername/artoon/pulls)
-- 📝 [Improve documentation](https://github.com/yourusername/artoon)
-
----
+ARTOON is an open-source project. We welcome contributions, especially those improving Arabic language handling and AI integrations.
 
 ## 📄 License
 
-MIT License - see [LICENSE](./LICENSE) for details
-
----
-
-**ARTOON: Structured for machines, readable for humans.** 🤖✨
-
-**Version:** 2.0.0  
-**Status:** Production Ready (Core Packages)  
-**Success Probability:** 60-70%
-
-**Next Step:** Read [QUICK-REFERENCE-CARD.md](./QUICK-REFERENCE-CARD.md) and start the 7-day launch! 🚀
+MIT License.

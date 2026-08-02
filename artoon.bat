@@ -71,7 +71,7 @@ if not exist "node_modules" (
 echo [2/2] Starting editor...
 echo.
 echo ═══════════════════════════════════════════════════════════════════════════
-echo   📍 Address: http://localhost:5173
+echo   📍 Address: http://localhost:3000
 echo   💡 To stop the editor: Press Ctrl+C
 echo ═══════════════════════════════════════════════════════════════════════════
 echo.
@@ -156,8 +156,19 @@ echo.
 
 set "FAILED=0"
 
+:: Core
+echo [1/9] @artoon/core...
+cd /d "%ROOT%artoon-core"
+call npm run build >nul 2>&1
+if errorlevel 1 (
+    echo       ❌ Failed
+    set "FAILED=1"
+) else (
+    echo       ✅ OK
+)
+
 :: AST
-echo [1/7] @artoon/ast...
+echo [2/9] @artoon/ast...
 cd /d "%ROOT%artoon-ast"
 call npm run build >nul 2>&1
 if errorlevel 1 (
@@ -168,7 +179,7 @@ if errorlevel 1 (
 )
 
 :: Parser
-echo [2/7] @artoon/parser...
+echo [3/9] @artoon/parser...
 cd /d "%ROOT%artoon-parser"
 call npm run build >nul 2>&1
 if errorlevel 1 (
@@ -178,8 +189,19 @@ if errorlevel 1 (
     echo       ✅ OK
 )
 
+:: Editor State
+echo [4/9] @artoon/state...
+cd /d "%ROOT%artoon-state"
+call npm run build >nul 2>&1
+if errorlevel 1 (
+    echo       ❌ Failed
+    set "FAILED=1"
+) else (
+    echo       ✅ OK
+)
+
 :: Validator
-echo [3/7] @artoon/validator...
+echo [5/9] @artoon/validator...
 cd /d "%ROOT%artoon-validator"
 call npm run build >nul 2>&1
 if errorlevel 1 (
@@ -190,7 +212,7 @@ if errorlevel 1 (
 )
 
 :: Serializer
-echo [4/7] @artoon/serializer...
+echo [6/9] @artoon/serializer...
 cd /d "%ROOT%artoon-serializer"
 call npm run build >nul 2>&1
 if errorlevel 1 (
@@ -201,7 +223,7 @@ if errorlevel 1 (
 )
 
 :: Renderer
-echo [5/7] @artoon/renderer-html...
+echo [7/9] @artoon/renderer-html...
 cd /d "%ROOT%artoon-renderer-html"
 call npm run build >nul 2>&1
 if errorlevel 1 (
@@ -211,9 +233,9 @@ if errorlevel 1 (
     echo       ✅ OK
 )
 
-:: Editor State
-echo [6/7] @artoon/state...
-cd /d "%ROOT%artoon-state"
+:: CLI
+echo [8/9] @artoon/cli...
+cd /d "%ROOT%artoon-cli"
 call npm run build >nul 2>&1
 if errorlevel 1 (
     echo       ❌ Failed
@@ -222,9 +244,9 @@ if errorlevel 1 (
     echo       ✅ OK
 )
 
-:: CLI
-echo [7/7] @artoon/cli...
-cd /d "%ROOT%artoon-cli"
+:: Typer
+echo [9/9] @artoon/typer...
+cd /d "%ROOT%artoon-typer"
 call npm run build >nul 2>&1
 if errorlevel 1 (
     echo       ❌ Failed
